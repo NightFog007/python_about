@@ -8,7 +8,7 @@
 # https://www.cnblogs.com/thisyan/p/9699939.html
 
 #思路
-#1. 解析xml文件,找到各个节点变量 
+#1. 解析xml文件,找到body下面的各个节点变量 
 #2. 找到哪些节点是变量(枚举值,区间值,必填值等)
 #3. 找到哪些节点之间相互关联, 例如A节点为a,  则B节点必须为b.   C节点为1, 则D节点不准为空
 #4. 直接遍历所有可能值,生成所有的xml报文 (先完成全部遍历, 后续再考虑用等价类优化)
@@ -17,13 +17,13 @@
 
 # <?xml version="1.0" encoding="ISO-8859-1"?>
 # <data>
-# 　　<country>
+# 　　<body>
 # 　　　　<aaa>1</aaa>
 # 　　　　<bbb>2008</bbb>
 # 　　　　<ccc>1</ccc>
 #       <ddd>10</ddd>
 # 　　　　<eee>119</eee>
-# 　　</country>
+# 　　</body>
 # </data>
 
 # aaa必须为0或者1
@@ -43,22 +43,35 @@ print(len(root))
 print(root.tag)   # 根节点
 
 
-ch1 = root[0]  #按下标索引子节点 
-print(ch1.tag) 
-# print(ch1.find('aaa').text)  #找到根节点下,aaa节点的值
 
-ch2 = ch1[0]  #按下标索引子节点 
-print(ch2.tag) 
-print(ch2.text) 
+bd = root.find('body')
 
-print("*******")
+# print("测试区间↓↓↓↓↓↓↓↓↓↓↓↓↓↓")
+# # print(len(bd))
+# for ch in bd:
+#     print(ch.tag , ": ", ch.text)
+
+# print("测试区间↑↑↑↑↑↑↑↑↑↑↑↑↑↑")
+
+
+# ch1 = root[0]  #按下标索引子节点 
+# print(ch1.tag) 
+# # print(ch1.find('aaa').text)  #找到根节点下,aaa节点的值
+
+# ch2 = ch1[0]  #按下标索引子节点 
+# print(ch2.tag) 
+# print(ch2.text) 
+
+# print("*******")
+
+# # root1是根节点下一级子节 count
+# root1 = root[0]
+# chil = root1
+# print("chil is : %s",chil)
 
 temp = {} 
-# root1是根节点下一级子节 count
-root1 = root[0]
-chil = root1
-print("chil is : %s",chil)
 
+chil = bd
 for i in chil:
     # print(i.tag)   #输出 aaa, bbb, ccc, ddd ,eee
     # temp[i.tag] = 0
@@ -70,7 +83,7 @@ for i in chil:
  
 
 print("init value is %s " , temp)   
-print("****")
+print("****************************")
 
 
 # aaa必须为0或者1
@@ -84,6 +97,11 @@ aaa = [0,1]
 bbb = 2008
 ccc = [1,3,5]
 ddd = [10,11,12]
+eee = 119 if (aaa ==1)  else None 
+
+
+# 此数组记录必填节点名称,用于生成异常案例. 
+notnull = ['aaa','bbb','ddd']
 
 #错误值
 a = 2
@@ -146,7 +164,13 @@ print(test1)
 test1 = temp.copy()
 test1['aaa'] = 0
 test1['eee'] = 999
-
 print(test1)
 
+
+
+
+for key in notnull:
+    test1 = temp.copy()
+    test1[key] = None 
+    print(test1)
 
