@@ -18,19 +18,19 @@ eee = 120
 <body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>120</eee></body>
 
 
-aaa = 120
+aaa为空
 <body><aaa> </aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
 
 
-bbb = 120
+bbb为空
 <body><aaa>1</aaa><bbb> </bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
 
 
-ccc = 120
+ccc为空
 <body><aaa>1</aaa><bbb>2008</bbb><ccc> </ccc><ddd>10</ddd><eee>119</eee></body>
 
 
-ddd = 120
+ddd为空
 <body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd> </ddd><eee>119</eee></body>
 
 

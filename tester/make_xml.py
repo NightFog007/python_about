@@ -35,25 +35,27 @@
 
 import xml.etree.ElementTree  as ET
 import os
+import random 
 
 import xlrd
 
 
+ran = random.randint(1,100)
 
-# 参数为每个test1
-def res_xml(iitem,filename):
+# 参数分别为 当前案例标题, 当前案例xml报文内容, 文件名
+# 最终生成的文件名, 会加一个1-100随机整数为后缀
+def res_xml(title , iitem,filename):
 
     temp = iitem
         # 以下是生成xml
     root = ET.Element('body')   # 创建根节点调用方法Element
     for key , value in temp.items():
-
-        
+     
         ET.SubElement(root,key).text =  value 
         
     tree = ET.ElementTree(root)
         
-    res_filename = './' +  filename + '.xml'
+    res_filename = './' +  filename + str(ran) + '.xml'
     # tree.write('./new.xml',encoding='utf-8')
     tree.write(res_filename,encoding='utf-8')
 
@@ -66,12 +68,14 @@ def res_xml(iitem,filename):
 
 
     # filename = 'new_all.txt'
-    txtfilename =  filename + '.txt'
+    txtfilename =  filename + str(ran) +  '.txt'
     with open(txtfilename, 'a') as file_object:
+        file_object.write(title)
+        file_object.write("\n")
         file_object.write(data)
         file_object.write("\n")
-
-
+        file_object.write("\n")
+        file_object.write("\n")
 
 
 
@@ -135,8 +139,9 @@ for i in values:
         test1 = temp.copy() 
 
         test1[name]= j
+        title = name + ' = ' + j
         print(test1)
-        res_xml(test1,'trueFile')
+        res_xml(title,test1,'trueFile')
 
     print("测试区间↑↑↑↑↑↑↑↑↑↑↑↑↑↑")
     x = x + 1   
@@ -158,7 +163,8 @@ for i in errs:
         test1 = temp.copy() 
 
         test1[name]= j
-        res_xml(test1,'wrongfile')
+        title = name + ' = ' + j
+        res_xml(title, test1,'wrongfile')
         print(test1)
 
     print("测试区间↑↑↑↑↑↑↑↑↑↑↑↑↑↑")
@@ -178,7 +184,9 @@ for i in needs:
     if i is '1':
         test1 = temp.copy() 
         test1[name]= ' '
-        res_xml(test1,'wrongfile')
+       
+        title = name + '为空'
+        res_xml(title,test1,'wrongfile')
         print(test1)
 
     print("测试区间↑↑↑↑↑↑↑↑↑↑↑↑↑↑")
