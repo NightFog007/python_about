@@ -1,0 +1,14 @@
+<body><aaa>0</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>3</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>5</ccc><ddd>10</ddd><eee>119</eee></body>
+
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>11</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>12</ddd><eee>119</eee></body>
+
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>

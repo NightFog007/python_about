@@ -1,0 +1,19 @@
+<body><aaa>0</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>3</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>5</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>11</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>12</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>4</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2009</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>123</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>9</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>120</eee></body>
+<body><aaa> </aaa><bbb>2008</bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb> </bbb><ccc>1</ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc> </ccc><ddd>10</ddd><eee>119</eee></body>
+<body><aaa>1</aaa><bbb>2008</bbb><ccc>1</ccc><ddd> </ddd><eee>119</eee></body>
