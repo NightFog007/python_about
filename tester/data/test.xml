@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+<Body>
+			    <Request>                 
+                  <IdType>A</IdType>
+                  <IdCode>110104199807032861</IdCode>
+                  <Mobile>13512345523</Mobile>
+                  <ReceiverName>毛贵春</ReceiverName>
+                  <TransAcctId>6214467873167107504</TransAcctId>
+                   <CardType>BCS</CardType>
+                   <PlanAmt>12000</PlanAmt>
+                   <CycNum>12</CycNum>
+                  <TransAmt>1000</TransAmt>
+                   <CycType>1</CycType>
+                   <PlanName>测试梦想计划</PlanName>                                     
+                  <TransDay>23</TransDay>
+                  <SignType>22</SignType>
+                  <EcfId>110002366819</EcfId>
+                  <BirthDay>20000101</BirthDay>   
+                  <Remark></Remark>               
+				</Request>
+</Body>
+</data>
