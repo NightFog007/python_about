@@ -1,6 +1,7 @@
 import os,sys,re
 
-admobinfo_path = '/Users/gsky/my_github/flutter_project/admob_info.dart'
+admobinfo_path = '/Users/gsky/my_github/flutter_project/comm/admob_info.dart'
+new_widgets_path = '/Users/gsky/my_github/flutter_project/comm/new_widgets'
 
 now_path = os.path.abspath('.')
 # res_path = input("input your path: ")
@@ -57,3 +58,5 @@ old_info = 'import'
 new_info = 'import \'package:admob_flutter/admob_flutter.dart\';\n'
 change_line(main_path,old_info,new_info)
 
+# 5. 复制自定义控件
+os.system("cp  -r %s ./lib/" % new_widgets_path )
