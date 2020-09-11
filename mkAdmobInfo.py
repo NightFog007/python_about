@@ -33,7 +33,7 @@ def change_line(file_path,old_text,new_text):
 
 # 1. 修改pubspec.yaml内容
 path = './pubspec.yaml'
-change_line(path,'cupertino_icons','admob_flutter: ^0.3.4\n  ')
+change_line(path,'cupertino_icons','admob_flutter: ^0.3.4\n  dio: ^3.0.9\n    ')
 
 # 2. 修改 info.list内容
 infoPlist_path = now_path + '/ios/Runner/Info.plist'
