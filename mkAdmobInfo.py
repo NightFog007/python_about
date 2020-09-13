@@ -1,6 +1,7 @@
 import os,sys,re
 
-admobinfo_path = '/Users/gsky/my_github/flutter_project/admob_info.dart'
+admobinfo_path = '/Users/gsky/my_github/flutter_project/comm/admob_info.dart'
+new_widgets_path = '/Users/gsky/my_github/flutter_project/comm/new_widgets'
 
 now_path = os.path.abspath('.')
 # res_path = input("input your path: ")
@@ -32,7 +33,7 @@ def change_line(file_path,old_text,new_text):
 
 # 1. 修改pubspec.yaml内容
 path = './pubspec.yaml'
-change_line(path,'cupertino_icons','admob_flutter: ^0.3.4\n  ')
+change_line(path,'cupertino_icons','admob_flutter: ^0.3.4\n  dio: ^3.0.9\n    ')
 
 # 2. 修改 info.list内容
 infoPlist_path = now_path + '/ios/Runner/Info.plist'
@@ -57,3 +58,5 @@ old_info = 'import'
 new_info = 'import \'package:admob_flutter/admob_flutter.dart\';\n'
 change_line(main_path,old_info,new_info)
 
+# 5. 复制自定义控件
+os.system("cp  -r %s ./lib/" % new_widgets_path )
