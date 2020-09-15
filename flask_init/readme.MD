@@ -8,8 +8,8 @@
 需要下载`pip install python-dotenv`, 才能在使用`flask run`或其他命令时会使用它自动从`.flaskenv`文件和`.env`文件中加载环境变量.
 
 
-`.flaskenv` 存储公开的环境变量,比如FLASK_APP
-`.env`用来存储包含敏感信息的环境变量,比如email的账户和密码
+* `.flaskenv` 存储公开的环境变量,比如FLASK_APP
+* `.env`用来存储包含敏感信息的环境变量,比如email的账户和密码
 
 在`.flaskenv` 和`.env`中环境变量使用键值对的形式定义,每行一个,以`#`开头的为注释.
 
