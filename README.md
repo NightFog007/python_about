@@ -7,6 +7,7 @@
 
 ## 已实现
 * python使用flask-restful搭建相关服务
+* `progress.py` 进度条的6种实现
 
 #### 初始化Flutter项目的admob基本信息
 `mkAdmobInfo.py`自动生成admob初始化信息.
