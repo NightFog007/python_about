@@ -1,0 +1,6 @@
+2021-01-27 17:47:07,568 - Wechaty - INFO - on() listen event <scan> with <<function main.<locals>.<lambda> at 0x11041be60>>
+2021-01-27 17:47:07,569 - Wechaty - DEBUG - emit() event <['scan', '<function main.<locals>.<lambda> at 0x11041be60>']> <{}>
+2021-01-27 17:47:07,569 - Wechaty - INFO - on() listen event <login> with <<function main.<locals>.<lambda> at 0x110430830>>
+2021-01-27 17:47:07,569 - Wechaty - DEBUG - emit() event <['login', '<function main.<locals>.<lambda> at 0x110430830>']> <{}>
+2021-01-27 17:47:07,569 - Wechaty - INFO - on() listen event <message> with <<function main.<locals>.<lambda> at 0x110c438c0>>
+2021-01-27 17:47:07,569 - Wechaty - DEBUG - emit() event <['message', '<function main.<locals>.<lambda> at 0x110c438c0>']> <{}>
