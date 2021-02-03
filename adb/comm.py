@@ -3,7 +3,7 @@ import random
 import re
 import subprocess
 import time
-
+from time import sleep
 import adbutils
 import aircv as ac
 # import pyscreenshot as ImageGrab
@@ -58,7 +58,7 @@ def get_file_content(filePath):
 def get_random_num(x):
     return random.randint(0,x)         #返回0-x的随机整数
 
-def jiepin():
+def jiepin(name='home.jpg'):
     # d = adbutils.adb.device('18bcc735')  # 小米10青春版
     d = adbutils.adb.device('DLQ0216505001224')   # 华为
 
@@ -73,7 +73,8 @@ def jiepin():
         if not isinstance(data, (bytes, bytearray)):
             # print(data)
             continue
-        with open("home.jpg" , "wb") as f:
+        # with open("home.jpg" , "wb") as f:
+        with open(name , "wb") as f:
             f.write(data)
             index += 1
         # print(index)
@@ -193,17 +194,28 @@ def isMove_once():
     jiepin()
     img_path = 'home.jpg'
     # 左上角
-    x1 = 500 * 0.8 *0.4
-    y1 = 400  *0.4
+    # x1 = 500 * 0.8 *0.4
+    # y1 = 400  *0.4
     # 右下角
-    x4 = 1800 * 0.8 *0.4
-    y4 = 800  *0.4  
+    # x4 = 1800 * 0.8 *0.4
+    # y4 = 800  *0.4  
+    
+    # 右上角
+    # x1=  1865* 0.8 *0.4
+    # y1 = 153 *0.4  
+    x1 = 1608* 0.8 *0.4
+    y1 = 138 *0.4 
+    
+    # 右下角
+    x4 = 1745* 0.8 *0.4
+    y4 = 916 *0.4  
+    
     img_hex1 = get_pic(img_path,x1,y1)
     img_hex4 = get_pic(img_path,x4,y4)
     
-    jiepin()
+    jiepin('home2.jpg')
     time.sleep(0.5)
-    img_path = 'home.jpg'
+    img_path = 'home2.jpg'
     img_hex11 = get_pic(img_path,x1,y1)
     img_hex44 = get_pic(img_path,x4,y4)   
 

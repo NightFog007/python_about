@@ -3,7 +3,7 @@ import random
 import re
 import sys
 import time
-
+from send_text import send_message_to_slack
 # import pyscreenshot as ImageGrab
 import numpy as np
 import uiautomator2 as u2
@@ -199,7 +199,7 @@ def click_next_page(): #当前页面没找到目标鬼,则点击四次右下角�
     d.click(x,y)
     sleep(2)
     
-def zhuagui_click_all_button(): #右下角继续任务的按钮,可以放个线程一直点击
+def zhuagui_click_all_button(): 
     print("开始点击右下角")
     while 1> 0:
         # finish_flag = matchImg('home.jpg','renwu_jieshu.jpg')
@@ -218,6 +218,8 @@ def zhuagui_click_all_button(): #右下角继续任务的按钮,可以放个线�
         zhandou = matchImg('home.jpg','./main_pic/wenzi_huihe.jpg')
         
         pintu = matchImg('home.jpg','./main_pic/pintu_jiemian.jpg')
+        
+        finish = matchImg('home.jpg','./main_pic/zhuagui_finish.jpg')
 
         
         isfight = 0
@@ -244,6 +246,13 @@ def zhuagui_click_all_button(): #右下角继续任务的按钮,可以放个线�
             print("是拼图")
             sigongge()
             # send_message()
+        elif finish[0]>0:
+            # send_message()
+            # sys.exit()
+            print("开始进行师门任务")
+            d.click(334,726)
+            sleep(2)
+            shimen_click_all_button()
           
         click_youxiajiao() 
         sleep(1) 
@@ -294,7 +303,7 @@ def click_all_button_simen(): #右下角继续任务的按钮,可以放个线程
             #     sleep(5)
             # else :
             #     pass               
-        else:
+        else:            
             sys.exit()
         sleep(3)      
         
@@ -306,6 +315,40 @@ def click_kaishi():  #识别要找的鬼后,点击这个开始按钮
     y = 1411
     d.click(x,y)
     
+
+
+def shimen_fuhuoyao():
+    
+    n  = 0
+    
+    
+    while n < 2:
+        
+        # for x in range(4):
+    
+        jiepin()
+
+        sttr = ['you','shang','xia','zuo','you2','shang2','xia2','zuo2']
+        # name = 'mamian'
+        for i in sttr:
+            gui_pic = './shimen_wupin/fuhuoyao_{}.jpg'.format(i)
+            # gui_pic = 'mamian_shang.jpg'
+            # print(gui_pic)
+            
+            res = matchImg('home.jpg',gui_pic)
+            if res[0]>0 :
+                
+                d.click(res[0],res[1])
+                n = n + 1
+                
+        
+        click_next_page()
+        
+
+    
+    return 0  
+
+
     
       
 def find_gui(name):
@@ -337,19 +380,74 @@ def find_gui(name):
     return 0  
 
 
-def find_jiu():
+def find_gui2(name):
+    
+    for x in range(4):
+    
+    # while x < 0:
+    
+        jiepin()
+
+        sttr = ['you','shang','xia','zuo','you2','shang2','xia2','zuo2']
+        # name = 'mamian'
+        for i in sttr:
+            gui_pic = './new_gui_pic/{}_{}.jpg'.format(name,i)
+            # gui_pic = 'mamian_shang.jpg'
+            print(gui_pic)
+            
+            res = matchImg('home.jpg',gui_pic)
+            if res[0]>0 and res[1]>0:
+                
+                d.click(res[0],res[1])
+                x = 0
+                return 0
+        
+        click_next_page()
+        
+
+    
+    return 0 
+
+
+def find_xianglu():
     
     x = -1
     
-    while x < 0:
+    for i in range(4):
     
         jiepin()
         
         # sttr = ['you','shang','xia','zuo']
-        jiu_name = ['hugu_shang.jpg','hugu_xia.jpg','hugu_you.jpg','hugu_zuo.jpg','meihua_shang.jpg','meihua_xia.jpg','meihua_you.jpg','meihua_zuo.jpg','shedan_shang.jpg','shedan_you.jpg','shedan_zuo.jpg','zhenlu_shang.jpg','zhenlu_xia.jpg','zhenlu_you.jpg','zhenlu_zuo.jpg']
+        xianglu_name = ['xianglu_zuo.jpg','xianglu_you.jpg','xianglu_shang.jpg','xianglu_xia.jpg']
+        # name = 'mamian'
+        for i in xianglu_name:
+            gui_pic = './new_gui_pic/{}'.format(i)
+            
+            res = matchImg('home.jpg',gui_pic)
+            if res[0]>0:
+                
+                d.click(res[0],res[1])
+                x = 0
+                return 0
+        
+        click_next_page()
+        
+    
+    return 0   
+
+def find_jiu():
+    
+    x = -1
+    
+    for i in range(5):
+    
+        jiepin()
+        
+        # sttr = ['you','shang','xia','zuo']
+        jiu_name = ['hugu_shang.jpg','hugu_you.jpg','hugu_zuo.jpg','meihua_shang.jpg','meihua_xia.jpg','meihua_you.jpg','meihua_zuo.jpg','shedan_shang.jpg','shedan_you.jpg','shedan_zuo.jpg','zhenlu_shang.jpg','zhenlu_xia.jpg','zhenlu_you.jpg','zhenlu_zuo.jpg']
         # name = 'mamian'
         for i in jiu_name:
-            gui_pic = './jiu_pic/{}'.format(i)
+            gui_pic = './new_jiu/{}'.format(i)
             # gui_pic = 'mamian_shang.jpg'
             # print(gui_pic)
             
@@ -388,9 +486,10 @@ def zhaogui():
     yegui = matchImg('home.jpg','./new_gui_pic/wenzi_yegui.jpg') 
     kulouguai = matchImg('home.jpg','./new_gui_pic/wenzi_kulouguai.jpg') 
     paojiu = matchImg('home.jpg','./new_gui_pic/wenzi_jiu.jpg')
+    xianglu = matchImg('home.jpg','./new_gui_pic/wenzi_xianglu.jpg')
+    lazhu = matchImg('home.jpg','./new_gui_pic/wenzi_lazhu.jpg')
     
-    
-    xunwu = matchImg('home.jpg','./new_gui_pic/wenzi_xunwu.jpg') 
+    # xunwu = matchImg('home.jpg','./new_gui_pic/wenzi_xunwu.jpg') 
 
     if jiangshi[0] > 0 :
         click_kaishi()
@@ -400,7 +499,8 @@ def zhaogui():
         click_kaishi()
         sleep(1)
         print("找牛头")
-        find_gui('niutou')
+        # find_gui('niutou')
+        find_gui2('niutou')
     elif mamian[0] > 0:
         click_kaishi()
         sleep(1)
@@ -412,16 +512,28 @@ def zhaogui():
     elif kulouguai[0] > 0:
         click_kaishi()
         sleep(1)
-        find_gui('kulouguai')
-    # elif paojiu[0]>0:
-    #     find_jiu()
+        # find_gui('kulouguai')
+        find_gui2('kulouguai')
+    elif paojiu[0]>0:
+        click_kaishi()
+        sleep(1)
+        find_jiu()
+    elif xianglu[0]>0:
+        click_kaishi()
+        sleep(1)
+        find_xianglu()
+    elif lazhu[0]>0:
+        click_kaishi()
+        sleep(1)
+        find_gui('lazhu')
     # elif  pintu[0]>0:
     #     print("是拼图")
     #     sigongge()
         
-    elif xunwu[0] > 0:
-    # else:
-        send_message()
+    # elif xunwu[0] > 0:
+    else:
+        # send_message()
+        send_message_to_slack('来手动处理')
     
     
         
@@ -525,143 +637,211 @@ def sigongge():
     x4 = 762
     y4 = 1541
     
-    xA1 = 125
-    yA1 = 900
+    flag = 1 
+    
+    while flag > 0 :
+    
+        # xA1 = 124 #!
+        # yA1 = 900
 
-    xB1=  532
-    yB1= 900
+        # xB1=  529 #!
+        # yB1= 900
 
-    xC1 = 125  
-    yC1 = 1307
+        # xC1 = 124   #!
+        # yC1 = 1307
 
-    # xD1 = 4 
-    # yD1=805
+        # # xD1 = 4 
+        # # yD1=805
 
-    xA2 = 556 
-    yA2 = 900
+        # xA2 = 550 #!
+        # yA2 = 900
 
-    xB2 = 951 
-    yB2 = 900
-    
-    xC2 = 553   
-    yC2 = 1307
-    
-    # xD2= 800  
-    # yD2=805
-    
-    pic_test = './main_pic/pintu_beijing.jpg'
-    jiepin()
-    
-    quyu_jietu(xA1,yA1,xA1+10,yA1+10,'a1')
-    quyu_jietu(xB1-10,yB1,xB1,yB1+10,'b1')
-    quyu_jietu(xC1,yC1-10,xC1+10,yC1,'c1')
-    # quyu_jietu(xD1,yD1,xD1-10,yD1-10,'d1')
-    quyu_jietu(xA2,yA2,xA2+10,yA2+10,'a2')
-    quyu_jietu(xB2-10,yB2,xB2,yB2+10,'b2')
-    quyu_jietu(xC2,yC2-10,xC2+10,yC2,'c2')
-    # quyu_jietu(xD2,yD2,xD2-10,yD2-10,'d2')
-    a1 = matchImg(pic_test,'a1.jpg',0.9)
-    b1 = matchImg(pic_test,'b1.jpg',0.9)
-    c1 = matchImg(pic_test,'c1.jpg',0.9)
-    a2 = matchImg(pic_test,'a2.jpg',0.9)
-    b2 = matchImg(pic_test,'b2.jpg',0.9)
-    c2 = matchImg(pic_test,'c2.jpg',0.9)
-    
-    # print("******************")
-    # print("a1: " + str(a1))
-    # print("b1: " + str(b1))
-    # print("c1: " + str(c1))
-    # print("a2: " + str(a2))
-    # print("b2: " + str(b2))
-    # print("c2: " + str(c2))
-    # print("******************")
+        # xB2 = 953 #!
+        # yB2 = 900
+        
+        # xC2 = 550   #!
+        # yC2 = 1307
+        
+        # # xD2= 800  
+        # # yD2=805
+        
+        # pic_test = './main_pic/pintu_beijing.jpg'
+        # jiepin()
+        
+        # quyu_jietu(xA1,yA1,xA1+10,yA1+10,'a1')
+        # # quyu_jietu(xB1-10,yB1,xB1,yB1+10,'b1')
+        # quyu_jietu(xB1,yB1,xB1+6,yB1+10,'b1')
+
+        # quyu_jietu(xC1,yC1-10,xC1+10,yC1,'c1')
+        # # quyu_jietu(xD1,yD1,xD1-10,yD1-10,'d1')
+        # quyu_jietu(xA2,yA2,xA2+6,yA2+10,'a2')
+        # # quyu_jietu(xB2-10,yB2,xB2,yB2+7,'b2')
+        # quyu_jietu(xB2,yB2,xB2+7,yB2+7,'b2')
+
+        # quyu_jietu(xC2,yC2-10,xC2+6,yC2,'c2')
+        # quyu_jietu(xD2,yD2,xD2-10,yD2-10,'d2')
+        
+        xA1 = 120  #!
+        yA1 = 900
+
+        xB1=  530  #!
+        yB1= 900
+
+        xC1 = 120    #!
+        yC1 = 1307
+
+        # xD1 = 4 
+        # yD1=805
+
+        xA2 = 546 #!
+        yA2 = 900
+
+        xB2 = 958#!  
+        yB2 = 900
+        
+        xC2 = 546 #!  
+        yC2 = 1307
+        
+        # xD2= 800  
+        # yD2=805
+        
+        pic_test = './main_pic/pintu_beijing.jpg'
+        jiepin()
+        
+        quyu_jietu(xA1,yA1,xA1+5,yA1+10,'a1')
+        # quyu_jietu(xB1-10,yB1,xB1,yB1+10,'b1')
+        quyu_jietu(xB1,yB1,xB1+6,yB1+10,'b1')
+
+        quyu_jietu(xC1,yC1-10,xC1+5,yC1,'c1')
+        # quyu_jietu(xD1,yD1,xD1-10,yD1-10,'d1')
+        quyu_jietu(xA2,yA2,xA2+6,yA2+10,'a2')
+        # quyu_jietu(xB2-10,yB2,xB2,yB2+7,'b2')
+        quyu_jietu(xB2,yB2,xB2+4,yB2+7,'b2')
+
+        quyu_jietu(xC2,yC2-10,xC2+6,yC2,'c2')
+        
+        
+        a1 = matchImg(pic_test,'a1.jpg',0.92)
+        b1 = matchImg(pic_test,'b1.jpg',0.92)
+        c1 = matchImg(pic_test,'c1.jpg',0.92)
+        a2 = matchImg(pic_test,'a2.jpg',0.92)
+        b2 = matchImg(pic_test,'b2.jpg',0.92)
+        c2 = matchImg(pic_test,'c2.jpg',0.92)
+        
+        # print("******************")
+        # print("a1: " + str(a1))
+        # print("b1: " + str(b1))
+        # print("c1: " + str(c1))
+        # print("a2: " + str(a2))
+        # print("b2: " + str(b2))
+        # print("c2: " + str(c2))
+        # print("******************")
 
 
-    
-    # 设置两个标志位,确认1和2默认初始值是否正确,如果正确,则代码会把这两个标志位设为0,最后3和4交换位置.
-    one_flag = 1
-    two_flag=1
-    
-    one_is_two = 0
-    
-    if a1[0]> 0:
-        if b1[0]>0:
-            if c1[0]>0:
-                print("1是一号位,不处理")
-                #1是一号位,不处理
-                one_flag = 0
-                pass
+        
+        # 设置两个标志位,确认1和2默认初始值是否正确,如果正确,则代码会把这两个标志位设为0,最后3和4交换位置.
+        one_flag = 1
+        two_flag=1
+        
+        one_is_two = 0
+        
+        if a1[0]> 0:
+            if b1[0]>0:
+                if c1[0]>0:
+                    print("1是一号位,不处理")
+                    #1是一号位,不处理
+                    one_flag = 0
+                    pass
+                else:
+                    #1是二号位,先处理2,再来处理1,放到下面2号位处理逻辑里去处理, 这里设置标记
+                    print("是二号位,先处理2,再来处理1")
+                    one_is_two = 1
             else:
-                #1是二号位,先处理2,再来处理1,放到下面2号位处理逻辑里去处理, 这里设置标记
-                print("是二号位,先处理2,再来处理1")
-                one_is_two = 1
+                print("1是三号位, 1和3互换")
+                # 1是三号位, 1和3互换
+                d.click(x1,y1)
+                sleep(1)
+                d.click(x3,y3) 
         else:
-            print("1是三号位, 1和3互换")
-            # 1是三号位, 1和3互换
+            print("1是四号位, 1和4互换")
+            # 1是四号位, 1和4互换
             d.click(x1,y1)
             sleep(1)
-            d.click(x3,y3) 
-    else:
-        print("1是四号位, 1和4互换")
-        # 1是四号位, 1和4互换
-        d.click(x1,y1)
-        sleep(1)
-        d.click(x4,y4)
+            d.click(x4,y4)
 
-    
-    
-    # print("处理2")
-    sleep(3)
-    # print(a2)
-    if a2[0]> 0:
-        if b2[0]>0:
-            if c2[0]>0:
-                print("2是一号位.")
-                # 2是一号位.
+        
+        
+        # print("处理2")
+        sleep(3)
+        # print(a2)
+        if a2[0]> 0:
+            if b2[0]>0:
+                if c2[0]>0:
+                    print("2是一号位.")
+                    # 2是一号位.
+                    d.click(x2,y2)
+                    sleep(1)
+                    d.click(x1,y1)  
+                    #^ 2和1交换一次后,必须把1是二号位的标志清0,防止最后又交换一次.
+                    one_is_two = 0 
+                else:
+                    print("2是二号位,不处理")
+                    # 2是二号位,不处理
+                    two_flag = 0
+                    pass
+            else:
+                print("2是三号位, 2和3互换")
+                # 2是三号位, 2和3互换
                 d.click(x2,y2)
                 sleep(1)
-                d.click(x1,y1)  
-                #^ 2和1交换一次后,必须把1是二号位的标志清0,防止最后又交换一次.
-                one_is_two = 0 
-            else:
-                print("2是二号位,不处理")
-                # 2是二号位,不处理
-                two_flag = 0
-                pass
+                d.click(x3,y3) 
         else:
-            print("2是三号位, 2和3互换")
-            # 2是三号位, 2和3互换
-            d.click(x2,y2)
+            print("2是四号位, 2和4互换")
+            # 2是四号位, 2和4互换
+            d.click(x4,y4)
             sleep(1)
-            d.click(x3,y3) 
-    else:
-        print("2是四号位, 2和4互换")
-        # 2是四号位, 2和4互换
-        d.click(x4,y4)
-        sleep(1)
-        d.click(x2,y2)
+            d.click(x2,y2)
 
-    
-    # 如果1是二号位,则在最后把1和2互换.    
-    if one_is_two == 0:
-        # print(one_is_two)
-        pass
-    else:
-        sleep(2)
-        d.click(x1,y1)
-        sleep(1)
-        d.click(x2,y2) 
         
-    sleep(3)
-    
-    # 如果1是一号位,2是二号位,则3和4交换一次
-    if  one_flag == 0 and  two_flag== 0:
-        d.click(x3,y3)
+        # 如果1是二号位,则在最后把1和2互换.    
+        if one_is_two == 0:
+            # print(one_is_two)
+            pass
+        else:
+            sleep(2)
+            d.click(x1,y1)
+            sleep(1)
+            d.click(x2,y2) 
+            
         sleep(1)
-        d.click(x4,y4) 
+        
+        # # 如果1是一号位,2是二号位,则3和4交换一次
+        # if  one_flag == 0 and  two_flag== 0:
+        #     d.click(x3,y3)
+        #     sleep(1)
+        #     d.click(x4,y4) 
+        
+        # d.click(x3,y3)
+        # sleep(1)
+        # d.click(x4,y4)
+        
+        #^ 执行完一次拼图后,如果仍然在拼图界面,则再次进行拼图
+        sleep(1)
+        jiepin()
+        pintu = matchImg('home.jpg','./main_pic/pintu_jiemian.jpg')
+        
+        if pintu[0]>0:
+            flag = 1
+            print("仍然需要再次拼图")
+        else:
+            flag = 0
+        
+    
     
 
 def send_message():
+    # cmd = 'display notification \"' + \
+    # "Notificaton memo" + '\" with title \"手动处理\"'
     cmd = 'display notification \"' + \
     "Notificaton memo" + '\" with title \"手动处理\"'
     call(["osascript", "-e", cmd])        
@@ -720,6 +900,9 @@ def shimen_click_all_button(): #右下角继续任务的按钮,可以放个线�
 
         xunwu = matchImg('home.jpg','./new_gui_pic/wenzi_xunwu.jpg') 
         
+        finish = matchImg('home.jpg','./main_pic/shimen_finish.jpg') 
+        
+        
         isfight = 0
         
         if zhandou[0] > 0:
@@ -740,7 +923,12 @@ def shimen_click_all_button(): #右下角继续任务的按钮,可以放个线�
             sigongge()
             # send_message()
         elif xunwu[0]>0:
-            send_message()
+            # send_message()
+            send_message_to_slack('师门寻物')
+        elif finish[0]>0:
+            # send_message()
+            send_message_to_slack('师门结束')
+            sys.exit()
             
             
         
@@ -794,12 +982,18 @@ def shimen_finish():
 #^ 判断如果是寻物任务,则弹出提示,手工执行
 def shimen_isFindsomething():
     res = matchImg('home.jpg','wenzi_xunwu.jpg')
+    fuhuoyao = matchImg('home.jpg','./shimen_wupin/wenzi_fuhuoyao.jpg') 
     if res[0]==0:
         #不是寻物任务
         pass
+    elif fuhuoyao[0]>0:
+        
+        shimen_fuhuoyao()
     else:
         #是寻物任务
-        send_message()
+        # send_message()
+        send_message_to_slack('师门寻物')
+        
         sleep(10)
         return 1
     
@@ -817,9 +1011,21 @@ def shimen_liucheng():
             sigongge()
    
 def fengyao():  
-    while 1>0:       
-        d.click(234 , 1177)
-        sleep(10)
+    finish_flag = 1
+    while finish_flag > 0:
+        jiepin()
+        sleep(1)
+
+        finish = matchImg('home.jpg','./main_pic/fengyao_finish.jpg',0.98)
+        print(finish)
+        if finish[0]>0:
+            finish_flag = 0
+            # send_message()
+            send_message_to_slack('封妖结束')
+        else:
+            finish_flag = 1
+            d.click(234 , 1177)
+            sleep(20)
     
 # shimen_liucheng()
 
