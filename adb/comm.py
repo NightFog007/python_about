@@ -22,14 +22,19 @@ SECRET_KEY = 'TEkeVW1zCT57amXVEixmg4wHxBgSHoUK'
 client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
 
 d = u2.connect_usb('DLQ0216505001224')
+# d = u2.connect_usb('113038e8')
 
 def open_ditu():
-    x = 193.6
-    y = 100
+    x = 225
+    y = 93
     d.click(x, y)
     sleep(1)
     
-    
+def jiepin2(name='home.jpg'):
+    image = d.screenshot(format='opencv')
+    cv2.imwrite('home.jpg', image)
+    sleep(1)  
+        
 # 点击战斗中的重置按钮
 def click_reset_button():
     d.click(1711,1020)
@@ -201,14 +206,17 @@ def isMove_once():
     # y4 = 800  *0.4  
     
     # 右上角
-    # x1=  1865* 0.8 *0.4
-    # y1 = 153 *0.4  
+    
     x1 = 1608* 0.8 *0.4
     y1 = 138 *0.4 
     
     # 右下角
+    
     x4 = 1745* 0.8 *0.4
     y4 = 916 *0.4  
+    
+    
+
     
     img_hex1 = get_pic(img_path,x1,y1)
     img_hex4 = get_pic(img_path,x4,y4)

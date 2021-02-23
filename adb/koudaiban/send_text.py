@@ -2,7 +2,9 @@ import os
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
-client = WebClient(token='xoxb-878537608886-1683457705654-eTa0w3Qdhi5w8OIyNoRfWBC4')
+import time 
+
+client = WebClient(token='xoxb-878537608886-1683457705654-gfES9lJ8jYgOhOp4nAx4K7Ac')
 
 def send_message_to_slack(content):
 
@@ -16,6 +18,8 @@ def send_message_to_slack(content):
         assert e.response["error"]  # str like 'invalid_auth', 'channel_not_found'
         print(f"Got an error: {e.response['error']}")
         
-# send_message_to_slack('233哈哈')
+    time.sleep(10)    
+        
+# send_message_to_slack('111233哈哈')
 
 

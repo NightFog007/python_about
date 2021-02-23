@@ -41,7 +41,7 @@ def matchImg(imgsrc,imgobj,confidencevalue=0.8):#imgsrc=原始图像，imgobj=�
     y1 = 0
  
     match_result = ac.find_template(imsrc,imobj,confidencevalue)  # {'confidence': 0.5435812473297119, 'rectangle': ((394, 384), (394, 416), (450, 384), (450, 416)), 'result': (422.0, 400.0)}
-    # print(match_result)
+    print(match_result)
     if match_result is not None:
         match_result['shape']=(imsrc.shape[1],imsrc.shape[0])#0为高，1为宽
         # print(match_result)
@@ -60,10 +60,64 @@ def matchImg(imgsrc,imgobj,confidencevalue=0.8):#imgsrc=原始图像，imgobj=�
         # print(x1,y1)
         
     return x1,y1
+ 
+def close_haidi1_ditu():
+    sleep(0.5)
+    x = 1606 #关闭地图
+    y = 110
+    d.click(x, y) 
+            
+             
+def close_huaguoshan_ditu():
+    sleep(0.5)
+    x = 1586 #关闭地图
+    y = 129
+    d.click(x, y) 
+    
+def daidui_go_move(zuobiao,close_ip):
+    # xiaoditu_zuobiao = [(641,276),(669,896),(1512,294),(1507,920),(1058,562)] 
+
+    xiaoditu_zuobiao = zuobiao
+        
+    x = int(random.choice('01234'))
+    xx = xiaoditu_zuobiao[x]
+    open_ditu()
+    sleep(1)
+    d.click(xx[0],xx[1])
+    sleep(1)
+    x = close_ip[0] #关闭地图
+    y = close_ip[1]
+    d.click(x, y) 
+            
+def haidi1_go_move():
+    
+    
+    xiaoditu_zuobiao = [(641,276),(669,896),(1512,294),(1507,920),(1058,562)] 
+        
+    x = int(random.choice('01234'))
+    xx = xiaoditu_zuobiao[x]
+    open_ditu()
+    sleep(1)
+    d.click(xx[0],xx[1])
+    # close_t5_ditu()
+    sleep(2)
+    close_haidi1_ditu()
+            
+def huaguoshan_go_move():
+    
+    
+    xiaoditu_zuobiao = [(1433,317),(1062,302),(698,297),(697,851),(1413,862)] 
+        
+    x = int(random.choice('01234'))
+    xx = xiaoditu_zuobiao[x]
+    open_ditu()
+    sleep(1)
+    d.click(xx[0],xx[1])
+    # close_t5_ditu()
+    sleep(2)
+    close_huaguoshan_ditu()
     
 
-
-         
 def jiepin2():
     image = d.screenshot(format='opencv')
     cv2.imwrite('home.jpg', image)
@@ -149,7 +203,8 @@ def jingwai_go_move():
 # s = isMove
 # if s < 0:
 
-def start():
+def start(zuobiao,close):
+    print("kaishi")
     
     gogogo  = 1
     while gogogo>0: 
@@ -188,7 +243,10 @@ def start():
                     print('战斗结束')
         else:
             # go_move()
-            jingwai_go_move()
+            # jingwai_go_move()
+            # huaguoshan_go_move()
+            # haidi1_go_move()
+            daidui_go_move(zuobiao,close)
             sleep(5)
             
 
@@ -200,11 +258,35 @@ def start():
         # if panduan1 < 0 and zhandou[0] == 0:
             # x = get_random_num(11)
 
-  
-start()          
+# L1的坐标
+long1_zuobiao =    [(467,322),(1335,260),(450,840),(1276,795),(999,267)] 
+long1_close= (1641,119)
 
-        
+# L2的坐标
+long2_zuobiao =    [(420,264),(446,844),(1407,853),(1488,666),(796,584)] 
+long2_close= (1641,119)
+
+# 花果山
+huaguoshan_zuobiao =  [(1433,317),(1062,302),(698,297),(697,851),(1413,862)] 
+huaguoshan_close = (1586,129)
+
+# 海底1
+haidi1_zuobiao = [(641,276),(669,896),(1512,294),(1507,920),(1058,562)] 
+haidi1_close = (1606,110)
+
+# 北俱
+beiju_zuobiao = [(643,294),(1447,284),(702,525),(640,910),(1461,884)] 
+beiju_close = (1575,124)
+# start(long1_zuobiao,long1_close)          
+# start(long2_zuobiao,long2_close)          
+# start(huaguoshan_zuobiao,huaguoshan_close)          
+start(haidi1_zuobiao,haidi1_close)   
+# start(beiju_zuobiao,beiju_close)          
 
 
 
 
+# jiepin()
+# zhandou = matchImg('home.jpg','./chongzhi.jpg')
+# zhandou = matchImg('home.jpg','./wenzi_huihe.jpg')
+# print(zhandou)

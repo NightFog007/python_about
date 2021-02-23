@@ -2,7 +2,7 @@ import os
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
-client = WebClient(token='xoxb-878537608886-1683457705654-eTa0w3Qdhi5w8OIyNoRfWBC4')
+client = WebClient(token='xoxb-878537608886-1683457705654-gfES9lJ8jYgOhOp4nAx4K7Ac')
 
 def send_pic_to_slack():
 

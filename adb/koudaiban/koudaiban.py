@@ -62,6 +62,8 @@ def get_pic(image_path,pixelX,pixelY):
 d = u2.connect_usb('18bcc735')  #小米10青春版
 # d = u2.connect_usb('113038e8') # 小米mix2
 # d = u2.connect_usb('emulator-5554')
+# d = u2.connect_adb_wifi("10.0.0.1:5555")
+
 # d.click(5,5)
 
 def click_youxiajiao():
@@ -257,6 +259,9 @@ def zhuagui_click_all_button():
         click_youxiajiao() 
         sleep(1) 
         click_youxiajiao()
+        click_youxiajiao() 
+        sleep(1) 
+        click_youxiajiao()
         # x = 688
         # y = 1257
         # d.click(x,y)
@@ -315,6 +320,37 @@ def click_kaishi():  #识别要找的鬼后,点击这个开始按钮
     y = 1411
     d.click(x,y)
     
+
+def shimen_nvyi():
+    
+    n  = 0
+    
+    
+    while n < 2:
+        
+        # for x in range(4):
+    
+        jiepin()
+
+        sttr = ['10_you','10_shang','10_xia','10_zuo','20_you','20_shang','20_xia','20_zuo','30_you','30_shang','30_xia','30_zuo','40_you','40_shang','40_xia','40_zuo','50_you','50_shang','50_xia','50_zuo','70_you','70_shang','70_xia','70_zuo']
+        # name = 'mamian'
+        for i in sttr:
+            gui_pic = './shimen_wupin/nvyi/nvyi{}.jpg'.format(i)
+            # gui_pic = 'mamian_shang.jpg'
+            # print(gui_pic)
+            
+            res = matchImg('home.jpg',gui_pic)
+            if res[0]>0 :
+                
+                d.click(res[0],res[1])
+                n = n + 1
+                
+        
+        click_next_page()
+        
+
+    
+    return 0 
 
 
 def shimen_fuhuoyao():
@@ -488,6 +524,8 @@ def zhaogui():
     paojiu = matchImg('home.jpg','./new_gui_pic/wenzi_jiu.jpg')
     xianglu = matchImg('home.jpg','./new_gui_pic/wenzi_xianglu.jpg')
     lazhu = matchImg('home.jpg','./new_gui_pic/wenzi_lazhu.jpg')
+    huangzhi = matchImg('home.jpg','./new_gui_pic/wenzi_huangzhi.jpg')
+    huangjin = matchImg('home.jpg','./new_gui_pic/wenzi_huangjin.jpg')
     
     # xunwu = matchImg('home.jpg','./new_gui_pic/wenzi_xunwu.jpg') 
 
@@ -504,7 +542,7 @@ def zhaogui():
     elif mamian[0] > 0:
         click_kaishi()
         sleep(1)
-        find_gui('mamian')
+        find_gui2('mamian')
     elif yegui[0] > 0:
         click_kaishi()
         sleep(1)
@@ -526,6 +564,14 @@ def zhaogui():
         click_kaishi()
         sleep(1)
         find_gui('lazhu')
+    elif huangzhi[0]>0:
+        click_kaishi()
+        sleep(1)
+        find_gui('huangzhi')
+    elif huangjin[0]>0:
+        click_kaishi()
+        sleep(1)
+        find_gui('huangjin')
     # elif  pintu[0]>0:
     #     print("是拼图")
     #     sigongge()
@@ -983,12 +1029,17 @@ def shimen_finish():
 def shimen_isFindsomething():
     res = matchImg('home.jpg','wenzi_xunwu.jpg')
     fuhuoyao = matchImg('home.jpg','./shimen_wupin/wenzi_fuhuoyao.jpg') 
+    nvyi = matchImg('home.jpg','./shimen_wupin/wenzi_nvyi.jpg') 
+    
     if res[0]==0:
         #不是寻物任务
         pass
     elif fuhuoyao[0]>0:
         
         shimen_fuhuoyao()
+    elif nvyi[0]>0:
+        
+        shimen_nvyi()
     else:
         #是寻物任务
         # send_message()
@@ -1074,3 +1125,4 @@ elif action == 'shimen':
     shimen_click_all_button()
 elif action == 'fengyao':
     fengyao()
+    
