@@ -431,7 +431,9 @@ def gogo_lingrenwu():
             break
 
         if i[0] == 11:
+            print("没找到")
             send_message_to_slack("出错了,没找到")
+            return 0
 
 
 

@@ -197,7 +197,7 @@ def start():
         
         # isfight = 0 
         # if zhandou[0]>0:
-            print("战斗中")
+            print("fighting")
             isfight = 1
             while isfight > 0:
                 jiepin()
@@ -205,7 +205,7 @@ def start():
                 zhandou = matchImg('home.jpg','./wenzi_huihe.jpg')
                 if zhandou[0] > 0:
                     isfight = 1
-                    print('战斗中')
+                    print('fighting')
                 else:
                     isfight = 0
                     print('战斗结束')

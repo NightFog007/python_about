@@ -14,7 +14,7 @@ sys.path.append('../')
 # from fast_screenshot import jiepin
 
 from time import sleep 
-from comm import isMove,isMove_once,isFight_once,get_random_num,get_09,open_ditu,quyu_jietu
+# from comm import isMove,isMove_once,isFight_once,get_random_num,get_09,open_ditu,quyu_jietu
 
 import aircv as ac
 
@@ -146,16 +146,7 @@ def close_jingwai_ditu():
 # print(ziji)
 
 
-# if guaiwu[0] < ziji[0]:
-#     # 人物移动到怪物左边
-#     npcx = guaiwu[0]
-#     npcy = guaiwu[1]
-#     d.click(npcx -5, npcy - 5)
-# else:
-#     #人物移动到怪物右边
-#     npcx = guaiwu[0]
-#     npcy = guaiwu[1]
-#     d.click(npcx + 5, npcy - 5)
+
 
 # jiepin()
 a = 'home.jpg'
@@ -453,7 +444,7 @@ def gogo_lingrenwu():
 #         print("找到了")
 #         break
 
-
+xianling_jia=(2280,816)
 
 # sleep(2)
 # open_ditu()
@@ -500,25 +491,40 @@ def open_xianling():
     d.click(x,y)    
     
     
-def mai77():
+def mai77(i=19):
+    
+
+    
+    
     x = 2077  # 点中紫色77
     y = 202
+    
+    x = 1695  # 红色77
+    y = 335
     d.click(x,y)   
     
     sleep(0.6)
-    x = 2198  # 点击数量框
-    y = 810
-    d.click(x,y)  
-     
-    sleep(0.6)
-    x = 2076 # 点击 数字 9
-    y = 667
-    d.click(x,y)  
-    
-    sleep(0.5)
-    x = 2220
-    y = 677
-    d.click(x,y)
+    if i == 19:  # 买19个77
+        
+        x = 2198  # 点击数量框
+        y = 810
+        d.click(x,y)  
+        
+        sleep(0.6)
+        x = 2076 # 点击 数字 9
+        y = 667
+        d.click(x,y)  
+        
+        sleep(0.5)
+        x = 2220 # 点击确定按钮
+        y = 677
+        d.click(x,y)
+    else:
+        for x in range(1,i):
+            d.click(xianling_jia[0],xianling_jia[1])
+            sleep(0.2)
+        
+
     
     sleep(0.8)
     x = 2138 # 点购买按钮
@@ -569,7 +575,7 @@ def open_cangku():
     x = 983
     y = 390
     d.click(x,y)
-    sleep(0.2)
+    sleep(1)
     x = 2054
     y = 677
     d.click(x,y)
@@ -581,20 +587,34 @@ def close_cangku():
 
 
 
-    
-        
-def baocun77():
-    cangkujiemian_beibao=[
+cangkujiemian_beibao=[
         (1500,400),(1600,400),(1730,400),
         (1230,500),(1362,500),(1500,500),(1600,500),(1730,500),
         (1230,625),(1362,625),(1500,625),(1600,625),(1730,625),
         (1230,760),(1362,760),(1500,760),(1600,760),(1730,760),
-        ]
+        ]   
+        
+def baocun77(name='huodong'):
+    
+    # if name == 'huodong':
+    #     cangkujiemian_beibao=[
+    #     (1500,400),(1600,400),(1730,400),
+    #     (1230,500),(1362,500),(1500,500),(1600,500),(1730,500),
+    #     (1230,625),(1362,625),(1500,625),(1600,625),(1730,625),
+    #     (1230,760),(1362,760),(1500,760),(1600,760),(1730,760),
+    #     ] 
+    # elif name == 'no_huodong':  # 非活动7,默认一次只做6个
+    #     cangkujiemian_beibao=[
+    #     (1500,400),(1600,400),(1730,400),
+    #     (1230,500),(1362,500),(1500,500)
+    #     ]
+    # else:
+    #     pass
     
     for i in cangkujiemian_beibao:
         d.click(i[0],i[1])
         d.click(i[0],i[1])
-        sleep(0.2)
+        sleep(0.5)
 
 # 点击一次,切换到下一个仓库
 def change_cangku():
@@ -642,14 +662,146 @@ def click_77_shudian():
     y = 740
     d.click(x,y)
     
-
-
+    
+# wangfuren
 def click_77_wangdashao():
     x = 1460
     y = 799
     d.click(x,y)   
+ 
+ 
+def click_77_shuang():
+    x = 968
+    y = 462
+    d.click(x,y) 
     
+def click_77_jiudian():
+    x = 1628
+    y = 485
+    d.click(x,y) 
+    
+def click_77_fangwu():
+    x = 1774
+    y = 587
+    d.click(x,y) 
+    
+def click_77_yizhan():
+    x = 1173
+    y = 802
+    d.click(x,y) 
+    
+def click_77_shanghui():
+    x = 1305
+    y = 856
+    d.click(x,y) 
+    
+def click_77_yewai():
+    x = 1814
+    y = 886
+    d.click(x,y) 
+    
+def click_77_guojing():
+    x = 530
+    y = 896
+    d.click(x,y)  
+    
+def click_cs_1():
+    x = 1296
+    y = 223
+    d.click(x,y) 
+    
+def click_cs_2():
+    x = 982
+    y = 314
+    d.click(x,y) 
+    
+def click_cs_3():
+    x = 1101
+    y = 461
+    d.click(x,y) 
+    
+def click_cs_4():
+    x = 988
+    y = 564
+    d.click(x,y) 
+    
+def click_cs_5():
+    x = 1327
+    y = 541
+    d.click(x,y) 
+    
+def click_cs_6():
+    x = 966
+    y = 794
+    d.click(x,y) 
+    
+def click_cs_7():
+    x = 1381
+    y = 896
+    d.click(x,y) 
 
+def click_al_1():
+    x = 709
+    y = 279
+    d.click(x,y) 
+    
+def click_al_2():
+    x = 791
+    y = 488
+    d.click(x,y) 
+    
+def click_al_3():
+    x = 883
+    y = 779
+    d.click(x,y) 
+    
+def click_al_4():
+    x = 1327
+    y = 439
+    d.click(x,y) 
+    
+def click_al_5():
+    x = 1650
+    y = 261
+    d.click(x,y) 
+    
+def click_al_6():
+    x = 1532
+    y = 558
+    d.click(x,y) 
+    
+def click_al_7():
+    x = 1429
+    y = 816
+    d.click(x,y) 
+    
+# 五彩旗盒点击'使用'按钮后,不同场景,选择不同颜色的77
+# 长安活动=蓝色,默认值
+# 长安抓鬼=红色
+# 长寿=绿色
+# 傲来=黄色
+# 朱紫= 白色
+def color_77(color):
+    #点击颜色列表
+    x=1017
+    y=960
+    d.click(x,y)
+    sleep(0.2)
+    
+    green_zuobiao = (986,585)
+    red_zuobiao = (986,686)
+    yellow_zuobiao = (986,785)
+    white_zuobiao = (986,881)
+    
+    if color == 'green':
+        d.click(green_zuobiao[0],green_zuobiao[1])
+    elif color == 'red':
+        d.click(red_zuobiao[0],red_zuobiao[1])
+    elif color == 'yellow':
+        d.click(yellow_zuobiao[0],yellow_zuobiao[1])
+    elif color == 'white':
+        d.click(white_zuobiao[0],white_zuobiao[1])
+    
     
  
 '''
@@ -674,11 +826,15 @@ def click_77_wangdashao():
 19. 打开仓库
 '''
 
+def make_77(name):
     
-
-def make_huodong77():
-    # for n in range(1,8):
-    for n in range(1,2):
+    
+        
+    
+    #~ 从1开始  
+    for n in range(1,8):
+    # for n in range(4,5):
+    
         open_daoju()
         sleep(0.5)
         
@@ -686,32 +842,201 @@ def make_huodong77():
         sleep(0.6)
         
         
-        # if n == 1:
-        #     click_77_huanggong()
-        # elif n == 2:
-        #     click_77_huodongNPC()
-        # elif n == 3:
-        #     click_77_qinqiong()
-        # elif n == 4:
-        #     click_77_chengyaojin()
-        # elif n == 5:
-        #     click_77_wangdashao()
-        # elif n == 6:
-        #     click_77_shudian()
-        # elif n == 7:
-        #     click_77_hs()
-        # else:
-        #     return 0 
+        if n == 1:
+            if name == 'cs':
+                click_cs_1()
+            elif name == 'al':
+                click_al_1()
+            else:
+                click_77_shuang()
+        elif n == 2:
+            if name == 'cs':
+                click_cs_2()
+            elif name == 'al':
+                click_al_2()
+            else:
+                click_77_jiudian()
+        elif n == 3:
+            if name == 'cs':
+                click_cs_3()
+            elif name == 'al':
+                click_al_3()
+            else:            
+                click_77_fangwu()
+        elif n == 4:
+            if name == 'cs':
+                click_cs_4()
+            elif name == 'al':
+                click_al_4()
+            else:            
+                click_77_yizhan()
+        elif n == 5:
+            if name == 'cs':
+                click_cs_5()
+            elif name == 'al':
+                click_al_5()
+            else:            
+                click_77_shanghui()
+        elif n == 6:
+            if name == 'cs':
+                click_cs_6()
+            elif name == 'al':
+                click_al_6()
+            else:            
+                click_77_yewai()
+        elif n == 7:
+            if name == 'cs':
+                click_cs_7()
+            elif name == 'al':
+                click_al_7()
+            else:            
+                click_77_guojing()
+        else:
+            return 0 
         
-        click_77_shudian()    
+        # click_77_shudian()    
             
             
-        sleep(0.3)
+        sleep(1)
         
         close_daoju()
-        
+        sleep(1)
         open_fashu()
+        sleep(0.8)
+        open_xianling()
+        
+        sleep(0.8)
+        mai77(19)
+        
+        open_daoju()
+        sleep(0.8)
+        cha7()
+        sleep(1)
+        close_daoju()
+        sleep(1)
+        fly_baoxiang()
+        sleep(2)
+        
+        open_cangku()
+        sleep(1)
+        
+        # n = 7
+        for i in range(1,n):
+            change_cangku()
+            sleep(1)
+        
+        # 把77存入仓库
+        sleep(1)
+        baocun77('huodong')
+        
+        sleep(1)
+        close_cangku()
+        sleep(3)
+
+def make_CA77(xx):
+    # for n in range(2,8):
+    for n in range(1,8):
+    
+        open_daoju()
         sleep(0.5)
+        
+        open_feixing7()
+        sleep(0.6)
+        
+        # n = 6
+        if n == 1:
+            click_77_shuang()
+        elif n == 2:
+            click_77_jiudian()
+        elif n == 3:
+            click_77_fangwu()
+        elif n == 4:
+            click_77_yizhan()
+        elif n == 5:
+            click_77_shanghui()
+        elif n == 6:
+            click_77_yewai()
+        elif n == 7:
+            click_77_guojing()
+        else:
+            return 0 
+        
+        # click_77_shudian()    
+            
+            
+        sleep(1)
+        
+        close_daoju()
+        sleep(1)
+        open_fashu()
+        sleep(0.8)
+        open_xianling()
+        
+        sleep(0.8)
+        mai77(xx)
+        
+        open_daoju()
+        sleep(0.8)
+        cha7()
+        sleep(0.5)
+        close_daoju()
+        
+        fly_baoxiang()
+        sleep(1)
+        
+        open_cangku()
+        sleep(1)
+        
+        # n = 7
+        for i in range(1,n):
+            change_cangku()
+            sleep(0.5)
+        
+        # 把77存入仓库
+        sleep(1)
+        baocun77()
+        
+        sleep(1)
+        close_cangku()
+        sleep(3)
+    
+
+def make_huodong77():
+    for n in range(1,8):
+    # for n in range(4,8):
+        open_daoju()
+        sleep(0.5)
+        
+        open_feixing7()
+        sleep(0.6)
+        
+        # n = 4
+        if n == 1:
+            click_77_huanggong()
+        elif n == 2:
+            click_77_huodongNPC()
+        elif n == 3:
+            click_77_qinqiong()
+        elif n == 4:
+            click_77_chengyaojin()
+        elif n == 5:
+            click_77_wangdashao()
+        elif n == 6:
+            click_77_shudian()
+        elif n == 7:
+            click_77_hs()
+        else:
+            return 0 
+        
+        # click_77_shudian()    
+            
+            
+        sleep(1)
+        
+        close_daoju()
+        sleep(1)
+        open_fashu()
+        sleep(0.8)
         open_xianling()
         
         sleep(0.8)
@@ -724,18 +1049,19 @@ def make_huodong77():
         close_daoju()
         
         fly_baoxiang()
+        sleep(1)
         
         open_cangku()
-        sleep(0.5)
+        sleep(1)
         
-        n = 7
+        # n = 7
         for i in range(1,n):
             change_cangku()
             sleep(0.5)
         
-        
+        # 把77存入仓库
         sleep(1)
-        baocun77()
+        baocun77('huodong')
         
         sleep(1)
         close_cangku()
@@ -750,3 +1076,174 @@ cangkujiemian_cangku=[
         (500,625),(628,625),(756,625),(892,625),(1011,625),
         (500,760),(628,760),(756,760)
     ]
+
+# 参数k, 分别为0,1,2,3,4,5,6,7,8
+def get_77_to_body(k):
+    #点击仓库管理员
+    
+    #各自拿出仓库1-7的两个77
+    
+    for n in range(0,7):
+            
+        for i in range(k*2,(k+1)*2):
+            d.click(cangkujiemian_cangku[i][0],cangkujiemian_cangku[i][1])
+            d.click(cangkujiemian_cangku[i][0],cangkujiemian_cangku[i][1])
+            sleep(0.6)
+            
+        change_cangku()            
+        sleep(1)
+        
+
+# get_77_to_body()
+
+def open_fabaolan():
+    open_daoju()
+    sleep(0.5)
+    x = 645
+    y  = 933
+    d.click(x,y)
+    
+def close_fabao():
+    x = 1794
+    y = 120
+    d.click(x,y)    
+
+# 使用五彩旗盒,先把五彩旗盒装备在身上第一个位置
+def open_qihe(name_77):        
+    
+    # 点击五彩旗盒
+    x = 541
+    y = 314
+    d.click(x,y)
+
+    # 点击'使用'按钮
+    x = 590
+    y = 790    
+    d.click(x,y)
+    
+    hecheng7_weizhi = [
+(0,0),(0,0),(1180,369),(1302,369),(1437,369),
+(924,492),(1053,492),(1180,492),(1302,492),(1437,492),
+(924,623),(1053,623),(1180,623),(1302,623),(1437,623),
+(924,751),(1053,751),(1180,751),(1302,751),(1437,751),
+        ]
+    
+    sleep(1)
+    
+    #~ 选择不同颜色
+    if name_77 == 'ca':
+        color_77('red')
+    elif name_77 == 'cs':
+        color_77('green')
+    elif name_77 == 'al':
+        color_77('yellow')
+    elif name_77 == 'zz':
+        color_77('white')
+        
+    sleep(1)
+    
+    # 每次合成两面77,位置分别是:
+    one_77 = [2,4,6,8,10,12,14]
+    
+    for i in one_77:
+        d.click(hecheng7_weizhi[i][0],hecheng7_weizhi[i][1])
+        sleep(0.7)
+    
+    # 点击'合旗'按钮
+    x = 1412
+    y = 978
+    d.click(x,y)
+    sleep(1)
+    
+    # 点击'使用'按钮
+    x = 590
+    y = 790    
+    d.click(x,y)
+    sleep(1)
+    
+
+    
+    two_77 = [3,5,7,9,11,13,15]
+    for i in two_77:
+        d.click(hecheng7_weizhi[i][0],hecheng7_weizhi[i][1])
+        sleep(0.7)
+    
+    # 点击'合旗'按钮
+    x = 1412
+    y = 978
+    d.click(x,y)
+    
+    sleep(2)
+    close_fabao()
+    close_fabao()
+    
+    # 把合成的77放入仓库
+    sleep(1)
+    fly_baoxiang()
+    sleep(1)
+    open_cangku()
+    sleep(0.5)
+    d.click(cangkujiemian_beibao[0][0],cangkujiemian_beibao[0][1])
+    sleep(0.1)
+    d.click(cangkujiemian_beibao[0][0],cangkujiemian_beibao[0][1])
+    sleep(0.3)
+    d.click(cangkujiemian_beibao[1][0],cangkujiemian_beibao[1][1])
+    sleep(0.1)
+    d.click(cangkujiemian_beibao[1][0],cangkujiemian_beibao[1][1])
+    
+
+ # 插完7个点位的77并存入仓库后,打开仓库,自动合成77,并存入第一个仓库 ,一共会合成9面77       
+# def hecheng77(n=18):
+def hecheng77(name_77,n=18):
+    #~ 如果从仓库第一个7开始合成,i的循环要从0开始
+    # for i in range(6,9):
+    for i in range(0,int(n/2)):
+        get_77_to_body(i)
+        close_cangku()  
+        sleep(1)  
+        open_fabaolan()
+        sleep(1)
+        open_qihe(name_77)
+    
+
+action = sys.argv[1]
+action2 = sys.argv[2]
+action3 = sys.argv[3]
+
+
+if action == 'huodong':
+    make_huodong77()
+# elif action == 'shimen':
+#     shimen_click_all_button()
+# elif action == 'fengyao':
+#     fengyao()
+elif action == 'ca':
+    make_CA77(19)
+elif action =='cs':
+    make_77('cs')
+elif action =='al':
+    make_77('al')
+elif action == 'heqi':
+    name_77 = action2
+    hecheng77(name_77, int(action3))
+else:
+    pass
+    
+# make_huodong77()
+# sleep(2)
+# open_cangku()
+# sleep(2)
+# hecheng77()
+
+#! 活动7插和合成(合成旗需要打开仓库界面)
+'''
+python3 cha77_main.py huodong 2 2
+python3 cha77_main.py  heqi huodong 18 
+'''
+
+#! 长安7插和合成(第三个参数可以忽略)
+'''
+python3 cha77_main.py ca 6 3
+python3 cha77_main.py heqi ca 18
+'''
+

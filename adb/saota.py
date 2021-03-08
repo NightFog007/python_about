@@ -7,7 +7,7 @@ import re
 import numpy as np
 from cv2 import cv2 
 from aip import AipOcr
-
+from random import randint as r
 from fast_screenshot import jiepin
 
 from time import sleep 
@@ -16,7 +16,11 @@ from comm import isMove,isMove_once,isFight_once,get_random_num,get_09,open_ditu
 import aircv as ac
 
 
+def num_r():
+    return int(r(1,5))
 
+def random_num(x):
+    return int(r(1,x))
 # d = u2.connect_wifi('192.168.205.180')
 # d = u2.connect_adb_wifi("10.0.0.1:5555")
 
@@ -83,7 +87,11 @@ def daidui_go_move(zuobiao,close_ip):
     xx = xiaoditu_zuobiao[x]
     open_ditu()
     sleep(1)
-    d.click(xx[0],xx[1])
+    rd = num_r()
+    nx= xx[0]+rd
+    ny = xx[1]+rd
+    # d.click(xx[0],xx[1])
+    d.click(nx,ny)
     sleep(1)
     x = close_ip[0] #关闭地图
     y = close_ip[1]
@@ -229,7 +237,7 @@ def start(zuobiao,close):
         
         # isfight = 0 
         # if zhandou[0]>0:
-            print("战斗中")
+            print("fight中")
             isfight = 1
             while isfight > 0:
                 jiepin()
@@ -237,22 +245,23 @@ def start(zuobiao,close):
                 zhandou = matchImg('home.jpg','./wenzi_huihe.jpg')
                 if zhandou[0] > 0:
                     isfight = 1
-                    print('战斗中')
+                    print('fighting中')
                 else:
                     isfight = 0
-                    print('战斗结束')
+                    print('fighting结束')
         else:
             # go_move()
             # jingwai_go_move()
             # huaguoshan_go_move()
             # haidi1_go_move()
+            
             daidui_go_move(zuobiao,close)
             sleep(5)
             
 
-        # 如果人物静止且不在战斗中,点小地图
+        # 如果人物静止且不在fighting中,点小地图
         # 如果人物移动中, panduan1 = 0 ,跳过 
-        # 如果人物战斗中, panduan2 = 0 ,跳过
+        # 如果人物fighting中, panduan2 = 0 ,跳过
             
         # if panduan1 < 0 and panduan2 < 0 :
         # if panduan1 < 0 and zhandou[0] == 0:
@@ -275,13 +284,13 @@ haidi1_zuobiao = [(641,276),(669,896),(1512,294),(1507,920),(1058,562)]
 haidi1_close = (1606,110)
 
 # 北俱
-beiju_zuobiao = [(643,294),(1447,284),(702,525),(640,910),(1461,884)] 
+beiju_zuobiao = [(643,294),(1447,284),(702,525),(640,910),(1425,791)] 
 beiju_close = (1575,124)
 # start(long1_zuobiao,long1_close)          
 # start(long2_zuobiao,long2_close)          
 # start(huaguoshan_zuobiao,huaguoshan_close)          
-start(haidi1_zuobiao,haidi1_close)   
-# start(beiju_zuobiao,beiju_close)          
+# start(haidi1_zuobiao,haidi1_close)   
+start(beiju_zuobiao,beiju_close)          
 
 
 

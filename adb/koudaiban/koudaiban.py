@@ -17,6 +17,8 @@ import time
 from subprocess import call
 from time import sleep
 
+from random import randint as r
+
 import adbutils
 import aircv as ac
 import websocket
@@ -28,6 +30,12 @@ SECRET_KEY = 'TEkeVW1zCT57amXVEixmg4wHxBgSHoUK'
 client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
 
 flag = 0
+
+def num_r():
+    return int(r(1,5))
+
+def random_num(x):
+    return int(r(1,x))
 
 # 获取像素点
 def get_pic(image_path,pixelX,pixelY):
@@ -128,13 +136,13 @@ def click_shimen():
     # return 0
     
 def click_zhuagui():
-    x = 425
-    y = 1132
+    x = 425- num_r()
+    y = 1132- num_r()
     d.click(x,y)   
     
 def click_shimen_renwu():
-    x = 773
-    y = 1248
+    x = 773 - num_r()
+    y = 1248 - num_r()
     d.click(x,y)   
     sleep(0.2)
     x = 773
@@ -142,8 +150,8 @@ def click_shimen_renwu():
     d.click(x,y)
 
 def click_zhidaole():
-    x = 773
-    y = 1248
+    x = 773- num_r()
+    y = 1248- num_r()
     d.click(x,y)  
     
     
@@ -193,8 +201,8 @@ def matchImg(imgsrc,imgobj,confidencevalue=0.8):#imgsrc=原始图像，imgobj=�
         
 
 def click_next_page(): #当前页面没找到目标鬼,则点击四次右下角的下一页按钮
-    x = 953
-    y = 1703
+    x = 953- num_r()
+    y = 1703- num_r()
     d.click(x,y)
     d.click(x,y)
     d.click(x,y)
@@ -232,7 +240,7 @@ def zhuagui_click_all_button():
         elif chufa[0] > 0:
             d.click(chufa[0],chufa[1])
         elif zhandou[0] > 0:
-            #在战斗, 循环判断战斗是否结束
+            #在fighting, 循环判断fighting是否结束
             isfight = 1
             while isfight > 0:
                 jiepin()
@@ -240,10 +248,10 @@ def zhuagui_click_all_button():
                 zhandou = matchImg('home.jpg','./main_pic/wenzi_huihe.jpg')
                 if zhandou[0] > 0:
                     isfight = 1
-                    print('战斗中')
+                    print('fighting中')
                 else:
                     isfight = 0
-                    print('战斗结束')
+                    print('fighting结束')
         elif pintu[0]>0:
             print("是拼图")
             sigongge()
@@ -252,7 +260,7 @@ def zhuagui_click_all_button():
             # send_message()
             # sys.exit()
             print("开始进行师门任务")
-            d.click(334,726)
+            d.click(334- num_r(),726- num_r())
             sleep(2)
             shimen_click_all_button()
           
@@ -316,8 +324,8 @@ def click_all_button_simen(): #右下角继续任务的按钮,可以放个线程
 def click_kaishi():  #识别要找的鬼后,点击这个开始按钮
     print("点击开始")
     sleep(1)
-    x = 600
-    y = 1411
+    x = 600- num_r()
+    y = 1411- num_r()
     d.click(x,y)
     
 
@@ -656,11 +664,11 @@ def zhaogui():
 
 
 
-def isFight_once():  #战斗中,返回-1
+def isFight_once():  #fighting中,返回-1
     res = 0
     xx = matchImg('home.jpg','./main_pic/wenzi_huihe.jpg')
     if xx[0]> 0 and xx[1] > 0:
-        print("战斗中")
+        print("fighting中")
         res = -1
 
     return res
@@ -805,15 +813,15 @@ def sigongge():
             else:
                 print("1是三号位, 1和3互换")
                 # 1是三号位, 1和3互换
-                d.click(x1,y1)
+                d.click(x1- num_r(),y1- num_r())
                 sleep(1)
-                d.click(x3,y3) 
+                d.click(x3- num_r(),y3- num_r()) 
         else:
             print("1是四号位, 1和4互换")
             # 1是四号位, 1和4互换
-            d.click(x1,y1)
+            d.click(x1- num_r(),y1- num_r())
             sleep(1)
-            d.click(x4,y4)
+            d.click(x4- num_r(),y4- num_r())
 
         
         
@@ -825,9 +833,9 @@ def sigongge():
                 if c2[0]>0:
                     print("2是一号位.")
                     # 2是一号位.
-                    d.click(x2,y2)
+                    d.click(x2- num_r(),y2- num_r())
                     sleep(1)
-                    d.click(x1,y1)  
+                    d.click(x1- num_r(),y1- num_r())  
                     #^ 2和1交换一次后,必须把1是二号位的标志清0,防止最后又交换一次.
                     one_is_two = 0 
                 else:
@@ -838,15 +846,15 @@ def sigongge():
             else:
                 print("2是三号位, 2和3互换")
                 # 2是三号位, 2和3互换
-                d.click(x2,y2)
+                d.click(x2- num_r(),y2- num_r())
                 sleep(1)
-                d.click(x3,y3) 
+                d.click(x3- num_r(),y3- num_r()) 
         else:
             print("2是四号位, 2和4互换")
             # 2是四号位, 2和4互换
-            d.click(x4,y4)
+            d.click(x4- num_r(),y4- num_r())
             sleep(1)
-            d.click(x2,y2)
+            d.click(x2- num_r(),y2- num_r())
 
         
         # 如果1是二号位,则在最后把1和2互换.    
@@ -855,9 +863,9 @@ def sigongge():
             pass
         else:
             sleep(2)
-            d.click(x1,y1)
+            d.click(x1- num_r(),y1- num_r())
             sleep(1)
-            d.click(x2,y2) 
+            d.click(x2- num_r(),y2- num_r()) 
             
         sleep(1)
         
@@ -952,7 +960,7 @@ def shimen_click_all_button(): #右下角继续任务的按钮,可以放个线�
         isfight = 0
         
         if zhandou[0] > 0:
-            #在战斗, 循环判断战斗是否结束
+            #在fighting, 循环判断fighting是否结束
             isfight = 1
             while isfight > 0:
                 jiepin()
@@ -960,20 +968,23 @@ def shimen_click_all_button(): #右下角继续任务的按钮,可以放个线�
                 zhandou = matchImg('home.jpg','./main_pic/wenzi_huihe.jpg')
                 if zhandou[0] > 0:
                     isfight = 1
-                    print('战斗中')
+                    print('fighting中')
                 else:
                     isfight = 0
-                    print('战斗结束')
+                    print('fighting结束')
         elif pintu[0]>0:
             print("是拼图")
             sigongge()
             # send_message()
         elif xunwu[0]>0:
             # send_message()
-            send_message_to_slack('师门寻物')
+            send_message_to_slack('寻物')
         elif finish[0]>0:
             # send_message()
-            send_message_to_slack('师门结束')
+            tuichu()
+            sleep(random_num(2))
+            d.click(1450,640) # 切换角色
+            send_message_to_slack('师m结束')
             sys.exit()
             
             
@@ -984,7 +995,7 @@ def shimen_click_all_button(): #右下角继续任务的按钮,可以放个线�
         # elif chufa[0] > 0:
         #     d.click(chufa[0],chufa[1])
         # elif zhandou[0] > 0:
-        #     #在战斗, 循环判断战斗是否结束
+        #     #在fighting, 循环判断fighting是否结束
         #     isfight = 1
         #     while isfight > 0:
         #         jiepin()
@@ -992,10 +1003,10 @@ def shimen_click_all_button(): #右下角继续任务的按钮,可以放个线�
         #         zhandou = matchImg('home.jpg','./main_pic/wenzi_huihe.jpg')
         #         if zhandou[0] > 0:
         #             isfight = 1
-        #             print('战斗中')
+        #             print('fighting中')
         #         else:
         #             isfight = 0
-        #             print('战斗结束')
+        #             print('fighting结束')
         # elif pintu[0]>0:
         #     print("是拼图")
         #     sigongge()
@@ -1043,7 +1054,7 @@ def shimen_isFindsomething():
     else:
         #是寻物任务
         # send_message()
-        send_message_to_slack('师门寻物')
+        send_message_to_slack('寻物')
         
         sleep(10)
         return 1
@@ -1073,10 +1084,78 @@ def fengyao():
             finish_flag = 0
             # send_message()
             send_message_to_slack('封妖结束')
+            tuichu()
         else:
             finish_flag = 1
-            d.click(234 , 1177)
-            sleep(20)
+            weizhi = [(919,1169),(234,1177),(535,1176),(919,1169)]
+            xy = weizhi[random_num(3)]
+            
+            # x1 = 234 - 2* num_r()
+            # y1 = 1177- 2* num_r()
+            x1 = xy[0] - num_r()
+            y1 = xy[1] - num_r()
+            d.click(x1 , y1)
+            sleep(20-num_r())
+            
+def tuichu():
+    sleep(num_r())
+    d.click(984,2205)
+    sleep(num_r())
+    d.click(978,2053)
+    sleep(num_r())
+    d.click(855,1162)
+    sleep(num_r())
+    d.click(356,1404)
+    sleep(num_r())
+    d.click(733,1270)
+    sleep(num_r())
+
+    
+
+def fengyao_all():  
+    
+    n1=(1209,467)
+    n2 = (1701,437)
+    n3 = (1243,847)
+    n4 = (1719,775)
+    
+    sleep(random_num(2))
+    d.click(639,297) # 点击上方活动选项图标
+    sleep(random_num(2)+1)
+    d.click(627,545)# 点击 封妖
+    sleep(random_num(2))
+    
+    
+    
+    
+    finish_flag = 1
+    while finish_flag > 0:
+        jiepin()
+        sleep(1)
+
+        finish = matchImg('home.jpg','./main_pic/fengyao_finish.jpg',0.98)
+        print(finish)
+        if finish[0]>0:
+            finish_flag = 0
+            # send_message()
+            
+            tuichu()
+            sleep(random_num(2))
+            d.click(1450,640) # 切换角色
+            send_message_to_slack('封妖结束')
+            
+        else:
+            finish_flag = 1
+            weizhi = [(919,1169),(234,1177),(535,1176),(919,1169)]
+            xy = weizhi[random_num(3)]
+            
+            # x1 = 234 - 2* num_r()
+            # y1 = 1177- 2* num_r()
+            x1 = xy[0] - num_r()
+            y1 = xy[1] - num_r()
+            d.click(x1 , y1)
+            sleep(10-num_r())    
+
     
 # shimen_liucheng()
 
@@ -1124,5 +1203,6 @@ if action == 'zhuagui':
 elif action == 'shimen':
     shimen_click_all_button()
 elif action == 'fengyao':
-    fengyao()
+    # fengyao()
+    fengyao_all()
     

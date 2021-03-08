@@ -184,11 +184,11 @@ def isMove():
         img_hex44 = get_pic(img_path,x4,y4)   
 
         if img_hex1 == img_hex11 and img_hex4 == img_hex44 :
-            print("人物已静止")
+            print("静止")
             over = -1
             return -1
         else:
-            print("人物在移动")
+            print("移动")
             # return 0
 
 
@@ -228,11 +228,11 @@ def isMove_once():
     img_hex44 = get_pic(img_path,x4,y4)   
 
     if img_hex1 == img_hex11 and img_hex4 == img_hex44 :
-        print("人物已静止")
+        print("静止")
         over = -1
         return -1
     else:
-        print("人物在移动")
+        print("移动")
         return 0
 
 
