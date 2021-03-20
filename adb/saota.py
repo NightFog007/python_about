@@ -9,9 +9,11 @@ from cv2 import cv2
 from aip import AipOcr
 from random import randint as r
 from fast_screenshot import jiepin
+from send_text import send_message_to_slack
+
 
 from time import sleep 
-from comm import isMove,isMove_once,isFight_once,get_random_num,get_09,open_ditu
+from comm import isMove,isMove_once,isFight_once,get_random_num,get_09,open_ditu,quyu_click,new_sleep,delay_sleep
 
 import aircv as ac
 
@@ -24,7 +26,15 @@ def random_num(x):
 # d = u2.connect_wifi('192.168.205.180')
 # d = u2.connect_adb_wifi("10.0.0.1:5555")
 
-d = u2.connect_usb('DLQ0216505001224')
+d = u2.connect_usb('DLQ0216505001224') # 华为
+
+
+
+def num_r():
+    return int(r(1,5))
+
+def random_num(x):
+    return int(r(1,x))
 
 def get_file_content(filePath):
     with open(filePath, 'rb') as fp:
@@ -207,6 +217,73 @@ def jingwai_go_move():
     # close_t5_ditu()
     sleep(3)
     close_jingwai_ditu()
+    
+    
+
+def beiju_move():
+    open_ditu()
+    sleep(1)
+    quyu_click(677,286,1451,880)
+    
+    delay_sleep()
+    sleep(1)
+    
+    # 判断地图是否打开着
+    jiepin2()  
+    sleep(1)
+    ditu_open = matchImg('home.jpg','./map_cunzai.jpg',0.85)      
+    # print(zhandou)
+    
+    if(ditu_open[0])>0:
+        #关闭地图
+        # quyu_click(1549,121,1609,136) 
+        quyu_click(1560,116,1605,157)
+    
+    new_sleep()
+    
+
+    
+def huaguoshan_move():
+    open_ditu()
+    sleep(1)
+    quyu_click(742,352,1391,846)
+    delay_sleep()
+    sleep(1)
+    
+    # 判断地图是否打开着
+    jiepin2()  
+    sleep(1)
+    ditu_open = matchImg('home.jpg','./map_cunzai.jpg',0.85)      
+    # print(zhandou)
+    
+    if(ditu_open[0])>0:
+        #关闭地图
+        quyu_click(1549,121,1609,136) 
+    
+    new_sleep()
+    
+def long1_move():
+    open_ditu()
+    sleep(1)
+    quyu_click(392,257,1458,803)
+    delay_sleep()
+    sleep(1)
+    
+    
+    
+    # 判断地图是否打开着
+    jiepin2()  
+    sleep(1)
+    ditu_open = matchImg('home.jpg','./map_cunzai.jpg',0.85)      
+    # print(zhandou)
+    
+    if(ditu_open[0])>0:
+        #关闭地图
+        quyu_click(1637,45,1661,104) 
+    
+    new_sleep()
+    
+
 
 # s = isMove
 # if s < 0:
@@ -234,7 +311,8 @@ def start(zuobiao,close):
         zhandou = matchImg('home.jpg','./wenzi_huihe.jpg')
         if zhandou[0]>0:
         # if panduan1 ==0 :
-        
+            time_start = time.time() #开始计时
+
         # isfight = 0 
         # if zhandou[0]>0:
             print("fight中")
@@ -246,17 +324,24 @@ def start(zuobiao,close):
                 if zhandou[0] > 0:
                     isfight = 1
                     print('fighting中')
+                    time_end = time.time()    #结束计时
+                    time_c= time_end - time_start   #运行所花时间
+                    time_c=int(time_c)
+                    print('战斗耗时: ' + str(time_c))
+                    if time_c > 70:
+                        send_message_to_slack('fight超时')
+                        time.sleep(30)
                 else:
                     isfight = 0
                     print('fighting结束')
         else:
-            # go_move()
-            # jingwai_go_move()
-            # huaguoshan_go_move()
-            # haidi1_go_move()
             
-            daidui_go_move(zuobiao,close)
+            long1_move()
+            # huaguoshan_move()
+            # beiju_move()
+            # daidui_go_move(zuobiao,close)
             sleep(5)
+            new_sleep()
             
 
         # 如果人物静止且不在fighting中,点小地图
@@ -268,7 +353,7 @@ def start(zuobiao,close):
             # x = get_random_num(11)
 
 # L1的坐标
-long1_zuobiao =    [(467,322),(1335,260),(450,840),(1276,795),(999,267)] 
+long1_zuobiao =    [(467,322),(1335,260),(450,840),(1269,703),(999,267)] 
 long1_close= (1641,119)
 
 # L2的坐标
@@ -284,13 +369,14 @@ haidi1_zuobiao = [(641,276),(669,896),(1512,294),(1507,920),(1058,562)]
 haidi1_close = (1606,110)
 
 # 北俱
-beiju_zuobiao = [(643,294),(1447,284),(702,525),(640,910),(1425,791)] 
+beiju_zuobiao = [(643,294),(1447,284),(702,525),(640,910),(1425,700)] 
 beiju_close = (1575,124)
-# start(long1_zuobiao,long1_close)          
+# start(long1_zuobiao,long1_close)  
+start(huaguoshan_zuobiao,huaguoshan_close)
 # start(long2_zuobiao,long2_close)          
 # start(huaguoshan_zuobiao,huaguoshan_close)          
 # start(haidi1_zuobiao,haidi1_close)   
-start(beiju_zuobiao,beiju_close)          
+# start(beiju_zuobiao,beiju_close)          
 
 
 

@@ -24,11 +24,38 @@ client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
 d = u2.connect_usb('DLQ0216505001224')
 # d = u2.connect_usb('113038e8')
 
+
+def quyu_click(x1,y1,x2,y2):
+    xx = random.sample(range(x1,x2),1)
+    yy= random.sample(range(y1,y2),1)
+    d.click(xx[0],yy[0])
+    
+def new_sleep(x=2):
+    # n = int(r(1,x))
+    n = round(random.uniform(0,x),1)
+    sleep(n)
+    
+def delay_sleep(x=3):
+    n = round(random.uniform(1,x),1)    
+    sleep(n)
+
+def num_r():
+    return int(r(1,5))
+
+def random_num(x):
+    return int(r(1,x))
+
+
 def open_ditu():
-    x = 225
-    y = 93
-    d.click(x, y)
-    sleep(1)
+    
+    quyu_click(56,51,240,94)
+    new_sleep()
+    quyu_click(56,51,240,94)
+    new_sleep()
+    # x = 225
+    # y = 93
+    # d.click(x, y)
+    # sleep(1)
     
 def jiepin2(name='home.jpg'):
     image = d.screenshot(format='opencv')

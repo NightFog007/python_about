@@ -31,6 +31,20 @@ client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
 
 flag = 0
 
+def quyu_click(x1,y1,x2,y2):
+    xx = random.sample(range(x1,x2),1)
+    yy= random.sample(range(y1,y2),1)
+    d.click(xx[0],yy[0])
+    
+def new_sleep(x=2):
+    # n = int(r(1,x))
+    n = round(random.uniform(0,x),1)
+    sleep(n)
+    
+def delay_sleep(x=3):
+    n = round(random.uniform(1,x),1)    
+    sleep(n)
+
 def num_r():
     return int(r(1,5))
 
@@ -209,16 +223,55 @@ def click_next_page(): #当前页面没找到目标鬼,则点击四次右下角�
     d.click(x,y)
     sleep(2)
     
+def click_renwu():
+    quyu_click(436,2178,514,2255)
+
+def click_zhuagui_caidan():    
+    quyu_click(125,1469,981,1641)
+    
+def click_bangmangzhuagui():
+    quyu_click(784,2034,1004,2081)
+    
+def sell_hulu_zhuagui():
+    # 点击宝库
+    quyu_click(245,1384,367,1497)
+    sleep(1)
+    new_sleep(1)
+    for i in range(3):
+        # 点击出售
+        quyu_click(100,2230,328,2275)
+        sleep(1)
+        new_sleep(1)
+        # 点击确定
+        quyu_click(644,1388,893,1438)
+        new_sleep(1)
+    
+    # 关闭卖葫芦界面
+    delay_sleep()
+    x = 1026+ random_num(2)
+    y = random.sample(range(263,301),1)
+    d.click(x,y[0])
+    new_sleep(1)
+        
+    
+    
+    
 def zhuagui_click_all_button(): 
+    
+    # 从进入主界面开始
+    sleep(1)
+    new_sleep()
+    click_renwu()
+    
+    sleep(1)
+    new_sleep()
+    click_zhuagui_caidan()
+    
+    sleep(2)
+    
     print("开始点击右下角")
     while 1> 0:
-        # finish_flag = matchImg('home.jpg','renwu_jieshu.jpg')
-        
-        # wancheng = matchImg('home.jpg','huluman.jpg')
-        # # print(wancheng)
-        # if wancheng[0] > 0:
-        #     d.click(627,1208)
-        #     sleep(1)
+
         jiepin()
         
         kaishi = matchImg('home.jpg','./main_pic/wenzi_kaishi.jpg')
@@ -238,7 +291,8 @@ def zhuagui_click_all_button():
             zhaogui()
             # d.click(kaishi[0],kaishi[1])
         elif chufa[0] > 0:
-            d.click(chufa[0],chufa[1])
+            quyu_click(784,690,1033,723)
+            # d.click(chufa[0],chufa[1])
         elif zhandou[0] > 0:
             #在fighting, 循环判断fighting是否结束
             isfight = 1
@@ -257,19 +311,39 @@ def zhuagui_click_all_button():
             sigongge()
             # send_message()
         elif finish[0]>0:
-            # send_message()
-            # sys.exit()
-            print("开始进行师门任务")
-            d.click(334- num_r(),726- num_r())
-            sleep(2)
-            shimen_click_all_button()
+            
+            sleep(5)
+            
+            delay_sleep()
+            quyu_click(1027,238,1034,294)
+            
+            delay_sleep()
+            sell_hulu_zhuagui()
+            
+            sleep(1)
+            tuichu()
+            sleep(random_num(2))
+            # 点击选择角色的按钮
+            quyu_click(1567,606,1586,623)
+            
+            # d.click(1450,640) 
+            send_message_to_slack('zhuagui结束')
+            
+            send_message()
+            sys.exit()
+            # print("开始进行师门任务")
+            # d.click(334- num_r(),726- num_r())
+            # sleep(2)
+            # shimen_click_all_button()
           
         click_youxiajiao() 
-        sleep(1) 
-        click_youxiajiao()
-        click_youxiajiao() 
-        sleep(1) 
-        click_youxiajiao()
+        new_sleep(2)
+        click_bangmangzhuagui()
+        click_bangmangzhuagui() 
+        # click_youxiajiao()
+        # click_youxiajiao() 
+        new_sleep(2)
+        click_bangmangzhuagui()
         # x = 688
         # y = 1257
         # d.click(x,y)
@@ -323,10 +397,13 @@ def click_all_button_simen(): #右下角继续任务的按钮,可以放个线程
         
 def click_kaishi():  #识别要找的鬼后,点击这个开始按钮
     print("点击开始")
-    sleep(1)
-    x = 600- num_r()
-    y = 1411- num_r()
-    d.click(x,y)
+    # sleep(1)
+    # x = 600- num_r()
+    # y = 1411- num_r()
+    # d.click(x,y)
+    new_sleep(2)
+    quyu_click(443,1391,675,1433)
+
     
 
 def shimen_nvyi():
@@ -1098,31 +1175,85 @@ def fengyao():
             sleep(20-num_r())
             
 def tuichu():
-    sleep(num_r())
-    d.click(984,2205)
-    sleep(num_r())
-    d.click(978,2053)
-    sleep(num_r())
-    d.click(855,1162)
-    sleep(num_r())
-    d.click(356,1404)
-    sleep(num_r())
-    d.click(733,1270)
-    sleep(num_r())
+    sleep(1)
+    new_sleep()
+    # 点击'更多'
+    quyu_click(949,2175,1010,2211)
+    # d.click(984,2205)
+    sleep(1)
+    new_sleep()
+    
+    # 点击 '系统'
+    quyu_click(962,2003,1009,2058)
+    # d.click(978,2053)
+    sleep(1)
+    new_sleep()
+    
+    # 点击'账号管理'
+    quyu_click(813,1097,940,1242)
+    # d.click(855,1162)
+    sleep(1)
+    new_sleep()
+    
+    # 点击 '切换角色'
+    quyu_click(249,1392,496,1432)
+    # d.click(356,1404)
+    sleep(1)
+    new_sleep()
+    
+    # 点击 '确定'
+    quyu_click(679,1215,820,1254)
+    # d.click(733,1270)
+    sleep(1)
+    new_sleep()
 
+def denglu():
+    # 选择账号后,点击'口袋'两个字
+    xx = random.sample(range(2179,2265),1)
+    yy= random.sample(range(605,679),1)
+    
+    # xx = 2265
+    # yy = 679
+    d.click(xx[0],yy[0])
     
 
-def fengyao_all():  
+    
+    new_sleep()
+    sleep(1)
+    
+    # 确认进入口袋版
+    xx = random.sample(range(1352,1520),1)
+    yy= random.sample(range(658,705),1)
+    d.click(xx[0],yy[0])
+    
+    new_sleep()
+    sleep(2)
+    
+    
+
+def fengyao_all(): 
+    
+    # 2179 < x < 2265
+    # 605< y < 679 
+    
+    denglu()
     
     n1=(1209,467)
     n2 = (1701,437)
     n3 = (1243,847)
     n4 = (1719,775)
     
+    
+    xx = random.sample(range(632 ,674),1)
+    yy= random.sample(range(262,332),1)
+     
+     
     sleep(random_num(2))
-    d.click(639,297) # 点击上方活动选项图标
+    d.click(xx[0],yy[0]) # 点击上方活动选项图标
     sleep(random_num(2)+1)
-    d.click(627,545)# 点击 封妖
+    # d.click(627,545)# 点击 封妖
+    quyu_click(702,517,761,578)
+
     sleep(random_num(2))
     
     
@@ -1141,19 +1272,23 @@ def fengyao_all():
             
             tuichu()
             sleep(random_num(2))
-            d.click(1450,640) # 切换角色
+            # 切换角色
+            quyu_click(1567,606,1586,623)
+            
+            # d.click(1450,640) 
             send_message_to_slack('封妖结束')
             
         else:
             finish_flag = 1
-            weizhi = [(919,1169),(234,1177),(535,1176),(919,1169)]
-            xy = weizhi[random_num(3)]
+            quyu_click(119,1098,981,1275)
+            # weizhi = [(919,1169),(234,1177),(535,1176),(919,1169)]
+            # xy = weizhi[random_num(3)]
             
             # x1 = 234 - 2* num_r()
             # y1 = 1177- 2* num_r()
-            x1 = xy[0] - num_r()
-            y1 = xy[1] - num_r()
-            d.click(x1 , y1)
+            # x1 = xy[0] - num_r()
+            # y1 = xy[1] - num_r()
+            # d.click(x1 , y1)
             sleep(10-num_r())    
 
     
@@ -1203,6 +1338,8 @@ if action == 'zhuagui':
 elif action == 'shimen':
     shimen_click_all_button()
 elif action == 'fengyao':
-    # fengyao()
     fengyao_all()
+else:
+    # denglu()
+    sell_hulu_zhuagui()
     
