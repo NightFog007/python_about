@@ -4,7 +4,7 @@ from slack_sdk.errors import SlackApiError
 
 import time 
 
-client = WebClient(token='xoxb-878537608886-1683457705654-bN5IIbBV9rhVr73CwrjTjbGu')
+client = WebClient(token='xoxb-878537608886-1683457705654-rMLEe3boZ2ANls35gWgTfUr0')
 
 def send_message_to_slack(content):
 
@@ -20,6 +20,8 @@ def send_message_to_slack(content):
         
     time.sleep(10)    
         
+        
+# print('test')        
 # send_message_to_slack('111233哈哈')
 
 

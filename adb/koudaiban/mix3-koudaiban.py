@@ -261,7 +261,8 @@ def sell_hulu_zhuagui():
     
     
     
-def zhuagui_click_all_button(): 
+def zhuagui_click_all_button(i):
+    new_sleep() 
     
     denglu()
     
@@ -345,13 +346,15 @@ def zhuagui_click_all_button():
             sleep(random_num(2))
             # 点击选择角色的按钮
             # quyu_click(1567,606,1586,623)
-            quyu_click(1493,603,1545,630)
+            # quyu_click(1493,603,1545,630) #~ 3.24注释掉
             
             # d.click(1450,640) 
-            send_message_to_slack('zhuagui结束')
+            rs = '第%s个号,zhuagui结束' % i
+            send_message_to_slack(rs)
+            return 0
             
-            send_message()
-            sys.exit()
+            # send_message()
+            # sys.exit() #~ 0323注释,完成一个角色后不退出程序,开始下一个角色
             # print("开始进行师门任务")
             # d.click(334- num_r(),726- num_r())
             # sleep(2)
@@ -1261,26 +1264,36 @@ def denglu():
     
     
 
-def fengyao_all(): 
+def fengyao_all(i): 
+    
+    print("第%s个开始"%i)
     
     # 2179 < x < 2265
     # 605< y < 679 
     
     denglu()
     
-    n1=(1209,467)
-    n2 = (1701,437)
-    n3 = (1243,847)
-    n4 = (1719,775)
+    # n1=(1209,467)
+    # n2 = (1701,437)
+    # n3 = (1243,847)
+    # n4 = (1719,775)
 
-    sleep(1)
+    sleep(5)
     delay_sleep()    
     quyu_click(626,136,679,187)
-
+    # quyu_click(663,340,769,415)
+    sleep(3)
     sleep(random_num(2)+1)
-    # d.click(627,545)# 点击 封妖
-    quyu_click(600,358,660,420)
-
+    #! 点击 封妖
+    # d.click(627,545)
+    # quyu_click(600,358,660,420)
+    
+    #~ 日历, 封妖
+    # quyu_click(700,344,744,428)
+    
+    #~ 日历,封妖, 本事和尚
+    quyu_click(578,351,655,402)
+    
     sleep(random_num(2))
     
     
@@ -1301,11 +1314,11 @@ def fengyao_all():
             sleep(random_num(2))
             # 切换角色˙
             # quyu_click(1530,598,1540,641)
-            quyu_click(1493,603,1545,630) #mix3
+            # quyu_click(1493,603,1545,630) #mix3 #~ 3.24注释掉, 完成一个号封妖后,不用在这里进入选择角色的界面
             
             # d.click(1450,640) 
-            send_message_to_slack('封妖结束')
-            sys.exit()
+            # send_message_to_slack('封妖结束')
+            # sys.exit()
             
         else:
             
@@ -1358,7 +1371,75 @@ def fengyao_all():
     
     # 968
     # 1718
- 
+    
+def change_role(n = 1):
+    # aa = quyu_click(1100,375,1380,602)   # (1217, 557)
+    # bb = quyu_click(1580,323,1792,578)   # (1692, 557)
+    # cc = quyu_click(1118,789,1354,942)   # (1217, 990)
+    # dd = quyu_click(1606,785,1826,958)   # (1692, 990)
+    
+    
+    if n == 1:
+        print("第1位")
+        quyu_click(1100,375,1380,602)
+    elif n == 2:
+        print("第2位")
+        quyu_click(1580,323,1792,578)
+    elif n == 3:
+        print("第3位")
+        quyu_click(1118,789,1354,942) 
+    elif n == 4:
+        print("第4位")
+        quyu_click(1606,785,1826,958)  
+    elif n == 5:
+        print("第5位")
+        d.swipe(1399,915,1385,166,0.1)
+        sleep(2)
+        new_sleep()
+        quyu_click(1100,375,1380,602)
+    elif n == 6:
+        print("第6位")
+        quyu_click(1580,323,1792,578)
+    elif n == 7:
+        print("第7位")
+        quyu_click(1118,789,1354,942) 
+    elif n == 8:
+        print("第8位")
+        quyu_click(1606,785,1826,958)  
+    elif n == 9:
+        print("第9位")
+        d.swipe(1399,915,1385,166,0.1)
+        sleep(2)
+        new_sleep()
+        quyu_click(1100,375,1380,602)
+    elif n == 10:
+        print("第10位")
+        quyu_click(1580,323,1792,578)
+    elif n == 11:
+        print("第11位")
+        quyu_click(1118,789,1354,942) 
+    elif n == 12:
+        print("第12位")
+        quyu_click(1606,785,1826,958)  
+    else:
+        print("结束")
+        return 0
+        
+def test_change_role(n=1):
+    
+    
+    for i in range(n,13):
+        sleep(2)
+        new_sleep()
+        change_role(i)
+        
+        sleep(random_num(2))
+         #  点击选择角色的按钮
+        quyu_click(1493,603,1545,630)
+
+        
+    
+    
 #~ 1.抓鬼   
 # zhuagui_click_all_button()
 
@@ -1370,15 +1451,64 @@ def fengyao_all():
 
 action = sys.argv[1]
 
+n = sys.argv[2]
+n = int(n)
 if action == 'zhuagui':
-    zhuagui_click_all_button()
+    
+    # sleep(2)
+    
+    # #  点击选择角色的按钮
+    # quyu_click(1493,603,1545,630)
+    
+    # sleep(3)
+        
+    # for i in range(n,13):
+    #     sleep(2)
+    #     new_sleep()
+    #     change_role(i)
+        
+    #     zhuagui_click_all_button() 
+    
+   #  点击选择角色的按钮
+    # quyu_click(1493,603,1545,630)
+        
+    for i in range(n,13):
+        sleep(3)
+        #  点击选择角色的按钮
+        quyu_click(1493,603,1545,630)
+        sleep(1)
+        new_sleep()
+        change_role(i)
+        sleep(2)
+        new_sleep()
+        zhuagui_click_all_button(i) 
+        
+    
 elif action == 'shimen':
     shimen_click_all_button()
 elif action == 'fengyao':
-    fengyao_all()  #mix3已完成
+    #  点击选择角色的按钮
+    # quyu_click(1493,603,1545,630)
+        
+    for i in range(n,13):
+        sleep(3)
+        #  点击选择角色的按钮
+        quyu_click(1493,603,1545,630)
+        sleep(1)
+        new_sleep()
+        change_role(i)
+        sleep(2)
+        new_sleep()
+        fengyao_all(i) 
+        
+        
+    
 else:
     # denglu()
     # tuichu()
     # quyu_click(1493,603,1545,630)
-    sell_hulu_zhuagui()
+    # sell_hulu_zhuagui()
+    test_change_role(n)
+    
+    #~ d.swipe(1399,915,1385,166,0.1)
     

@@ -182,6 +182,36 @@ b = '123.png'
 
 
 
+def get_pay_keyboard_number_location(impath, target,fit_num): #fit_num是匹配度,如 0.95,0.85
+
+        print("start find pic")
+        positions = {}
+
+        start = time.time()
+        img_rgb = cv2.imread(impath)
+
+        teNum = "done"
+
+        template = cv2.imread(target)
+        h, w = template.shape[:-1]
+
+        res = cv2.matchTemplate(img_rgb, template, cv2.TM_CCOEFF_NORMED)
+       
+        threshold = fit_num  # 匹配度参数，1为完全匹配
+        loc = np.where(res >= threshold)
+        if len(loc) > 0:
+            # positions[teNum] = zip(*loc[::-1])[0]  # python2的写法
+            
+            zipped = zip(*loc[::-1])  #list[::-1] 相当于起点为最后的一个,终点为第一个,然后一次减少一个
+            positions[teNum] = (list(zipped))[0]
+            
+        else:
+            print("Can not found pic: ")
+
+        end = time.time()
+        print(end - start)
+
+        return positions[teNum]  
 
 
 #! 打开小地图移动
@@ -238,7 +268,7 @@ def beiju_move():
         #关闭地图
         # quyu_click(1549,121,1609,136) 
         quyu_click(1560,116,1605,157)
-    
+       
     new_sleep()
     
 
@@ -262,28 +292,68 @@ def huaguoshan_move():
     
     new_sleep()
     
+    
+def T5_move():
+    open_ditu()
+    
+    quyu_click(401,320,1498,790)
+    delay_sleep()
+    sleep(1)
+    
+    
+    
+    # quyu_click(1619,66,1658,78) 
+    # # 判断地图是否打开着 #~ 3,26注释掉, 直接点关闭地图的地方,不用判断地图是否打开
+    # jiepin2()  
+    # sleep(1)
+    # ditu_open = matchImg('home.jpg','./map_cunzai.jpg',0.85)      
+    # # print(zhandou)
+    
+    # if(ditu_open[0])>0:
+    #     #关闭地图
+    #     quyu_click(1619,66,1658,78) 
+    
+        
 def long1_move():
     open_ditu()
-    sleep(1)
+    
     quyu_click(392,257,1458,803)
     delay_sleep()
     sleep(1)
     
     
     
-    # 判断地图是否打开着
-    jiepin2()  
-    sleep(1)
-    ditu_open = matchImg('home.jpg','./map_cunzai.jpg',0.85)      
-    # print(zhandou)
+    quyu_click(1619,66,1658,78) 
+    # # 判断地图是否打开着 #~ 3,26注释掉, 直接点关闭地图的地方,不用判断地图是否打开
+    # jiepin2()  
+    # sleep(1)
+    # ditu_open = matchImg('home.jpg','./map_cunzai.jpg',0.85)      
+    # # print(zhandou)
     
-    if(ditu_open[0])>0:
-        #关闭地图
-        quyu_click(1637,45,1661,104) 
+    # if(ditu_open[0])>0:
+    #     #关闭地图
+    #     quyu_click(1619,66,1658,78) 
+    
+def long3_move():
+    open_ditu()
+    sleep(1)
+    quyu_click(391,311,1462,842)
+    delay_sleep()
+    sleep(1)  
+    
+    
+    quyu_click(1619,66,1658,78) 
+    # # 判断地图是否打开着 #~ 3,26注释掉, 直接点关闭地图的地方,不用判断地图是否打开
+    # jiepin2()  
+    # sleep(1)
+    # ditu_open = matchImg('home.jpg','./map_cunzai.jpg',0.85)      
+    # # print(zhandou)
+    
+    # if(ditu_open[0])>0:
+    #     #关闭地图
+    #     quyu_click(1619,66,1658,78) 
     
     new_sleep()
-    
-
 
 # s = isMove
 # if s < 0:
@@ -307,11 +377,20 @@ def start(zuobiao,close):
                 panduan1 = isMove_once() 
                 
                 
-        jiepin()
+        # jiepin()
+        # zidong = matchImg('home.jpg','./chongzhi_pic.jpg',0.5)
+        # # zidong = get_pay_keyboard_number_location('test_home.jpg','chongzhi_pic.jpg',0.8)
+        # if zidong[0]<=0:
+        #     send_message_to_slack('主号需要处理')
+        #     sleep(5)
+        #     print("取消自动了")
+        # else:
+        #     print("自动 ing")
+            
         zhandou = matchImg('home.jpg','./wenzi_huihe.jpg')
         if zhandou[0]>0:
-        # if panduan1 ==0 :
-            time_start = time.time() #开始计时
+        # # if panduan1 ==0 :
+            # time_start = time.time() #开始计时
 
         # isfight = 0 
         # if zhandou[0]>0:
@@ -324,19 +403,34 @@ def start(zuobiao,close):
                 if zhandou[0] > 0:
                     isfight = 1
                     print('fighting中')
-                    time_end = time.time()    #结束计时
-                    time_c= time_end - time_start   #运行所花时间
-                    time_c=int(time_c)
-                    print('战斗耗时: ' + str(time_c))
-                    if time_c > 70:
-                        send_message_to_slack('fight超时')
-                        time.sleep(30)
+                    
+                    jiepin2()
+                    jiepin() 
+                    sleep(1)
+                    zidong = matchImg('home.jpg','./chongzhi_pic.jpg',0.5)
+                    # zidong = get_pay_keyboard_number_location('test_home.jpg','chongzhi_pic.jpg',0.8)
+                    if zidong[0]<=0:
+                        # send_message_to_slack('主号需要处理')
+                        sleep(2)
+                        print("取消自动了")
+                    else:
+                        print("自动 ing")
+
+                    # time_end = time.time()    #结束计时
+                    # time_c= time_end - time_start   #运行所花时间
+                    # time_c=int(time_c)
+                    # print('战斗耗时: ' + str(time_c))
+                    # if time_c > 70:
+                    #     send_message_to_slack('fight超时')
+                    #     time.sleep(30)
+                    #     time_start = time.time()
                 else:
                     isfight = 0
                     print('fighting结束')
         else:
-            
+            # T5_move()
             long1_move()
+            # long3_move()
             # huaguoshan_move()
             # beiju_move()
             # daidui_go_move(zuobiao,close)

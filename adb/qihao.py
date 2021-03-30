@@ -18,6 +18,7 @@ from subprocess import call
 from time import sleep
 
 from random import randint as r
+from comm import isMove,isMove_once,isFight_once,get_random_num,get_09,open_ditu,quyu_click,new_sleep,delay_sleep
 
 import adbutils
 import aircv as ac
@@ -81,8 +82,8 @@ def get_pic(image_path,pixelX,pixelY):
 # print(x5)
 # print(x6)
 
-# d = u2.connect_usb('18bcc735')  #小米10青春版
-d = u2.connect_usb('113038e8') # 小米mix2
+d = u2.connect_usb('18bcc735')  #小米10青春版
+# d = u2.connect_usb('113038e8') # 小米mix2
 # d = u2.connect_usb('emulator-5554')
 # d = u2.connect_adb_wifi("10.0.0.1:5555")
 
@@ -1314,42 +1315,870 @@ def fengyao_all():
 # if qianwang[0]>0:
 #     d.click(qianwang[0],qianwang[1])
 
- 
+# zhuagui_finish()
 
-def testOne():
+# def click_kaishi():
+#     d.click(520,1420)
     
-    # aa = quyu_click(1100,375,1380,602)   # (1217, 557)
-    # bb = quyu_click(1580,323,1792,578)   # (1692, 557)
-    # cc = quyu_click(1118,789,1354,942)   # (1217, 990)
-    # dd = quyu_click(1606,785,1826,958)   # (1692, 990)
+    # 968
+    # 1718
     
-    target = 'tianmingwudi.jpg'
-    jiepin()
+def xinshouzhuxian():
+    new_sleep()
+    quyu_click(2000,392,2008,404)  #新手主线
+    new_sleep()
+    
+
+def jishiqi(n):
+    for i in range(0,n):
+        print(i)
+        sleep(1)
+    
+def click_kongbai():
+    new_sleep()
+    quyu_click(1490,229,1810,512) #空白区域
+    
+def click_renwu():
+    new_sleep()
+    quyu_click(2100,356,2140,398) 
+    
+def qihao():
+
+    # new_sleep()
+    # quyu_click(1033,661,1127,696) # 我有经验
+    # delay_sleep()
+    # quyu_click(1490,229,1810,512) #空白区域
+    # delay_sleep()
+    # quyu_click(2090,356,2240,430) # 和霞姑娘说话
+    # sleep(12)
+    
+    # click_kongbai()
+    # click_kongbai()
+    # click_kongbai()
+    
+    # delay_sleep()
+    # quyu_click(2070,355,2283,411) #看刘大婶
+    # sleep(15)
+    # click_kongbai()
+    # delay_sleep()
+    # quyu_click(1132,652,1257,692) #使用布衣
+    
+    # click_kongbai()
+    # click_kongbai()
+    # delay_sleep()
+    # quyu_click(2070,355,2283,411)  #孙猎户
+    # sleep(15)
+    # click_kongbai()
+    # quyu_click(1132,652,1257,692) #使用红缨枪
+    # click_kongbai()
+    # sleep(2)
+    # click_renwu() #打野猪
+    # sleep(3)
+    # quyu_click(1872,617,2008,688) # 动手吧!
+    # sleep(3)
+    # quyu_click(2220,1006,2270,1027) #点击自动
+    # sleep(60)  #等60秒战斗
+    # print("打野猪战斗结束")
+    
+    # click_renwu()
+    # sleep(10)
+    # quyu_click(1132,652,1257,662) #使用包子
+    
+    # delay_sleep()
+    # click_kongbai()
+    # click_kongbai()
+    
+    # delay_sleep()
+    # d.click(2165,64)
+    # delay_sleep()
+    # quyu_click(1906,672,1908,682)
+    # delay_sleep()
+    # quyu_click(573,926,577,928)
+    # delay_sleep()
+    # click_kongbai()
+    # click_kongbai()
+    # click_kongbai()    
+    # delay_sleep()
+    
+    # click_renwu() #找郭大哥
+    # sleep(15)
+    # delay_sleep()
+    # click_kongbai()
+    # click_kongbai()
+    # delay_sleep()    
+    
+    click_renwu() #打狸
     sleep(2)
-
-    zhujue = matchImg('home.jpg',target,0.9)
-    print(zhujue)
-    if zhujue[0]>0:
-        print("找到了")
-        if zhujue[0] == 1217 and zhujue[1] == 557:
-            print('主角在A位')
-            print('马上点击B位置')
-        elif zhujue[0] == 1692 and zhujue[1] == 557:
-            print("主角在B位")
-            print('马上点击C位置')
-        elif zhujue[0] == 1217 and zhujue[1] == 990:
-            print("主角在C位")
-            print('马上点击D位置')
-        elif zhujue[0] == 1692 and zhujue[1] == 990:
-            print("主角在D位")
-            print('下拉界面')
-        else:
-            print("没找到主角")
-        # d.click(finish[0],finish[1])
-    else:
-        print("没找到")
+    delay_sleep()
+    quyu_click(1872,617,1892,627) # 动手吧!
     
+    delay_sleep()
+    d.click(967,290)
+    sleep(3)
+    delay_sleep()
+    
+    d.click(1544,1008) #捕捉狸
+    sleep(1)
+    new_sleep()
+    d.click(967,290) #捕捉狸
+    
+    sleep(5)
+    new_sleep()
+    click_kongbai()
+    
+    quyu_click(1900,51,1964,108)  #点击宠物头像
+    new_sleep()
+    quyu_click(1656,930,1858,968) #点击 参战
+    
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    
+    click_renwu()   #找 玄大夫
+    sleep(12)
+    
+    quyu_click(1872,617,2008,658) # 补满宠物气血
+    
+    click_kongbai()
+
+    
+    
+    
+    click_renwu()  #雨画师
+    sleep(10)
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    quyu_click(232,74,345,121) #打开地图
+    delay_sleep()
+    
+    d.click(1089,802)  #点萍儿
+    delay_sleep()
+    d.click(1089,802)
+    
+    sleep(20)
+    
+    d.click(1937,66)  #关闭地图
+    delay_sleep()
+    d.click(1220,578)
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_renwu() #桃源仙女
+    
+    sleep(20)
+    quyu_click(1872,617,2008,658) # 这就上船!
+    new_sleep()
+    sleep(2)
+    quyu_click(2220,1006,2270,1027) #点击跳过
+    delay_sleep()
+    click_renwu() #感谢
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    
+    click_renwu() #和夏大叔告别
+    sleep(25)
+    
+    
+    quyu_click(1132,652,1257,692) #使用 #穿一套装备
+    new_sleep()
+    quyu_click(1132,652,1257,692) #使用
+    new_sleep()
+    quyu_click(1132,652,1257,692) #使用
+    new_sleep()
+    quyu_click(1132,652,1257,692) #使用
+    new_sleep()
+    quyu_click(1132,652,1257,692) #使用
+    new_sleep()
+    quyu_click(1132,652,1257,692) #使用
+    new_sleep()
+    quyu_click(1132,652,1257,692) #使用
+    new_sleep()
+    
+   
+    #d.click(1297,820)  ##  消除体验状态(不需要)
+    #new_sleep()
+    #quyu_click(1869,629,2173,670)
+    delay_sleep()
+    d.click(1212,529) #点夏大叔
+    delay_sleep()
+    click_kongbai()
+    delay_sleep()
+    d.click(1977,500) # 侠之大者
+    delay_sleep()
+    
+    d.click(1225,914)#传送 镇元大仙
+    
+    delay_sleep()
+    quyu_click(1907,634,2068,687) #确认 去
+    
+    sleep(5)
+    
+    quyu_click(1195,450,1197,516) #点 镇元
+    delay_sleep()
+    quyu_click(1890, 643,2056,645) #拜你为师
+    delay_sleep()
+    quyu_click(1872,617,2008,658) # 确认
+    
+    
+    delay_sleep()
+    click_renwu() #学习技能
+    delay_sleep()
+    quyu_click(1963,630,2118,632)  #技能
+    
+    delay_sleep()
+    
+    for i in range(0,12):
+        new_sleep()
+        quyu_click(1455,964,1565,976) #点击 学习    
+    
+    delay_sleep()
+    d.click(835,842)
+    
+    delay_sleep()
+    quyu_click(1455,964,1565,976)
+    
+    delay_sleep()
+    quyu_click(661,457,670,459) #点击  乾坤袖
+    delay_sleep()
+    for i in range(0,9):
+        new_sleep()
+        quyu_click(1455,964,1565,976) #点击 学习     
+    
+    delay_sleep()
+    quyu_click(1455,964,1565,976)
+    
+    delay_sleep()
+    d.click(1920,70)
+    
+    delay_sleep()
+    quyu_click(2140,63,2196,105) #人物头像
+    
+    delay_sleep()
+    quyu_click(1920,250,1945,313)
+    
+    delay_sleep()
+    d.click(1733,933)
+    
+    delay_sleep()
+    d.click(1470,934)
+    
+    quyu_click(1129,693,1292,724) #推荐加点
+    delay_sleep()
+    
+    d.click(1233,703)
+    delay_sleep()
+    quyu_click(1720,920,1839,949) #确认加点
+    delay_sleep()
+    click_kongbai()
+    delay_sleep()
+    d.click(1888,104)
+    delay_sleep()
+    d.click(1827,87)
+    delay_sleep()
+    
+    click_kongbai()
+
+    delay_sleep()
+    click_renwu() # 和首席战斗
+    sleep(8)
+    quyu_click(1872,617,2008,658) # 好呀好呀
+    delay_sleep()
+    quyu_click(2220,1006,2270,1027) #点击自动
+    sleep(70)
+    print("首席战斗结束")
+    
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    quyu_click(1132,652,1257,692) #使用
+    
+    for i in range(0,7):
+        sleep(1)
+        new_sleep()
+        quyu_click(1132,652,1257,692) #使用
+    
+    delay_sleep()
+    d.click(1472,655)  #飞建邺
+    
+    sleep(2)
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()  # 找老孙头
+    sleep(40)
+    click_kongbai()
+    
+    click_kongbai()
+    
+    click_kongbai()
+    
+    delay_sleep()
+    click_renwu()  #牛大胆
+    sleep(10)
+
+    
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()  #王大嫂
+    sleep(30)
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai() 
+    
+    delay_sleep()
+    click_renwu()  #药店  
+    sleep(45) 
+    
+    click_kongbai()
+    click_kongbai()
+    click_kongbai() 
+    click_renwu()  #王大嫂
+    sleep(50) 
+    
+
+    
+    d.click(828,963)
+    sleep(2)
+    click_kongbai()
+    click_kongbai()
+    click_kongbai() 
+    
+    delay_sleep()
+    click_renwu() #鸭子给牛大胆
+    sleep(20)
+    
+    d.click(1333,1009)
+    delay_sleep()
+    d.click(1239,461)
+    delay_sleep()
+    d.click(797,968)
+    delay_sleep()
+
+    sleep(2)
+    click_kongbai()
+    click_kongbai()
+    click_kongbai() 
+    click_kongbai()
+    click_kongbai() 
+    click_kongbai()
+    
+    click_renwu() #去 管家
+    sleep(45)
+    click_kongbai()   
+    delay_sleep()
+    click_renwu()  # 去马全有
+    sleep(10) 
+    click_kongbai() 
+    click_kongbai()
+    click_kongbai() 
+    click_renwu() #灵芝给管家
+    
+    sleep(10)
+    d.click(834,942)
+    delay_sleep()
+    click_kongbai()
+    delay_sleep()
+    click_renwu() # 李善人
+    sleep(15)
+    click_renwu() # 李善人
+    sleep(7) 
+    
+    for i in range(0,10):
+        click_kongbai()
+        
+    sleep(5)
+    click_renwu()
+    delay_sleep()
+    d.click(1693,362) #螃蟹精
+    
+    sleep(20)
+    
+    d.click(2105,1028) #打开摄妖香
+    delay_sleep()
+    sleep(2)
+    d.click(1219,452)
+    d.click(1219,452)
+    delay_sleep()
+    # click_kongbai()
+    sleep(2)
+    d.click(1829,109)
+    sleep(20)
+    
+    
+    d.click(1949,673) #去东海
+    sleep(2)
+    delay_sleep()
+    
+    click_renwu()
+    delay_sleep()
+    d.click(1693,362) #螃蟹精
+    sleep(20)
+    d.click(1705,677) #去海底
+    sleep(2)
+    delay_sleep()
+    d.click(724,515) # click 螃蟹精
+    sleep(1)
+    delay_sleep()
+    quyu_click(1872,617,2008,658) # 好呀好呀
+    
+    delay_sleep()
+    
+    d.click(1223,588) #click 鬼魂
+    delay_sleep()
+    quyu_click(1872,617,2008,658) # 好呀好呀
+    
+    
+    sleep(60)
+    # print("倒计时结束")
+    
+    for i in range(0,5):
+        click_kongbai()
+        
+    
+    delay_sleep()    
+    d.click(2143,610)  #打妖怪(第二个任务)
+    sleep(15)
+    delay_sleep()
+    quyu_click(1872,617,2008,658) # 
+    sleep(50)
+    print("打妖风结束")
+    
+    
+    for i in range(0,4):
+        click_kongbai()
+    
+    delay_sleep()        
+    click_renwu() #去看鬼魂
+    
+    sleep(12)
+    
+    for i in range(0,5):
+        click_kongbai()    
+    
+    delay_sleep()
+    
+    d.click(1199,668)
+
+    delay_sleep()
+    d.click(2143,610)  #找虾精(第二个任务)
+    
+    sleep(25)
+    quyu_click(1872,617,2008,658) # 这就出发
+    delay_sleep()
+    click_renwu()
+    
+    sleep(10)
+    new_sleep()
+    click_renwu()  
+    sleep(5)
+    
+    
+    click_kongbai()  
+    delay_sleep()
+    click_kongbai()  
+    click_kongbai()  
+    
+    delay_sleep()
+    quyu_click(2011,1002,2013,1004) # 点击 法术快捷栏
+    delay_sleep()
+    quyu_click(2028,880,2030,882)  #+法术
+    delay_sleep()
+    
+    quyu_click(434,199,450,205)   # + 回师门
+    delay_sleep()
+    quyu_click(2028,880,2030,882)  # 点击 回师门
+    click_renwu()
+    sleep(20)
+    click_kongbai()  
+    new_sleep()
+    quyu_click(1132,652,1257,692) #使用
+    delay_sleep()
+    d.click(962,881)  #飞 袁守城
+    sleep(3)
+    ## 手动删除任务栏的师门任务( 不需要这个操作了)
+    delay_sleep()
+    quyu_click(2087,493,2090,505) #拜访袁守城
+    #delay_sleep()
+    #d.click(1855,104) #关闭物品栏
+    delay_sleep()
+    xinshouzhuxian()  #新手主线
+    delay_sleep()
+    for i in range(0,8):
+        click_kongbai()
+    
+    click_renwu() #找张老财
+    sleep(15)
+    xinshouzhuxian() 
+    for i in range(0,5):
+        click_kongbai()
+    
+    delay_sleep()        
+    click_renwu() #去 云来酒店
+    sleep(40)       
+    xinshouzhuxian()
+    delay_sleep()  
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()  # 找 兰虎
+    sleep(35)
+    quyu_click(1914,204,1928,206)
+    delay_sleep()  
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    quyu_click(1872,617,2008,658) #太好啦
+    sleep(30) 
+    click_kongbai()
+    delay_sleep()
+    click_renwu()
+    
+    sleep(30)# 去酒店
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()
+    delay_sleep()
+    xinshouzhuxian()
+    delay_sleep()
+    quyu_click(1922,539,1926,541)
+    delay_sleep()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()
+    delay_sleep()
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()
+    
+    sleep(30) #去找二宝  
+    xinshouzhuxian()
+    # d.click(1198,511) #点击二宝
+    # delay_sleep()
+    #xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()  #去找袁守城
+    sleep(80)
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    click_renwu()
+    sleep(70)
+    d.click(1980,202) #吴举人 新手任务
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()
+    sleep(12)
+    xinshouzhuxian() #和妖风交谈
+    delay_sleep()
+    quyu_click(1917,653,1919,655) # queren
  
+    sleep(40)#妖风战斗
+    click_kongbai()
+    delay_sleep()
+    click_renwu() # 去袁守城问问
+    sleep(60)
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()
+
+    sleep(85) #去化生寺
+    d.click(1446,143) #in hs
+    sleep(4)
+    click_renwu()
+    sleep(6)
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()
+    sleep(10)
+    d.click(135,960) # in ca
+    sleep(5)
+    click_renwu()
+    sleep(45) #去 国子监司业
+    xinshouzhuxian()
+    delay_sleep()
+    quyu_click(1872,617,2008,658) # queren
+    sleep(30) #再次和妖风战斗
+    delay_sleep()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()
+    sleep(20)
+    d.click(1980,202) #吴举人 新手任务 
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    d.click(1930,60)
+    quyu_click(2011,1002,2013,1004) # 点击 法术快捷栏
+    delay_sleep()
+    quyu_click(2028,880,2030,882)  # 点击 回师门
+    delay_sleep()
+    click_renwu()
+    sleep(15)
+    xinshouzhuxian()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+
+    delay_sleep()
+    click_renwu()
+    delay_sleep()
+    xinshouzhuxian()  # 枯萎的金莲
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    
+    d.click(2112,1050)
+    delay_sleep()
+    quyu_click(1132,652,1257,692) #使用
+    delay_sleep()
+    d.click(1472,655)  #飞建邺
+    delay_sleep()
+    d.click(1838,122) # 关物品栏
+    delay_sleep()
+    click_renwu()  # 去王大嫂
+    sleep(32)
+    delay_sleep()
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    
+    # 待确认
+    click_renwu()
+    delay_sleep()
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()   
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    click_renwu() #找吹牛王
+    sleep(18)
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()  
+    click_renwu() #找马全有
+    sleep(18)
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai() 
+    delay_sleep()
+    quyu_click(1872,617,2008,658) # queren
+    delay_sleep()
+    click_renwu()  #找雷黑子
+    sleep(13)
+    xinshouzhuxian()    
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()   
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()  # 找小花
+    sleep(30)
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()  # 找东海药师
+    delay_sleep()
+    d.click(2101,1017) # 物品栏
+    delay_sleep()
+    d.click(1217,456)  # 摄妖香 第六个
+    d.click(1217,456)
+    delay_sleep()
+    click_kongbai()
+    delay_sleep()
+    d.click(1838,106)  # 关闭物品栏
+    delay_sleep()
+    sleep(10)
+    d.click(1978,738)
+    sleep(3)
+    click_renwu() #东海药师
+    sleep(15)
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    quyu_click(1872,617,2008,658) # 啊?
+    sleep(10)
+    click_renwu()
+    delay_sleep()
+    xinshouzhuxian()
+    delay_sleep()
+    quyu_click(1872,617,2008,658) # 发起攻击
+    sleep(70)
+    click_renwu()  
+    delay_sleep()
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()  # 找 楚恋依
+    sleep(25)
+    xinshouzhuxian() 
+    new_sleep()
+    click_kongbai()
+    click_kongbai()   
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    d.click(2101,1017) # 物品栏
+    delay_sleep()
+    d.click(1762,323)
+    sleep(0.1)
+    d.click(1762,323)
+    delay_sleep()
+    d.click(1472,655)  #飞建邺
+    delay_sleep()
+    d.click(1834,105)  # 关闭物品栏
+    delay_sleep()
+    click_renwu()
+    sleep(10)
+    xinshouzhuxian()
+    new_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    quyu_click(1942,510,1948,522)   #事情紧急
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()  
+    delay_sleep()
+    click_renwu()   # 找小花
+    sleep(40)
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    click_renwu() # 给 楚恋依
+    sleep(10)
+    d.click(1961,808)
+    sleep(3)
+    delay_sleep()
+    click_renwu() # 给 楚恋依
+    sleep(25)
+    xinshouzhuxian()
+    delay_sleep()
+    quyu_click(779,970,781,972)
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+
+
+    delay_sleep()
+    click_renwu() # 看看楚恋依还有什么话说
+    sleep(9)
+    delay_sleep()
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    click_kongbai()
+    delay_sleep()
+    click_renwu()  # 找王大嫂
+    sleep(30)
+    d.click(67,454) # 进建邺城
+    sleep(2)
+    click_renwu()
+    sleep(30)
+    xinshouzhuxian()
+    delay_sleep()
+    click_kongbai()
+    delay_sleep()
+    quyu_click(2011,1002,2013,1004) # 点击 法术快捷栏
+    delay_sleep()
+    quyu_click(2028,880,2030,882)  # 点击 回师门
+    delay_sleep()
+    click_renwu()
+    sleep(10)
+    
+    
+    
+    
+      
+    
+    
+      
+    
 #~ 1.抓鬼   
 # zhuagui_click_all_button()
 
@@ -1366,12 +2195,14 @@ if action == 'zhuagui':
 elif action == 'shimen':
     shimen_click_all_button()
 elif action == 'fengyao':
-    # fengyao()
     fengyao_all()
 else:
-    # fengyao()
-    # testOne()   
+    # denglu()
+    # sell_hulu_zhuagui()
+    qihao()
+    # quyu_click(1490,229,1810,512) #空白区域
+    # click_renwu()
+    # click_kongbai()
     
-    d.swipe(1399,915,1385,166,0.1)
-
- 
+    # quyu_click(2220,1006,2270,1027) #点击自动
+    click_renwu()
