@@ -24,7 +24,27 @@ from slack_sdk.errors import SlackApiError
 
 import time 
 
-client = WebClient(token='xoxb-878537608886-1683457705654-gfES9lJ8jYgOhOp4nAx4K7Ac')
+def quyu_click(x1,y1,x2,y2):
+    xx = random.sample(range(x1,x2),1)
+    yy= random.sample(range(y1,y2),1)
+    d.click(xx[0],yy[0])
+    
+def new_sleep(x=2):
+    # n = int(r(1,x))
+    n = round(random.uniform(0,x),1)
+    sleep(n)
+    
+def delay_sleep(x=3):
+    n = round(random.uniform(1,x),1)    
+    sleep(n)
+
+def num_r():
+    return int(r(1,5))
+
+def random_num(x):
+    return int(r(1,x))
+
+client = WebClient(token='xoxb-878537608886-1683457705654-XihAOXdnLdXon3SHDYKcEuuU')
 
 def send_message_to_slack(content):
 
@@ -285,21 +305,21 @@ def start(zuobiao,close):
 # start(huaguoshan_zuobiao,huaguoshan_close)          
 
 def open_daoju():
-    x = 1710
-    y = 1023
-    d.click(x,y)
+    new_sleep()
+    quyu_click(1675,1023,1710,1037)
+    new_sleep()
 
 def open_changan7():
-    x = 977
-    y = 306
-    d.click(x,y)
-    d.click(x,y)
+    new_sleep()
+    quyu_click(948,298,1000,375)
+    quyu_click(948,298,1000,375)
+    new_sleep()
     
 def go_yizhan():
-    x = 973
-    y = 808
-    d.click(x,y)
-    d.click(x,y)
+    new_sleep()
+    quyu_click(956,807,963,811)
+    new_sleep()
+    
     
 def click_yizhan():
     x = 874
@@ -308,21 +328,13 @@ def click_yizhan():
     
     x = 1050
     y  = 520
-    
-    883
-    533
-    
-    1131
-    438
-    
-    905 
-    501
+
 
 # 驿站老板对话框    
 def go_guojing():
-    x = 1609
-    y = 521
-    d.click(x,y)
+    new_sleep()
+    quyu_click(1500,507,1712,530)
+    new_sleep()
     
 def close_guojingditu():
     x = 1566
@@ -335,42 +347,91 @@ def goin_difu():
     d.click(x,y)
     
 def ditu_guojing_to_difu():    
-    x = 768
-    y  =175
-    d.click(x,y)
+    # x = 768
+    # y  =175
+    # d.click(x,y)
+    quyu_click(768,175,770,176)
     
 def go_zhongkui():    
     x = 888
-    y = 579
+    y = 571
     d.click(x,y)
 
 def close_difu_ditu():
-    x =     1575
-    y  =130
-    d.click(x,y)
-    
+    new_sleep()
+    quyu_click(1578,115,1605,149)
+    new_sleep()
+
+   
 
     
 def close_daoju():    
-    x = 1608
-    y = 96
-    d.click(x,y)
+    new_sleep()
+    quyu_click(1588,93,1611,115)
+    new_sleep()
 
 def go_difu():
-    x = 763
-    y = 176
-    d.click(x,y)
+    # x = 763
+    # y = 176
+    # d.click(x,y)
+    new_sleep()
+    quyu_click(763,176,765,178)
+    new_sleep()
  
 def click_zhongkui():
-    x = 808
-    y = 614
-    d.click(x,y)
+    new_sleep()
+    quyu_click(841,530,842,536) #点击钟馗npc
+    new_sleep()
     
 def ling_zhuagui():
-    x = 1619
-    y  =646
-    d.click(x,y)   
+    new_sleep()
+    quyu_click(1500,628,1643,669) # 好的,我帮你 
+    new_sleep()
+    
+    
+def go_pt():
+    return 1
+    
+def go_jingwai_right():
+    open_daoju()  
 
+    open_changan7() 
+    go_yizhan() 
+    sleep(0.8)
+    close_daoju()
+    new_sleep()
+    
+    nx  = 1
+    while nx > 0:
+        send_message_to_slack("处理一下")
+        jiepin2()
+        sleep(1)
+        yy = matchImg('home.jpg','queren_flag.jpg')
+        if yy[0] > 0:
+            sleep(1)
+            d.click(yy[0],yy[1])
+            print("找到了")
+            nx = 0
+            break
+        
+        sleep(3)
+        
+    sleep(1)
+    new_sleep()
+    open_ditu()
+    
+    new_sleep()
+    d.click(653,831)
+    new_sleep()
+    quyu_click(1551,50,1578,72) #关闭国境地图
+
+    
+    sleep(65)
+    
+    d.click(134,202) #去境外
+    sleep(5)  #sleep后到达境外
+    
+    
 
 def start_zhuagui():
     
@@ -403,26 +464,38 @@ def start_zhuagui():
 
 def gogo_lingrenwu():
     
-    xiangdui_zuobiao = [(1197,395),(1116,454),(1278,425),(1292,333),(1196,344),(1197,395),(1116,454),(1278,425),(1292,333),(1196,344),(11,22)]
+    # xiangdui_zuobiao = [(1197,395),(1116,454),(1278,425),(1292,333),(1196,344),(1197,395),(1116,454),(1278,425),(1292,333),(1196,344),(11,22)]
 
-    for i in xiangdui_zuobiao:
+    
+    zhao_yizhanlaoban = [(1100,473),(1106,454),(999,600),(916,615),(848,580),(897,472),(11,22)]
+    
+    
+    open_daoju()  
+
+    open_changan7() 
+    go_yizhan() 
+    sleep(0.8)
+    close_daoju()
+    new_sleep()
+    
         
-        open_daoju()  
+    for i in zhao_yizhanlaoban:
+        
+        # open_daoju()  
 
-
-        open_changan7() 
-        sleep(1)
-        go_yizhan() 
-        sleep(0.8)
-        close_daoju()
-        sleep(2)
+        # open_changan7() 
+        # go_yizhan() 
+        # sleep(0.8)
+        # close_daoju()
+        # new_sleep()
 
   
         d.click(i[0],i[1])
-        sleep(1)
+        new_sleep()
+        print('当前用的坐标是: %s ' % str(i) )
         
         jiepin2()
-        sleep(1)
+        sleep(2)
         yy = matchImg('home.jpg','queren_flag.jpg')
         if yy[0] > 0:
             sleep(1)
@@ -432,28 +505,45 @@ def gogo_lingrenwu():
 
         if i[0] == 11:
             print("没找到")
-            send_message_to_slack("出错了,没找到")
-            return 0
+            
+            
+            nx  = 1
+            while nx > 0:
+                send_message_to_slack("出错了,没找到")
+                jiepin2()
+                sleep(1)
+                yy = matchImg('home.jpg','queren_flag.jpg')
+                if yy[0] > 0:
+                    sleep(1)
+                    d.click(yy[0],yy[1])
+                    print("找到了")
+                    nx = 0
+                    break
+                
+                sleep(3)
 
 
 
-    sleep(2)
+    delay_sleep()
     open_ditu()
-    time.sleep(1)
+    new_sleep()
+    
     ditu_guojing_to_difu()
-    sleep(1)
+    new_sleep()
     close_guojingditu()
     sleep(20)
     goin_difu()
-    sleep(5)
+    delay_sleep()
+    delay_sleep()
     open_ditu()
-    sleep(1)
+    new_sleep()
     go_zhongkui()
-    sleep(1)
+    new_sleep()
     close_difu_ditu()
     sleep(22)
+    new_sleep()
     click_zhongkui()
-    sleep(2)
+    delay_sleep()
     ling_zhuagui()
      
 
@@ -507,5 +597,7 @@ def gogo_lingrenwu():
 
 
 #(274,41)
-start_zhuagui()
+# start_zhuagui()
 # jiepin2()
+
+go_jingwai_right()

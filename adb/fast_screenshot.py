@@ -21,7 +21,7 @@ def jiepin():
         if not isinstance(data, (bytes, bytearray)):
             print(data)
             continue
-        with open("home.jpg" , "wb") as f:
+        with open("saota_home.jpg" , "wb") as f:
             f.write(data)
             index += 1
         print(index)

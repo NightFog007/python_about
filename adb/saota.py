@@ -138,7 +138,7 @@ def huaguoshan_go_move():
 
 def jiepin2():
     image = d.screenshot(format='opencv')
-    cv2.imwrite('home.jpg', image)
+    cv2.imwrite('saota_home.jpg', image)
     sleep(1)   
     
 def close_t5_ditu():
@@ -174,7 +174,7 @@ def close_jingwai_ditu():
 #     d.click(npcx + 5, npcy - 5)
 
 # jiepin()
-a = 'home.jpg'
+a = 'saota_home.jpg'
 b = '123.png'
 # open_ditu()
 # res = matchImg(a,b)
@@ -261,7 +261,7 @@ def beiju_move():
     # 判断地图是否打开着
     jiepin2()  
     sleep(1)
-    ditu_open = matchImg('home.jpg','./map_cunzai.jpg',0.85)      
+    ditu_open = matchImg('saota_home.jpg','./map_cunzai.jpg',0.85)      
     # print(zhandou)
     
     if(ditu_open[0])>0:
@@ -274,21 +274,15 @@ def beiju_move():
 
     
 def huaguoshan_move():
+    new_sleep()
     open_ditu()
-    sleep(1)
+    
     quyu_click(742,352,1391,846)
     delay_sleep()
     sleep(1)
     
-    # 判断地图是否打开着
-    jiepin2()  
-    sleep(1)
-    ditu_open = matchImg('home.jpg','./map_cunzai.jpg',0.85)      
-    # print(zhandou)
+    quyu_click(1575,123,1609,136) 
     
-    if(ditu_open[0])>0:
-        #关闭地图
-        quyu_click(1549,121,1609,136) 
     
     new_sleep()
     
@@ -306,7 +300,7 @@ def T5_move():
     # # 判断地图是否打开着 #~ 3,26注释掉, 直接点关闭地图的地方,不用判断地图是否打开
     # jiepin2()  
     # sleep(1)
-    # ditu_open = matchImg('home.jpg','./map_cunzai.jpg',0.85)      
+    # ditu_open = matchImg('saota_home.jpg','./map_cunzai.jpg',0.85)      
     # # print(zhandou)
     
     # if(ditu_open[0])>0:
@@ -327,7 +321,7 @@ def long1_move():
     # # 判断地图是否打开着 #~ 3,26注释掉, 直接点关闭地图的地方,不用判断地图是否打开
     # jiepin2()  
     # sleep(1)
-    # ditu_open = matchImg('home.jpg','./map_cunzai.jpg',0.85)      
+    # ditu_open = matchImg('saota_home.jpg','./map_cunzai.jpg',0.85)      
     # # print(zhandou)
     
     # if(ditu_open[0])>0:
@@ -346,7 +340,7 @@ def long3_move():
     # # 判断地图是否打开着 #~ 3,26注释掉, 直接点关闭地图的地方,不用判断地图是否打开
     # jiepin2()  
     # sleep(1)
-    # ditu_open = matchImg('home.jpg','./map_cunzai.jpg',0.85)      
+    # ditu_open = matchImg('saota_home.jpg','./map_cunzai.jpg',0.85)      
     # # print(zhandou)
     
     # if(ditu_open[0])>0:
@@ -377,17 +371,17 @@ def start(zuobiao,close):
                 panduan1 = isMove_once() 
                 
                 
-        # jiepin()
-        # zidong = matchImg('home.jpg','./chongzhi_pic.jpg',0.5)
-        # # zidong = get_pay_keyboard_number_location('test_home.jpg','chongzhi_pic.jpg',0.8)
-        # if zidong[0]<=0:
-        #     send_message_to_slack('主号需要处理')
-        #     sleep(5)
-        #     print("取消自动了")
-        # else:
-        #     print("自动 ing")
+        jiepin()
+        zidong = matchImg('saota_home.jpg','./chongzhi_pic.jpg',0.40)
+        # zidong = get_pay_keyboard_number_location('test_saota_home.jpg','chongzhi_pic.jpg',0.8)
+        if zidong[0]<=0:
+            send_message_to_slack('主号需要处理')
+            sleep(5)
+            print("取消自动了")
+        else:
+            print("自动 ing")
             
-        zhandou = matchImg('home.jpg','./wenzi_huihe.jpg')
+        zhandou = matchImg('saota_home.jpg','./wenzi_huihe.jpg')
         if zhandou[0]>0:
         # # if panduan1 ==0 :
             # time_start = time.time() #开始计时
@@ -399,7 +393,7 @@ def start(zuobiao,close):
             while isfight > 0:
                 jiepin()
                 sleep(0.5)
-                zhandou = matchImg('home.jpg','./wenzi_huihe.jpg')
+                zhandou = matchImg('saota_home.jpg','./wenzi_huihe.jpg')
                 if zhandou[0] > 0:
                     isfight = 1
                     print('fighting中')
@@ -407,8 +401,8 @@ def start(zuobiao,close):
                     jiepin2()
                     jiepin() 
                     sleep(1)
-                    zidong = matchImg('home.jpg','./chongzhi_pic.jpg',0.5)
-                    # zidong = get_pay_keyboard_number_location('test_home.jpg','chongzhi_pic.jpg',0.8)
+                    zidong = matchImg('saota_home.jpg','./chongzhi_pic.jpg',0.5)
+                    # zidong = get_pay_keyboard_number_location('test_saota_home.jpg','chongzhi_pic.jpg',0.8)
                     if zidong[0]<=0:
                         # send_message_to_slack('主号需要处理')
                         sleep(2)
@@ -476,6 +470,6 @@ start(huaguoshan_zuobiao,huaguoshan_close)
 
 
 # jiepin()
-# zhandou = matchImg('home.jpg','./chongzhi.jpg')
-# zhandou = matchImg('home.jpg','./wenzi_huihe.jpg')
+# zhandou = matchImg('saota_home.jpg','./chongzhi.jpg')
+# zhandou = matchImg('saota_home.jpg','./wenzi_huihe.jpg')
 # print(zhandou)

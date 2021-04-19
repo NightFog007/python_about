@@ -3,6 +3,7 @@ import random
 import re
 import sys
 import time
+import calendar
 from send_text import send_message_to_slack
 # import pyscreenshot as ImageGrab
 import numpy as np
@@ -10,7 +11,7 @@ import uiautomator2 as u2
 from aip import AipOcr
 from cv2 import cv2
 from PIL import Image
-
+import datetime
 sys.path.append('../')
 import _thread
 import time
@@ -104,6 +105,12 @@ def jiepin():
     image = d.screenshot(format='opencv')
     cv2.imwrite('home.jpg', image)
     sleep(1)   
+    
+def save_pic(filename):
+    image = d.screenshot(format='opencv')
+    savename= filename+'.jpg'
+    cv2.imwrite(savename, image)
+    sleep(1)      
     
 # def jiepin():
 #     nn = random.choice("012345679abcdefghijklmn")
@@ -249,6 +256,18 @@ def sell_hulu_zhuagui():
         # 点击确定
         quyu_click(647,1359,905,1410)
         new_sleep(1)
+        
+    ###~ 2021.04.10 保存卖葫芦的界面截图,方便查询当前精力
+    # delay_sleep()
+    # quyu_click(294,196,408,255)
+    # sleep(1)
+    # new_sleep()
+    # quyu_click(328,340,438,378)
+    # delay_sleep()
+    # timenow = calendar.timegm(time.gmtime())
+    # timenow = str(timenow)
+    # save_pic(timenow)
+    
     
     # 关闭卖葫芦界面
     delay_sleep()
@@ -259,31 +278,33 @@ def sell_hulu_zhuagui():
     new_sleep(1)
         
     
-    
+def jietu_now():
+    timenow = calendar.timegm(time.gmtime())
+    timenow = str(timenow)
+    save_pic(timenow)    
     
 def zhuagui_click_all_button(i):
-    new_sleep() 
     
+    delay_sleep() 
     denglu()
     
+    delay_sleep()
+    timenow = calendar.timegm(time.gmtime())
+    timenow = str(timenow)
+    save_pic(timenow)
+    
     # 从进入主界面开始
-    sleep(2 )
+    sleep(3)
     new_sleep()
     click_renwu()
     
-    sleep(1)
-    new_sleep()
+    delay_sleep()
     click_zhuagui_caidan()
+    delay_sleep()
     
     print("开始点击右下角")
     while 1> 0:
-        # finish_flag = matchImg('home.jpg','renwu_jieshu.jpg')
-        
-        # wancheng = matchImg('home.jpg','huluman.jpg')
-        # # print(wancheng)
-        # if wancheng[0] > 0:
-        #     d.click(627,1208)
-        #     sleep(1)
+       
         jiepin()
         
         haoyou = matchImg('home.jpg','./main_pic/mix3_haoyouxinxi.jpg',0.90)
@@ -335,65 +356,65 @@ def zhuagui_click_all_button(i):
             
             sleep(5)
             
-            delay_sleep()
-            quyu_click(1034,117,1038,129)
+            nn = 1
+            while nn > 0 :
+                jiepin()
+                sleep(1)
+                xx = matchImg('home.jpg','renwu_x.jpg',0.95)
+                if xx[0]>0:
+                    print("有XX")
+                    d.click(xx[0],xx[1])
+                else:
+                    nn = -1
+                
             
-            delay_sleep()
+            # delay_sleep()
+            # quyu_click(1034,117,1038,129) #关闭任务界面
+            
+            sleep(2)
+            new_sleep()
+            quyu_click(217,1369,330,1444) # 打开宝库
+            sleep(2)
+            jietu_now()  #截图
+            sleep(2)
+            new_sleep()
+            quyu_click(270,206,367,240) # 点击集市
+            sleep(2)
+            new_sleep()
+            quyu_click(340,337,400,356) # 点击 我的货架
+            sleep(2)
+            new_sleep()  
+            jietu_now()  #截图
+            quyu_click(1034,117,1038,129) #关闭界面
+            
+            sleep(2)
+            new_sleep()
+            
             sell_hulu_zhuagui()
             
             sleep(1)
             tuichu()
             sleep(random_num(2))
-            # 点击选择角色的按钮
-            # quyu_click(1567,606,1586,623)
-            # quyu_click(1493,603,1545,630) #~ 3.24注释掉
             
-            # d.click(1450,640) 
             rs = '第%s个号,zhuagui结束' % i
             send_message_to_slack(rs)
             return 0
             
-            # send_message()
-            # sys.exit() #~ 0323注释,完成一个角色后不退出程序,开始下一个角色
-            # print("开始进行师门任务")
-            # d.click(334- num_r(),726- num_r())
-            # sleep(2)
-            # shimen_click_all_button()
+
           
         click_youxiajiao() 
         new_sleep(2)
         click_bangmangzhuagui()
         click_bangmangzhuagui() 
-        # click_youxiajiao()
-        # click_youxiajiao() 
+
         new_sleep(2)
         click_bangmangzhuagui()
-        # x = 688
-        # y = 1257
-        # d.click(x,y)
-        # d.click(x,y)
-        # d.click(x,y)
-        # d.click(x,y)
-        
-        # if finish_flag[0] == 0:
-        #     x = 688
-        #     y = 1257
-        #     d.click(x,y)
-        #     d.click(x,y)
-        #     d.click(x,y)
-        #     d.click(x,y)
-        # else:
-        #     print("抓鬼任务结束,结束程序")
-        #     sys.exit()
+
         sleep(3)
 
 def click_all_button_simen(): #右下角继续任务的按钮,可以放个线程一直点击
     while 1 >  0:
-        # wancheng = matchImg('home.jpg','huluman.jpg')
-        # print(wancheng)
-        # if wancheng[0] > 0:
-        #     d.click(627,1208)
-        #     sleep(1)
+
             
         finish_flag = matchImg('home.jpg','renwu_jieshu.jpg')
         if finish_flag[0] == 0:
@@ -1215,45 +1236,45 @@ def fengyao():
             sleep(20-num_r())
             
 def tuichu():  #mix3
-    sleep(1)
+    sleep(2)
     new_sleep()
     # 点击'更多'
     quyu_click(980,2230,1029,2319)
     # d.click(984,2205)
-    sleep(1)
+    sleep(2)
     new_sleep()
     
     # 点击 '系统'
-    quyu_click(968,2044,1026,2099)
+    quyu_click(968,2044,1000,2069)
     # d.click(978,2053)
-    sleep(1)
-    new_sleep()
+    delay_sleep()
     
     # 点击'账号管理'
-    quyu_click(815,1069,930,1210)
+    quyu_click(860,1106,913,1176)
     # d.click(855,1162)
-    sleep(1)
+    sleep(2)
     new_sleep()
     
     # 点击 '切换角色'
-    quyu_click(252,1359,515,1397)
+    quyu_click(284,1362,426,1388)
     # d.click(356,1404)
-    sleep(1)
+    sleep(2)
     new_sleep()
     
     # 点击 '确定'
-    quyu_click(682,1187,813,1228)
+    quyu_click(682,1187,800,1228)
     # d.click(733,1270)
-    sleep(1)
+    sleep(2)
     new_sleep()
 
 
 def denglu():
+    delay_sleep()
     # 选择账号后,点击'口袋'两个字
     quyu_click(2230,612,2255,654) # mix3
     
     new_sleep()
-    sleep(1)
+    sleep(2)
     
     
     # 确认进入口袋版
@@ -1282,8 +1303,27 @@ def fengyao_all(i):
     delay_sleep()    
     quyu_click(626,136,679,187)
     # quyu_click(663,340,769,415)
-    sleep(3)
-    sleep(random_num(2)+1)
+    delay_sleep()
+    
+    jiepin()
+    sleep(1)
+    # shimenshouwei = matchImg('home.jpg','./shimenshouwei.jpg')
+    # benshiheshang = matchImg('home.jpg','./benshiheshang.jpg')
+    fengyaotubiao = matchImg('home.jpg','./fengyao_tubiao.jpg')
+    new_sleep()
+    sleep(1)
+    if fengyaotubiao[0]>0:
+        # quyu_click(795,369,801,372)
+        n = num_r()
+        d.click(fengyaotubiao[0]+n,fengyaotubiao[1]+n)
+    else:
+        # quyu_click(578,351,655,402)
+        send_message_to_slack('没找到封妖图标')
+
+        
+                       
+    
+    
     #! 点击 封妖
     # d.click(627,545)
     # quyu_click(600,358,660,420)
@@ -1292,7 +1332,12 @@ def fengyao_all(i):
     # quyu_click(700,344,744,428)
     
     #~ 日历,封妖, 本事和尚
-    quyu_click(578,351,655,402)
+    # quyu_click(578,351,655,402)
+    
+    #~ 日历,师门入侵,封妖
+    # quyu_click(795,369,801,372)
+    #~ 周末活动
+    # quyu_click(520,390,524,392)
     
     sleep(random_num(2))
     
@@ -1378,7 +1423,7 @@ def change_role(n = 1):
     # cc = quyu_click(1118,789,1354,942)   # (1217, 990)
     # dd = quyu_click(1606,785,1826,958)   # (1692, 990)
     
-    
+    new_sleep()
     if n == 1:
         print("第1位")
         quyu_click(1100,375,1380,602)
@@ -1455,31 +1500,17 @@ n = sys.argv[2]
 n = int(n)
 if action == 'zhuagui':
     
+    # sleep(1200)
+    
     # sleep(2)
-    
-    # #  点击选择角色的按钮
-    # quyu_click(1493,603,1545,630)
-    
-    # sleep(3)
-        
-    # for i in range(n,13):
-    #     sleep(2)
-    #     new_sleep()
-    #     change_role(i)
-        
-    #     zhuagui_click_all_button() 
-    
-   #  点击选择角色的按钮
-    # quyu_click(1493,603,1545,630)
         
     for i in range(n,13):
         sleep(3)
         #  点击选择角色的按钮
         quyu_click(1493,603,1545,630)
-        sleep(1)
-        new_sleep()
+        delay_sleep()
         change_role(i)
-        sleep(2)
+        delay_sleep()
         new_sleep()
         zhuagui_click_all_button(i) 
         
@@ -1508,7 +1539,39 @@ else:
     # tuichu()
     # quyu_click(1493,603,1545,630)
     # sell_hulu_zhuagui()
-    test_change_role(n)
+    # test_change_role(n)
+    sleep(5)
+            
+    delay_sleep()
+    quyu_click(1034,117,1038,129) #关闭任务界面
+    sleep(1)
+    new_sleep()
+    quyu_click(1034,117,1038,129) #关闭任务界面
+    
+    sleep(2)
+    new_sleep()
+    quyu_click(217,1369,330,1444) # 打开宝库
+    sleep(2)
+    jietu_now()  #截图
+    sleep(2)
+    new_sleep()
+    quyu_click(270,206,367,240) # 点击集市
+    sleep(2)
+    new_sleep()
+    quyu_click(340,337,400,356) # 点击 我的货架
+    sleep(2)
+    new_sleep()  
+    jietu_now()  #截图
+    quyu_click(1034,117,1038,129) #关闭界面
+    
+    sleep(2)
+    new_sleep()
+    
+    sell_hulu_zhuagui()
+    
+    sleep(1)
+    tuichu()
+    sleep(random_num(2))
     
     #~ d.swipe(1399,915,1385,166,0.1)
     

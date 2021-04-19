@@ -15,7 +15,25 @@ from comm import isMove,isMove_once,isFight_once,get_random_num,get_09,open_ditu
 
 import aircv as ac
 
+def quyu_click(x1,y1,x2,y2):
+    xx = random.sample(range(x1,x2),1)
+    yy= random.sample(range(y1,y2),1)
+    d.click(xx[0],yy[0])
+    
+def new_sleep(x=2):
+    # n = int(r(1,x))
+    n = round(random.uniform(0,x),1)
+    sleep(n)
+    
+def delay_sleep(x=3):
+    n = round(random.uniform(1,x),1)    
+    sleep(n)
 
+def num_r():
+    return int(r(1,5))
+
+def random_num(x):
+    return int(r(1,x))
 
 # d = u2.connect_wifi('192.168.205.180')
 # d = u2.connect_adb_wifi("10.0.0.1:5555")
@@ -61,18 +79,7 @@ def matchImg(imgsrc,imgobj,confidencevalue=0.8):#imgsrc=原始图像，imgobj=�
         
     return x1,y1
  
-def close_haidi1_ditu():
-    sleep(0.5)
-    x = 1606 #关闭地图
-    y = 110
-    d.click(x, y) 
-            
-             
-def close_huaguoshan_ditu():
-    sleep(0.5)
-    x = 1586 #关闭地图
-    y = 129
-    d.click(x, y) 
+
     
 def daidui_go_move(zuobiao,close_ip):
     # xiaoditu_zuobiao = [(641,276),(669,896),(1512,294),(1507,920),(1058,562)] 
