@@ -44,7 +44,7 @@ def num_r():
 def random_num(x):
     return int(r(1,x))
 
-client = WebClient(token='xoxb-878537608886-1683457705654-NCcaBNnIcdgdPDWR3uVAYWfP')
+client = WebClient(token='xoxb-878537608886-1683457705654-aPT4KkHwemdBFlMkS8YhmuSt')
 
 def send_message_to_slack(content):
 
