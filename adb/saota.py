@@ -311,7 +311,7 @@ def T5_move():
 def long1_move():
     open_ditu()
     
-    quyu_click(392,257,1458,803)
+    quyu_click(650,430,1458,803)
     delay_sleep()
     sleep(1)
     

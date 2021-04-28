@@ -232,7 +232,79 @@ def click_next_page(): #当前页面没找到目标鬼,则点击四次右下角�
     
 def click_renwu():
     # quyu_click(436,2178,514,2255) #xiaomi 10
-    quyu_click(459,2233,509,2262)  #mix3
+    # quyu_click(459,2233,509,2262)  #mix3
+    ## 判断当前界面,是否有任务图标,如果没有,说明没有进入登录后的界面,需要重新登录
+    jiepin()
+    sleep(1)
+    p1 = matchImg('home.jpg','renwutubiao.jpg')
+    print("任务图标找寻结果: " + str(p1))
+    queding1 = matchImg('home.jpg','queding1.jpg')
+    print("确定按钮找寻结果: " + str(queding1))
+    if p1[0]>0 and queding1[0]==0 :
+        quyu_click(459,2233,509,2262) 
+        new_sleep()
+        quyu_click(459,2233,509,2262) 
+        new_sleep()
+        return 0
+    
+    if queding1[0]>0:
+        print("在任务界面出现网络异常")
+        new_sleep()
+        d.click(queding1[0],queding1[1])
+        sleep(2)
+        new_sleep()
+        quyu_click(459,2233,509,2262)   #再次点击任务
+        new_sleep()
+        return 0
+    
+    renwuzhong = matchImg('home.jpg','renwuzhong.jpg')
+    print("任务图标找寻结果: " + str(renwuzhong))
+    if renwuzhong[0]>0:
+        quyu_click(459,2233,509,2262) 
+        new_sleep()
+        quyu_click(459,2233,509,2262) 
+        new_sleep()
+        quyu_click(459,2233,509,2262) 
+        new_sleep()
+        quyu_click(459,2233,509,2262) 
+        new_sleep()
+        
+    koudaidenglujiemian = matchImg('home.jpg','koudaidenglujiemian.jpg')
+    print("还在口袋登录界面??" + str(koudaidenglujiemian))
+    if koudaidenglujiemian[0]>0:
+        delay_sleep()
+        # 点击'口袋'两个字
+        quyu_click(2230,612,2255,654) # mix3
+        new_sleep()
+        sleep(2)
+        # 确认进入口袋版
+        quyu_click(1298,666,1519,704) # mix3
+    
+        new_sleep()
+        sleep(2)
+    
+    
+    queding2 = matchImg('home.jpg','queding2.jpg')
+
+    if queding2[0]>0:
+        print("在登录界面出现网络异常")
+        new_sleep()
+        d.click(queding2[0],queding2[1])
+        delay_sleep()
+        # 点击'口袋'两个字
+        quyu_click(2230,612,2255,654) # mix3
+        
+        new_sleep()
+        sleep(2)
+    
+        # 确认进入口袋版
+        quyu_click(1298,666,1519,704) # mix3
+        
+        new_sleep()
+        sleep(2)
+    
+        return 0
+        
 
 def click_zhuagui_caidan():    
     # quyu_click(125,1469,981,1641) #xiaomi 10
@@ -297,6 +369,19 @@ def zhuagui_click_all_button(i):
     sleep(3)
     new_sleep()
     click_renwu()
+    sleep(1)
+    
+    n1 = 1
+    while n1 > 0:
+        jiepin()
+        sleep(1)
+        chacha = matchImg('home.jpg','renwu_x.jpg',0.95)
+        if chacha[0]>0:
+            print("进入了任务界面")  
+            n1 = -1      
+        else:
+            click_renwu()
+        
     
     delay_sleep()
     click_zhuagui_caidan()
@@ -356,20 +441,28 @@ def zhuagui_click_all_button(i):
             
             sleep(5)
             
-            nn = 1
-            while nn > 0 :
-                jiepin()
-                sleep(1)
-                xx = matchImg('home.jpg','renwu_x.jpg',0.95)
-                if xx[0]>0:
-                    print("有XX")
-                    d.click(xx[0],xx[1])
-                else:
-                    nn = -1
+            # nn = 1
+            # while nn > 0 :
+            #     jiepin()
+            #     sleep(1)
+            #     xx = matchImg('home.jpg','renwu_x.jpg',0.95)
+            #     if xx[0]>0:
+            #         print("有XX")
+            #         d.click(xx[0],xx[1])
+            #     else:
+            #         nn = -1
+            
+            jiepin()
+            sleep(1)
+            nn212= matchImg('home.jpg','zhuagui_wancheng_flag.jpg',0.91)
+            if nn212[0]>0:
+                print("抓鬼完成")
+                quyu_click( 210,1561,800,1911)
+                new_sleep()
                 
             
-            # delay_sleep()
-            # quyu_click(1034,117,1038,129) #关闭任务界面
+            delay_sleep()
+            quyu_click(1034,117,1038,129) #关闭任务界面
             
             sleep(2)
             new_sleep()
@@ -1160,7 +1253,7 @@ def shimen_finish():
     
     # click_shimen()
     # sleep(2)
-    # 创建两个线程
+    # 创建两个线程 
     try:
         _thread.start_new_thread( click_all_button_simen,() )
         _thread.start_new_thread( shimen_liucheng,())
@@ -1269,6 +1362,13 @@ def tuichu():  #mix3
 
 
 def denglu():
+    
+    jiepin()
+    sleep(1)
+    duanwang = matchImg('home.jpg','wangluoduankai.jpg',0.9)
+    if duanwang[0]>0:
+        quyu_click(1329,667,1475,689)
+    
     delay_sleep()
     # 选择账号后,点击'口袋'两个字
     quyu_click(2230,612,2255,654) # mix3
@@ -1500,7 +1600,7 @@ n = sys.argv[2]
 n = int(n)
 if action == 'zhuagui':
     
-    # sleep(1200)
+    # sleep(1800)
     
     # sleep(2)
         
@@ -1513,6 +1613,8 @@ if action == 'zhuagui':
         delay_sleep()
         new_sleep()
         zhuagui_click_all_button(i) 
+        
+    d.press("power") 
         
     
 elif action == 'shimen':
@@ -1533,6 +1635,10 @@ elif action == 'fengyao':
         fengyao_all(i) 
         
         
+    d.press("power") 
+        
+    
+        
     
 else:
     # denglu()
@@ -1540,38 +1646,13 @@ else:
     # quyu_click(1493,603,1545,630)
     # sell_hulu_zhuagui()
     # test_change_role(n)
-    sleep(5)
-            
-    delay_sleep()
-    quyu_click(1034,117,1038,129) #关闭任务界面
+    
+    
+    
+    jiepin()
     sleep(1)
-    new_sleep()
-    quyu_click(1034,117,1038,129) #关闭任务界面
-    
-    sleep(2)
-    new_sleep()
-    quyu_click(217,1369,330,1444) # 打开宝库
-    sleep(2)
-    jietu_now()  #截图
-    sleep(2)
-    new_sleep()
-    quyu_click(270,206,367,240) # 点击集市
-    sleep(2)
-    new_sleep()
-    quyu_click(340,337,400,356) # 点击 我的货架
-    sleep(2)
-    new_sleep()  
-    jietu_now()  #截图
-    quyu_click(1034,117,1038,129) #关闭界面
-    
-    sleep(2)
-    new_sleep()
-    
-    sell_hulu_zhuagui()
-    
-    sleep(1)
-    tuichu()
-    sleep(random_num(2))
-    
-    #~ d.swipe(1399,915,1385,166,0.1)
+    p1 = matchImg('home.jpg','renwutubiao.jpg')
+    print("任务图标找寻结果: " + str(p1))
+    queding1 = matchImg('home.jpg','queding1.jpg')
+    print("确定按钮找寻结果: " + str(queding1))
     
