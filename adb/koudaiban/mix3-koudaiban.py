@@ -236,6 +236,13 @@ def click_renwu():
     ## 判断当前界面,是否有任务图标,如果没有,说明没有进入登录后的界面,需要重新登录
     jiepin()
     sleep(1)
+    hutong = matchImg('home.jpg','hutong.jpg')
+    print("互通图标: " + str(hutong))
+    if hutong[0]>0:
+        d.click(1020,505)
+    
+    
+    sleep(1)
     p1 = matchImg('home.jpg','renwutubiao.jpg')
     print("任务图标找寻结果: " + str(p1))
     queding1 = matchImg('home.jpg','queding1.jpg')
