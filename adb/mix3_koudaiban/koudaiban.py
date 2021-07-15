@@ -68,7 +68,7 @@ def get_pic(image_path,pixelX,pixelY):
 # print(x6)
 
 # d = u2.connect_usb('18bcc735')  #小米10青春版
-d = u2.connect_usb('113038e8') # 小米mix2
+d = u2.connect_usb('113038e8') # 小米mix3
 # d = u2.connect_usb('emulator-5554')
 # d = u2.connect_adb_wifi("10.0.0.1:5555")
 
