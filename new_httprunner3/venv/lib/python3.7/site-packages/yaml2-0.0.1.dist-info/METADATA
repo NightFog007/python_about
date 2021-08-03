@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: yaml2
+Version: 0.0.1
+Summary: Lobby bot.
+Home-page: https://www.youtube.com/
+Author: TCYT
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: BenBotAsync
+Requires-Dist: FortniteAPIAsync
+Requires-Dist: aiohttp
+Requires-Dist: colorama
+Requires-Dist: crayons
+Requires-Dist: fortnitepy
+Requires-Dist: requests
+Requires-Dist: sanic
+Requires-Dist: uvloop (==0.15.2)
+
+UNKNOWN
+
+
