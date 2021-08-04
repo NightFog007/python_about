@@ -26,6 +26,12 @@ def init_parser_run(subparsers):
     )
     return sub_parser_run
 
+def init_parser_define(subparsers):
+    sub_parser_run = subparsers.add_parser(
+        "define", help="run test and generate reports"
+    )
+    return sub_parser_run
+
 
 def main_run(extra_args) -> enum.IntEnum:
     capture_message("start to run")
@@ -47,7 +53,7 @@ def main_run(extra_args) -> enum.IntEnum:
         logger.error(f"No valid testcase path in cli arguments: {extra_args}")
         sys.exit(1)
         
-    pdb.set_trace()
+    # pdb.set_trace()
 
     testcase_path_list = main_make(tests_path_list)
     if not testcase_path_list:
@@ -59,6 +65,15 @@ def main_run(extra_args) -> enum.IntEnum:
 
     extra_args_new.extend(testcase_path_list)
     logger.info(f"start to run tests with pytest. HttpRunner version: {__version__}")
+    # extra_args_new[0]='--html=report3.html' 
+    # extra_args_new[0]='-v'
+    extra_args_new.append('--html=report3.html' )
+
+    print("[bold magenta]2021-08-04 16:06:52↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/bold magenta]!")
+    print(extra_args_new)
+    print("[bold magenta]2021-08-04 16:06:52↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
+
+    
     return pytest.main(extra_args_new)
 
 
@@ -71,11 +86,19 @@ def main():
     )
 
     subparsers = parser.add_subparsers(help="sub-command help")
+    
     sub_parser_run = init_parser_run(subparsers)
     sub_parser_scaffold = init_parser_scaffold(subparsers)
     sub_parser_har2case = init_har2case_parser(subparsers)
     sub_parser_make = init_make_parser(subparsers)
+    sub_parser_define = init_parser_define(subparsers)
     
+    print("[bold magenta]2021-08-04 16:10:48↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/bold magenta]!")
+    print(sys.argv)
+    print("[bold magenta]2021-08-04 16:10:48↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
+
+    if sys.argv[2].startswith('--html'):
+        print(sys.argv[1])
     
     if len(sys.argv) == 1:
         # httprunner
@@ -101,6 +124,9 @@ def main():
         elif sys.argv[1] == "make":
             # httprunner make
             sub_parser_make.print_help()
+        elif sys.argv[1] == "define":
+            # httprunner run
+            pytest.main(["-h"])
         sys.exit(0)
     elif (
         len(sys.argv) == 3 and sys.argv[1] == "run" and sys.argv[2] in ["-h", "--help"]
@@ -110,7 +136,7 @@ def main():
         sys.exit(0)
 
     extra_args = []
-    if len(sys.argv) >= 2 and sys.argv[1] in ["run", "locusts"]:
+    if len(sys.argv) >= 2 and sys.argv[1] in ["run", "locusts","define"]:
         args, extra_args = parser.parse_known_args()
     else:
         args = parser.parse_args()
@@ -121,7 +147,6 @@ def main():
 
     if sys.argv[1] == "run":
 
-    
         sys.exit(main_run(extra_args))
         
     elif sys.argv[1] == "startproject":
@@ -130,6 +155,11 @@ def main():
         main_har2case(args)
     elif sys.argv[1] == "make":
         main_make(args.testcase_path)
+    elif sys.argv[1] == "define":
+        # print("[bold magenta]2021-08-04 15:52:59↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/bold magenta]!",locals())
+        # print(extra_args)
+        print("[bold magenta]2021-08-04 15:52:59↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
+
 
 
 def main_hrun_alias():

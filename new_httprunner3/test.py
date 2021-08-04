@@ -2,7 +2,14 @@
 from httprunner.cli import tttest,main
 print('test start')
 
-
+# import pytest
+# xx = [
+#     # '--version',
+#     '--html=report.html',
+#     # '/Users/gsky/my_github/python_about/new_httprunner3/tt01/testcases/demo_testcase_ref_test.py',
+#     # '/Users/gsky/my_github/python_about/new_httprunner3/tt01/testcases/demo_testcase_request_test.py'
+# ]
+# pytest.main(xx)
 main()
 tttest()
 
