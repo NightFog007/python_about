@@ -14,7 +14,8 @@ from httprunner.make import init_make_parser, main_make
 from httprunner.scaffold import init_parser_scaffold, main_scaffold
 from httprunner.utils import init_sentry_sdk
 
-
+from rich import print
+import pdb
 
 init_sentry_sdk()
 
@@ -45,6 +46,8 @@ def main_run(extra_args) -> enum.IntEnum:
         # has not specified any testcase path
         logger.error(f"No valid testcase path in cli arguments: {extra_args}")
         sys.exit(1)
+        
+    pdb.set_trace()
 
     testcase_path_list = main_make(tests_path_list)
     if not testcase_path_list:
@@ -72,7 +75,8 @@ def main():
     sub_parser_scaffold = init_parser_scaffold(subparsers)
     sub_parser_har2case = init_har2case_parser(subparsers)
     sub_parser_make = init_make_parser(subparsers)
-
+    
+    
     if len(sys.argv) == 1:
         # httprunner
         parser.print_help()
@@ -116,7 +120,10 @@ def main():
         sys.exit(0)
 
     if sys.argv[1] == "run":
+
+    
         sys.exit(main_run(extra_args))
+        
     elif sys.argv[1] == "startproject":
         main_scaffold(args)
     elif sys.argv[1] == "har2case":
@@ -161,8 +168,15 @@ def main_har2case_alias():
     main()
 
 def tttest():
-    print("this is cli.py 's  test method!")
+    # print("this is cli.py 's  test method!")
+    print("this is cli.py 's  [bold magenta]test method![/bold magenta]!", ":vampire:", locals())
+    print("[bold magenta]2021-08-04 09:59:03↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/bold magenta]!",locals())
+    print("[bold magenta]2021-08-04 09:59:03↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
+
+
 
 
 if __name__ == "__main__":
     main()
+
+

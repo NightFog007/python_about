@@ -560,7 +560,7 @@ def __make(tests_path: Text) -> NoReturn:
         # testcase
         if "teststeps" in test_content:
             try:
-                testcase_pytest_path = make_testcase(test_content)
+                testcase_pytest_path = make_testcase(test_content)  #将json或yml格式用例改为_test.py格式
                 pytest_files_run_set.add(testcase_pytest_path)
             except exceptions.TestCaseFormatError as ex:
                 logger.warning(
@@ -592,7 +592,7 @@ def main_make(tests_paths: List[Text]) -> List[Text]:
 
     for tests_path in tests_paths:
         tests_path = ensure_path_sep(tests_path)
-        if not os.path.isabs(tests_path):
+        if not os.path.isabs(tests_path):   #如果用户在命令行输入的tests_path不是绝对路径,则在这里改为绝对路径
             tests_path = os.path.join(os.getcwd(), tests_path)
 
         try:
