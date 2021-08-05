@@ -2,6 +2,7 @@ import argparse
 import enum
 import os
 import sys
+import time
 
 import pytest
 from loguru import logger
@@ -67,14 +68,13 @@ def main_run(extra_args) -> enum.IntEnum:
     logger.info(f"start to run tests with pytest. HttpRunner version: {__version__}")
     # extra_args_new[0]='--html=report3.html' 
     # extra_args_new[0]='-v'
-    extra_args_new.append('--html=report3.html' )
-
-    print("[bold magenta]2021-08-04 16:06:52↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/bold magenta]!")
-    print(extra_args_new)
-    print("[bold magenta]2021-08-04 16:06:52↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
-
+    time_stamp = time.strftime('%Y%m%d%H%M%S',time.localtime(time.time()))
+    report_name = './reports/'+ time_stamp+'report'+'.html'
+    extra_args_new.append('--html=%s'%report_name )
+    extra_args_new.append('--self-contained-html' )
     
     return pytest.main(extra_args_new)
+
 
 
 def main():
