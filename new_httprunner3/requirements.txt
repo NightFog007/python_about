@@ -218,7 +218,7 @@ typing==3.7.4.3
 typing-extensions==3.7.4.3
 uiautomator2==2.16.6
 Unidecode==1.1.1
-urllib3==1.25.8
+urllib3==1.26.5
 uvicorn==0.11.6
 virtualenv==20.0.21
 virtualenv-clone==0.5.4
