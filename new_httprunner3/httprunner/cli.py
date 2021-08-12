@@ -73,10 +73,14 @@ def main_run(extra_args) -> enum.IntEnum:
     extra_args_new.append('--self-contained-html' )
     extra_args_new.append('--alluredir=./my_allure_results' )
     extra_args_new.append('--clean-alluredir' )
+<<<<<<< HEAD
     print("[bold magenta]2021-08-06 11:05:52↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/bold magenta]!") # ,locals())
     print(extra_args_new)
     print("[bold magenta]2021-08-06 11:05:52↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
 
+=======
+    
+>>>>>>> aa6901bb3bfa00f09ea31afd4705c37bd9de9aa4
     return pytest.main(extra_args_new)
 
 

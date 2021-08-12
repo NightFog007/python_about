@@ -1,0 +1,9 @@
+.env
+new_httprunner3/reports/*
+*.pyc
+logs/*
+__pycache__/*
+.python-version
+new_httprunner3/my_allure_results/*
+venv/*
+*.html
