@@ -1,0 +1,43 @@
+[32m2021-08-06 10:20:30.983[0m | [1mINFO    [0m | [36mhttprunner.runner[0m:[36mtest_start[0m:[36m451[0m - [1mStart to run testcase: battle login request, TestCase ID: 631f4585-bee3-4609-ace2-3a4c808d2b89[0m
+[32m2021-08-06 10:20:30.984[0m | [1mINFO    [0m | [36mhttprunner.runner[0m:[36m__run_step[0m:[36m292[0m - [1mrun step begin: selectEq请求内容异常 >>>>>>[0m
+[32m2021-08-06 10:20:31.010[0m | [33m[1mWARNING [0m | [36mhttprunner.client[0m:[36mrequest[0m:[36m188[0m - [33m[1mfailed to get client address info: 'NoneType' object has no attribute 'getsockname'[0m
+[32m2021-08-06 10:20:31.010[0m | [33m[1mWARNING [0m | [36mhttprunner.client[0m:[36mrequest[0m:[36m196[0m - [33m[1mfailed to get server address info: 'NoneType' object has no attribute 'getpeername'[0m
+[32m2021-08-06 10:20:31.010[0m | [34m[1mDEBUG   [0m | [36mhttprunner.client[0m:[36mlog_print[0m:[36m40[0m - [34m[1m
+================== request details ==================
+method   : POST
+url      : http://127.0.0.1:12356/selectEq
+headers  : {
+    "User-Agent": "python-requests/2.22.0",
+    "Accept-Encoding": "gzip, deflate",
+    "Accept": "*/*",
+    "Connection": "keep-alive",
+    "HRUN-Request-ID": "HRUN-631f4585-bee3-4609-ace2-3a4c808d2b89-430984",
+    "Content-Length": "10"
+}
+cookies  : {}
+body     : aaaentid=1
+[0m
+[32m2021-08-06 10:20:31.011[0m | [34m[1mDEBUG   [0m | [36mhttprunner.client[0m:[36mlog_print[0m:[36m40[0m - [34m[1m
+================== response details ==================
+status_code : 200
+headers  : {
+    "Date": "Fri, 06 Aug 2021 02:20:31 GMT",
+    "Server": "WSGIServer/0.2 CPython/3.7.5",
+    "Content-Type": "application/json",
+    "Content-Length": "68"
+}
+cookies  : {}
+encoding : None
+content_type : application/json
+body     : {
+    "equipmentid": "-1",
+    "Message": "Error 9902: Your kill yourself!!"
+}
+[0m
+[32m2021-08-06 10:20:31.011[0m | [1mINFO    [0m | [36mhttprunner.client[0m:[36mrequest[0m:[36m218[0m - [1mstatus_code: 200, response_time(ms): 25.43 ms, response_length: 0 bytes[0m
+[32m2021-08-06 10:20:31.012[0m | [1mINFO    [0m | [36mhttprunner.response[0m:[36mextract[0m:[36m179[0m - [1mextract mapping: {'foo3': None}[0m
+[32m2021-08-06 10:20:31.012[0m | [1mINFO    [0m | [36mhttprunner.response[0m:[36mvalidate[0m:[36m249[0m - [1massert status_code equal 200(int)	==> pass[0m
+[32m2021-08-06 10:20:31.012[0m | [1mINFO    [0m | [36mhttprunner.response[0m:[36mvalidate[0m:[36m249[0m - [1massert body.equipmentid equal -1(str)	==> pass[0m
+[32m2021-08-06 10:20:31.012[0m | [1mINFO    [0m | [36mhttprunner.runner[0m:[36m__run_step[0m:[36m304[0m - [1mrun step end: selectEq请求内容异常 <<<<<<
+[0m
+[32m2021-08-06 10:20:31.013[0m | [1mINFO    [0m | [36mhttprunner.runner[0m:[36mtest_start[0m:[36m460[0m - [1mgenerate testcase log: /Users/gsky/my_github/python_about/new_httprunner3/tt01/logs/631f4585-bee3-4609-ace2-3a4c808d2b89.run.log[0m
