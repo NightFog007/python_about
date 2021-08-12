@@ -66,13 +66,17 @@ def main_run(extra_args) -> enum.IntEnum:
 
     extra_args_new.extend(testcase_path_list)
     logger.info(f"start to run tests with pytest. HttpRunner version: {__version__}")
-    # extra_args_new[0]='--html=report3.html' 
-    # extra_args_new[0]='-v'
+
     time_stamp = time.strftime('%Y%m%d%H%M%S',time.localtime(time.time()))
     report_name = './reports/'+ time_stamp+'report'+'.html'
     extra_args_new.append('--html=%s'%report_name )
     extra_args_new.append('--self-contained-html' )
-    
+    extra_args_new.append('--alluredir=./my_allure_results' )
+    extra_args_new.append('--clean-alluredir' )
+    print("[bold magenta]2021-08-06 11:05:52↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/bold magenta]!") # ,locals())
+    print(extra_args_new)
+    print("[bold magenta]2021-08-06 11:05:52↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
+
     return pytest.main(extra_args_new)
 
 
