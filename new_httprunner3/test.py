@@ -1,6 +1,6 @@
 
 from httprunner.cli import tttest,main
-print('test start')
+# print('test start')
 
 # import pytest
 # xx = [
@@ -46,3 +46,11 @@ tttest()
 # print("[bold magenta]2021-08-04 11:25:21↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
 
 
+# def inc(x):
+#     return x+1
+
+# def test_anset():
+#     assert inc(3) == 5
+    
+# def test_anset2():
+#     assert inc(4) == 5

@@ -21,12 +21,14 @@ import pdb
 init_sentry_sdk()
 
 
+# 定义可执行命令关键字和help语句
 def init_parser_run(subparsers):
     sub_parser_run = subparsers.add_parser(
-        "run", help="Make HttpRunner testcases and run with pytest."
+        "run", help="0813Make HttpRunner testcases and run with pytest."
     )
     return sub_parser_run
 
+# 我自定义的一个命令,执行脚本并且自动生成测试报告,但是通过修改源码,run也会自动生成报告,所以这个命令define可以不再使用了
 def init_parser_define(subparsers):
     sub_parser_run = subparsers.add_parser(
         "define", help="run test and generate reports"
@@ -73,28 +75,32 @@ def main_run(extra_args) -> enum.IntEnum:
     extra_args_new.append('--self-contained-html' )
     extra_args_new.append('--alluredir=./my_allure_results' )
     extra_args_new.append('--clean-alluredir' )
-<<<<<<< HEAD
-    print("[bold magenta]2021-08-06 11:05:52↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/bold magenta]!") # ,locals())
-    print(extra_args_new)
-    print("[bold magenta]2021-08-06 11:05:52↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
 
-=======
-    
->>>>>>> aa6901bb3bfa00f09ea31afd4705c37bd9de9aa4
     return pytest.main(extra_args_new)
 
 
-
+#^ 框架第一个调的方法在此
 def main():
     """ API test: parse command line options and run commands.
     """
-    parser = argparse.ArgumentParser(description=__description__)
-    parser.add_argument(
-        "-V", "--version", dest="version", action="store_true", help="show version"
-    )
-
-    subparsers = parser.add_subparsers(help="sub-command help")
     
+    #argparse是一个Python模块：命令行选项、参数和子命令解析器。
+    #argparse 模块可以让人轻松编写用户友好的命令行接口。程序定义它需要的参数，然后 argparse 将弄清如何从 sys.argv 解析出那些参数。 argparse 模块还会自动生成帮助和使用手册，并在用户给程序传入无效参数时报出错误信息。
+    
+    #1. 生成ArgumentParser对象(解析器)
+    parser = argparse.ArgumentParser(description=__description__)
+    #2. 调用 add_argument() 方法添加参数
+    parser.add_argument(
+        "-V", "--version", dest="version", action="store_true", help="show version_mydefine20210813"
+    )
+    # argparse 使用add_subparsers()方法去创建子命令
+    subparsers = parser.add_subparsers(help="sub-command help")
+    #3. 如果有子命令的话,生成子解析器
+    # sub_parser_test = subparsers.add_parser("test",help="this is teast")
+    #4. 为子解析器添加参数
+    # sub_parser_test.add_argument(
+    #     "project_name", type=str, nargs="?", help="Specify new project name."
+    # )
     sub_parser_run = init_parser_run(subparsers)
     sub_parser_scaffold = init_parser_scaffold(subparsers)
     sub_parser_har2case = init_har2case_parser(subparsers)
@@ -105,8 +111,9 @@ def main():
     print(sys.argv)
     print("[bold magenta]2021-08-04 16:10:48↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
 
-    if sys.argv[2].startswith('--html'):
-        print(sys.argv[1])
+    if len(sys.argv)>2:
+        if sys.argv[2].startswith('--html'):
+            print(sys.argv[1])
     
     if len(sys.argv) == 1:
         # httprunner
