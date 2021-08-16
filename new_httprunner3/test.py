@@ -11,7 +11,7 @@ from httprunner.cli import tttest,main
 # ]
 # pytest.main(xx)
 main()
-tttest()
+# tttest()
 
 
 # import os,sys

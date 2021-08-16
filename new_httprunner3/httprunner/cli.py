@@ -43,6 +43,7 @@ def main_run(extra_args) -> enum.IntEnum:
 
     tests_path_list = []
     extra_args_new = []
+    # 将参数里的文件路径和命令参数分开保存
     for item in extra_args:
         if not os.path.exists(item):
             # item is not file/folder path
@@ -59,6 +60,12 @@ def main_run(extra_args) -> enum.IntEnum:
     # pdb.set_trace()
 
     testcase_path_list = main_make(tests_path_list)
+    
+    print("[bold magenta]执行用例列表↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/bold magenta]!") # ,locals())
+    for i in testcase_path_list:
+        print(i)
+    print("[bold magenta]执行用例列表↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
+
     if not testcase_path_list:
         logger.error("No valid testcases found, exit 1.")
         sys.exit(1)
@@ -79,7 +86,7 @@ def main_run(extra_args) -> enum.IntEnum:
     return pytest.main(extra_args_new)
 
 
-#^ 框架第一个调的方法在此
+#! 框架第一个调的方法在此
 def main():
     """ API test: parse command line options and run commands.
     """
@@ -101,10 +108,10 @@ def main():
     # sub_parser_test.add_argument(
     #     "project_name", type=str, nargs="?", help="Specify new project name."
     # )
-    sub_parser_run = init_parser_run(subparsers)
-    sub_parser_scaffold = init_parser_scaffold(subparsers)
-    sub_parser_har2case = init_har2case_parser(subparsers)
-    sub_parser_make = init_make_parser(subparsers)
+    sub_parser_run = init_parser_run(subparsers) #子命令 run ; httprunner run xxx.py
+    sub_parser_scaffold = init_parser_scaffold(subparsers)#子命令 startproject
+    sub_parser_har2case = init_har2case_parser(subparsers)#子命令 har2case 
+    sub_parser_make = init_make_parser(subparsers)#子命令 make
     sub_parser_define = init_parser_define(subparsers)
     
     print("[bold magenta]2021-08-04 16:10:48↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/bold magenta]!")
@@ -152,9 +159,15 @@ def main():
 
     extra_args = []
     if len(sys.argv) >= 2 and sys.argv[1] in ["run", "locusts","define"]:
-        args, extra_args = parser.parse_known_args()
+        args, extra_args = parser.parse_known_args()  # 接收额外参数
+        # 执行 python3 test.py run  tt01/testcases/login_battle_test.py 
+        # args is : Namespace(version=False)
+        # extra_args is : ['tt01/testcases/login_battle_test.py']
+
     else:
         args = parser.parse_args()
+        # 执行 python3 test.py har2case tt01/testcases/login_battle_test.py
+        # args is Namespace(exclude=None, filter=None, har_source_file='tt01/testcases/login_battle_test.py', to_json=False, to_yaml=False, version=False)
 
     if args.version:
         print(f"{__version__}")

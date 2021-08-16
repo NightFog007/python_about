@@ -585,7 +585,6 @@ def __make(tests_path: Text) -> NoReturn:
                 f"reason: file content is neither testcase nor testsuite"
             )
 
-
 def main_make(tests_paths: List[Text]) -> List[Text]:
     if not tests_paths:
         return []
