@@ -64,7 +64,7 @@ def main_run(extra_args) -> enum.IntEnum:
     print("[bold magenta]执行用例列表↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/bold magenta]!") # ,locals())
     for i in testcase_path_list:
         print(i)
-    print("[bold magenta]执行用例列表↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
+    print("[bold magenta]执行用例列表 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
 
     if not testcase_path_list:
         logger.error("No valid testcases found, exit 1.")

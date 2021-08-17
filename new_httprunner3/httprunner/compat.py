@@ -12,7 +12,7 @@ from httprunner.loader import load_project_meta, convert_relative_project_root_d
 from httprunner.parser import parse_data
 from httprunner.utils import sort_dict_by_custom_order
 
-
+# 转换并获取变量.包括在debugtalk.py里用方法生成的, 最终以dict()形式返回
 def convert_variables(
     raw_variables: Union[Dict, List, Text], test_path: Text
 ) -> Dict[Text, Any]:
@@ -143,6 +143,7 @@ def _sort_request_by_custom_order(request: Dict) -> Dict:
         "auth",
         "cert",
     ]
+
     return sort_dict_by_custom_order(request, custom_order)
 
 
@@ -196,7 +197,7 @@ def _ensure_step_attachment(step: Dict) -> Dict:
 
 def ensure_testcase_v3_api(api_content: Dict) -> Dict:
     logger.info("convert api in v2 to testcase format v3")
-
+    
     teststep = {
         "request": _sort_request_by_custom_order(api_content["request"]),
     }
