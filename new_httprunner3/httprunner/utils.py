@@ -16,7 +16,7 @@ from httprunner import exceptions
 from httprunner.models import VariablesMapping
 
 
-def init_sentry_sdk():
+def init_sentry_sdk():  # 作者用于程序监控错误,运行有异常会收到邮件。
     sentry_sdk.init(
         dsn="https://460e31339bcb428c879aafa6a2e78098@sentry.io/5263855",
         release="httprunner@{}".format(__version__),
@@ -24,7 +24,7 @@ def init_sentry_sdk():
     with sentry_sdk.configure_scope() as scope:
         scope.set_user({"id": uuid.getnode()})
 
-
+#设置环境变量,loader.py调用
 def set_os_environ(variables_mapping):
     """ set variables mapping to os.environ
     """
@@ -32,7 +32,7 @@ def set_os_environ(variables_mapping):
         os.environ[variable] = variables_mapping[variable]
         logger.debug(f"Set OS environment variable: {variable}")
 
-
+#取消环境变量,源码里无调用
 def unset_os_environ(variables_mapping):
     """ set variables mapping to os.environ
     """
@@ -40,7 +40,7 @@ def unset_os_environ(variables_mapping):
         os.environ.pop(variable)
         logger.debug(f"Unset OS environment variable: {variable}")
 
-
+# 获取环境变量,parser.pr调用
 def get_os_environ(variable_name):
     """ get value of environment variable.
 
@@ -59,7 +59,7 @@ def get_os_environ(variable_name):
     except KeyError:
         raise exceptions.EnvNotFound(variable_name)
 
-
+# 将字典的key变为小写,client.py调用
 def lower_dict_keys(origin_dict):
     """ convert keys in dict to lower case
 
@@ -94,7 +94,7 @@ def lower_dict_keys(origin_dict):
 
     return {key.lower(): value for key, value in origin_dict.items()}
 
-
+# 格式化打印映射,无调用
 def print_info(info_mapping):
     """ print info in mapping.
 
@@ -139,7 +139,7 @@ def print_info(info_mapping):
     content += "-" * 48 + "\n"
     logger.info(content)
 
-
+# 超长字符串处理,超过指定长度转为缩写提示,runner.py , client.py调用
 def omit_long_data(body, omit_len=512):
     """ omit too long str/bytes
     """
@@ -158,7 +158,7 @@ def omit_long_data(body, omit_len=512):
 
     return omitted_body + appendix_str
 
-
+# 获取python,httprunner,操作系统版本
 def get_platform():
     return {
         "httprunner_version": __version__,
@@ -168,7 +168,7 @@ def get_platform():
         "platform": platform.platform(),
     }
 
-
+# 根据指定规则custom_order,对传入的字典raw_dict排序,compat.py调用
 def sort_dict_by_custom_order(raw_dict: Dict, custom_order: List):
     def get_index_from_list(lst: List, item: Any):
         try:
@@ -181,7 +181,7 @@ def sort_dict_by_custom_order(raw_dict: Dict, custom_order: List):
         sorted(raw_dict.items(), key=lambda i: get_index_from_list(custom_order, i[0]))
     )
 
-
+# 使python对象安全存储json数据, 在compat.py调用(注释掉了)
 class ExtendJSONEncoder(json.JSONEncoder):
     """ especially used to safely dump json data with python object, such as MultipartEncoder
     """
@@ -192,7 +192,8 @@ class ExtendJSONEncoder(json.JSONEncoder):
         except (UnicodeDecodeError, TypeError):
             return repr(obj)
 
-
+# 合并变量mapping,第一个优先级比第二个高. make.py和runner.py调用
+# !但是第一个参数变量mapping,为什么不能使用'aaa':'$aaa',待确认
 def merge_variables(
     variables: VariablesMapping, variables_to_be_overridden: VariablesMapping
 ) -> VariablesMapping:
@@ -200,18 +201,23 @@ def merge_variables(
     """
     step_new_variables = {}
     for key, value in variables.items():
+        print('the a1 key is :'+key)
+        print('the a1 value is :'+value)
         if f"${key}" == value or "${" + key + "}" == value:
             # e.g. {"base_url": "$base_url"}
             # or {"base_url": "${base_url}"}
+            print('in if ****')
             continue
 
         step_new_variables[key] = value
 
+    print('new a1 is :')
+    print(step_new_variables)
     merged_variables = copy.copy(variables_to_be_overridden)
     merged_variables.update(step_new_variables)
     return merged_variables
 
-
+# 是否支持多进程,make.py调用
 def is_support_multiprocessing() -> bool:
     try:
         Queue()
@@ -220,7 +226,8 @@ def is_support_multiprocessing() -> bool:
         # system that does not support semaphores(dependency of multiprocessing), like Android termux
         return False
 
-
+# 生成笛卡尔列表集,parser.py调用
+#^ 如果想要案例集精简,可以使用Pairwise算法 https://blog.csdn.net/MidSummer411/article/details/117108698
 def gen_cartesian_product(*args: List[Dict]) -> List[Dict]:
     """ generate cartesian product for lists
 
