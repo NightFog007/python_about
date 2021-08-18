@@ -15,6 +15,7 @@ class TestCaseDemoTestcaseRequest(HttpRunner):
                 "foo2": "config_bar2",
                 "expect_foo1": "config_bar1",
                 "expect_foo2": "config_bar2",
+                "expect_foo3":"$my_debulk_method1",
             }
         )
         .base_url("https://postman-echo.com")

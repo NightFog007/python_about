@@ -51,7 +51,7 @@ def _load_json_file(json_file: Text) -> Dict:
 
         return json_content
 
-
+#~ 导出json或yml文件内容
 def load_test_file(test_file: Text) -> Dict:
     """load testcase/testsuite file content"""
     if not os.path.isfile(test_file):
@@ -70,7 +70,7 @@ def load_test_file(test_file: Text) -> Dict:
 
     return test_file_content
 
-
+# testcase转为标准TestCase格式(config,teststeps)
 def load_testcase(testcase: Dict) -> TestCase:
     try:
         # validate with pydantic TestCase model
@@ -101,7 +101,7 @@ def load_testsuite(testsuite: Dict) -> TestSuite:
 
     return testsuite_obj
 
-
+# 导入环境变量文件
 def load_dot_env_file(dot_env_path: Text) -> Dict:
     """ load .env file.
 
@@ -261,7 +261,7 @@ def load_builtin_functions() -> Dict[Text, Callable]:
     """
     return load_module_functions(builtin)
 
-
+# 返回目标文件file_name所在的绝对路径
 def locate_file(start_path: Text, file_name: Text) -> Text:
     """ locate filename and return absolute file path.
         searching will be recursive upward until system root dir.
@@ -299,7 +299,7 @@ def locate_file(start_path: Text, file_name: Text) -> Text:
     # locate recursive upward
     return locate_file(parent_dir, file_name)
 
-
+# 返回debugtalk.py所在的绝对路径
 def locate_debugtalk_py(start_path: Text) -> Text:
     """ locate debugtalk.py file
 
@@ -319,7 +319,7 @@ def locate_debugtalk_py(start_path: Text) -> Text:
 
     return debugtalk_path
 
-
+# 定位项目根目录(即debugtalk.py所在位置)
 def locate_project_root_directory(test_path: Text) -> Tuple[Text, Text]:
     """ locate debugtalk.py path as project root directory
 
@@ -378,9 +378,16 @@ def load_debugtalk_functions() -> Dict[Text, Callable]:
 
     # reload to refresh previously loaded module
     imported_module = importlib.reload(imported_module)
+    #返回示例
+    #{
+    # 'my_debulk_method1': <function my_debulk_method1 at 0x10e86d830>, 
+    # 'get_httprunner_version': <function get_httprunner_version at 0x10e86de60>, 
+    # 'sum_two': <function sum_two at 0x10e86dd40>, 
+    # 'sleep': <function sleep at 0x10e86df80>
+    # }
     return load_module_functions(imported_module)
 
-
+# 获取项目根目录,debugtalk.py里定义的方法和路径.
 def load_project_meta(test_path: Text, reload: bool = False) -> ProjectMeta:
     """ load testcases, .env, debugtalk.py functions.
         testcases folder is relative to project_root_directory
@@ -432,7 +439,7 @@ def load_project_meta(test_path: Text, reload: bool = False) -> ProjectMeta:
 
     return project_meta
 
-
+# 将文件的绝对路径,转换为所在项目文件夹的相对路径
 def convert_relative_project_root_dir(abs_path: Text) -> Text:
     """ convert absolute path to relative path, based on project_meta.RootDir
 

@@ -2,6 +2,8 @@ import time
 
 from httprunner import __version__
 
+def my_debulk_method1():
+    return '1'
 
 def get_httprunner_version():
     return __version__

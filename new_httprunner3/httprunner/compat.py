@@ -274,7 +274,7 @@ def ensure_cli_args(args: List) -> List:
         args.pop(args.index("--save-tests"))
         _generate_conftest_for_summary(args)
 
-    return args
+    return args 
 
 
 def _generate_conftest_for_summary(args: List):

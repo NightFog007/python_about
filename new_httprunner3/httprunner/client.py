@@ -16,6 +16,7 @@ from httprunner.models import RequestData, ResponseData
 from httprunner.models import SessionData, ReqRespData
 from httprunner.utils import lower_dict_keys, omit_long_data
 
+# 禁用 urllib3 的安全请求警告
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
@@ -25,7 +26,7 @@ class ApiResponse(Response):
             raise self.error
         Response.raise_for_status(self)
 
-
+# 从response对象中获取request和response
 def get_req_resp_record(resp_obj: Response) -> ReqRespData:
     """ get request and response info from Response() object.
     """
@@ -128,6 +129,8 @@ class HttpSession(requests.Session):
         self.data.req_resps.pop()
         self.data.req_resps.append(get_req_resp_record(resp_obj))
 
+    # 封装requests.Session.request,安全调用,输出log等,   给runner.py调用
+    # name可忽略,是为了兼容Locust
     def request(self, method, url, name=None, **kwargs):
         """
         Constructs and sends a :py:class:`requests.Request`.
