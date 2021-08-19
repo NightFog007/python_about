@@ -515,7 +515,7 @@ def parse_parameters(parameters: Dict,) -> List[Dict]:
                 parameter_content_list.append(parameter_content_dict)
 
         elif isinstance(parameter_content, Text):
-            # (2) & (3)
+            # (2) & (3) ,上传.csv文件和方法生成的变量值
             parsed_parameter_content: List = parse_data(
                 parameter_content, {}, functions_mapping
             )
