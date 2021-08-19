@@ -18,9 +18,9 @@ import os
 # xx = merge_variables(a1,a2)
 # print(xx)
 # print(xx)
-# main()
+main()
 # tttest()
-print(convert_relative_project_root_dir('/Users/gsky/my_github/python_about/new_httprunner3/tt01/testcases/test_main_test.py'))
+# print(convert_relative_project_root_dir('/Users/gsky/my_github/python_about/new_httprunner3/tt01/testcases/test_main_test.py'))
 # load_debugtalk_functions()
 
 def print_info(info_mapping):

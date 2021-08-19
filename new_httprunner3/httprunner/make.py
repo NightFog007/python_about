@@ -3,7 +3,7 @@ import string
 import subprocess
 import sys
 from typing import Text, List, Tuple, Dict, Set, NoReturn
-
+from rich import print
 import jinja2
 from loguru import logger
 from sentry_sdk import capture_exception
@@ -208,6 +208,11 @@ def make_config_chain_style(config: Dict) -> Text:
 
     if "weight" in config:
         config_chain_style += f'.locust_weight({config["weight"]})'
+        
+    print("[bold magenta]2021-08-19 15:20:16↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/bold magenta]!") # ,locals())
+    print(config_chain_style)
+    print("[bold magenta]2021-08-19 15:20:16↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
+
 
     return config_chain_style
 
