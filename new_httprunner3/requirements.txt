@@ -60,7 +60,7 @@ email-validator==1.1.1
 et-xmlfile==1.0.1
 facebook-wda==1.4.0
 Faker==4.1.1
-fastapi==0.60.0
+fastapi==0.65.2
 filelock==3.0.12
 filetype==1.0.5
 Flask==2.0.1
