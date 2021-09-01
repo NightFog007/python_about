@@ -1,0 +1,7 @@
+username,password,res
+gsky,gsky,please select One Equipment
+gsky123,gsky,Error 9901: Username or PassWord
+gsky,gsky123,Error 9901: Username or PassWord
+gsky,0,Error 9901: Username or PassWord
+0,gsky,Error 9901: Username or PassWord
+123,123,please select One Equipment

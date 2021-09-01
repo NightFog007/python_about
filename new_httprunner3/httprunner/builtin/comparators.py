@@ -117,6 +117,7 @@ def type_match(check_value: Any, expect_value: Any, message: Text = ""):
 
 def regex_match(check_value: Text, expect_value: Any, message: Text = ""):
     assert isinstance(expect_value, str), "expect_value should be Text type"
+    check_value=str(check_value,encoding='utf-8')
     assert isinstance(check_value, str), "check_value should be Text type"
     assert re.match(expect_value, check_value), message
 

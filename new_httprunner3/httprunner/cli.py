@@ -80,7 +80,7 @@ def main_run(extra_args) -> enum.IntEnum:
     report_name = './reports/'+ time_stamp+'report'+'.html'
     extra_args_new.append('--html=%s'%report_name )
     extra_args_new.append('--self-contained-html' )
-    extra_args_new.append('--alluredir=./my_allure_results' )
+    extra_args_new.append('--alluredir=./allure_reports' )
     extra_args_new.append('--clean-alluredir' )
 
     return pytest.main(extra_args_new)

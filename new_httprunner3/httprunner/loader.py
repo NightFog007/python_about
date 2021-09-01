@@ -5,7 +5,7 @@ import os
 import sys
 import types
 from typing import Tuple, Dict, Union, Text, List, Callable
-
+from rich import print
 import yaml
 from loguru import logger
 from pydantic import ValidationError
@@ -146,6 +146,7 @@ def load_dot_env_file(dot_env_path: Text) -> Dict:
 
 
 def load_csv_file(csv_file: Text) -> List[Dict]:
+    
     """ load csv file and check file content format
 
     Args:
@@ -169,6 +170,12 @@ def load_csv_file(csv_file: Text) -> List[Dict]:
         ]
 
     """
+    # try:
+    #     csv_file = os.getenv(csv_file)
+    # except IOError:
+    #     print('.evn文件中的环境变量account_path不存在')
+    
+    print(csv_file)
     if not os.path.isabs(csv_file):
         global project_meta
         if project_meta is None:
@@ -176,7 +183,12 @@ def load_csv_file(csv_file: Text) -> List[Dict]:
 
         # make compatible with Windows/Linux
         csv_file = os.path.join(project_meta.RootDir, *csv_file.split("/"))
-
+        
+        # if not os.path.isabs(csv_file):
+        #     print("[bold magenta]2021-09-01 08:41:13↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/bold magenta]!") # ,locals())
+        #     csv_file = os.path.abspath('.') + tmp
+        #     print("[bold magenta]2021-09-01 08:41:13↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
+            
     if not os.path.isfile(csv_file):
         # file path not exist
         raise exceptions.CSVNotFound(csv_file)
