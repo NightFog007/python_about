@@ -1,0 +1,8 @@
+enemyid,equipmentid,res
+20001,10002,You win Level 1
+20001,10001,Your and your enemy all dead!!!
+20003,10002,Your dead!
+20003,10004,Error 9903: You Broken The Rule!And Kill yourself
+20004,10002,Error 9902: Your kill yourself!!
+,10002,Error 9904: Your kill yourself!!
+20004,,Error 9905: Your fight your enemy by nothing!And you are  died!

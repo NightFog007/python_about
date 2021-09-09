@@ -170,25 +170,22 @@ def load_csv_file(csv_file: Text) -> List[Dict]:
         ]
 
     """
-    # try:
-    #     csv_file = os.getenv(csv_file)
-    # except IOError:
-    #     print('.evn文件中的环境变量account_path不存在')
+
     
-    print(csv_file)
     if not os.path.isabs(csv_file):
         global project_meta
         if project_meta is None:
             raise exceptions.MyBaseFailure("load_project_meta() has not been called!")
 
         # make compatible with Windows/Linux
-        csv_file = os.path.join(project_meta.RootDir, *csv_file.split("/"))
+        # csv_file = os.path.join(project_meta.RootDir, *csv_file.split("/"))
+        try:
+            temp = os.getenv(csv_file)
+        except IOError:
+            print('.evn文件中的环境变量account_path不存在')
+        else:
+            csv_file = temp
         
-        # if not os.path.isabs(csv_file):
-        #     print("[bold magenta]2021-09-01 08:41:13↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/bold magenta]!") # ,locals())
-        #     csv_file = os.path.abspath('.') + tmp
-        #     print("[bold magenta]2021-09-01 08:41:13↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/bold magenta]!")
-            
     if not os.path.isfile(csv_file):
         # file path not exist
         raise exceptions.CSVNotFound(csv_file)
