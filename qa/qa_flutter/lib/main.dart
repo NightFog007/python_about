@@ -93,7 +93,7 @@ if (xx>80){
   result[5]=0;
 }
 
-for(var i = 6; i<7;i++){
+for(var i = 6; i<8;i++){
   var xx =int.parse(real_res[i]);
   if (xx==100){
     result[i]=0;
