@@ -12,9 +12,10 @@ class HomeContent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text('You have pushed the button this many times:',),
-          Text('$count',
-            style: Theme.of(context).textTheme.display1,
-          ),
+          Text('1'),
+          // Text('$count',
+          //   style: Theme.of(context).textTheme.display1,
+          // ),
         ],
       ),
     );
