@@ -210,7 +210,7 @@ stringcase==1.2.0
 tablib==3.0.0
 tensorboard==1.13.1
 tensorboard-plugin-wit==1.7.0
-tensorflow==1.13.1
+tensorflow==2.7.2
 tensorflow-estimator==1.13.0
 termcolor==1.1.0
 text-unidecode==1.3
