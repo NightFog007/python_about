@@ -31,7 +31,7 @@ betterproto==1.2.5
 black==21.7b0
 blinker==1.4
 Bootstrap-Flask==1.4
-bottle==0.12.18
+bottle==0.12.20
 bs4==0.0.1
 cached-property==1.5.2
 cachetools==4.1.1
