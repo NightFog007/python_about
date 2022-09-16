@@ -120,7 +120,7 @@ locust==2.1.0
 loguru==0.5.3
 logzero==1.6.3
 lxml==4.6.2
-Mako==1.1.2
+Mako==1.2.2
 Markdown==3.2.2
 MarkupSafe==2.0.1
 matplotlib==3.4.2
